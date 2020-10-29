@@ -1,2 +1,2 @@
 # EDRO
-Event Design Reality Objects. The heartof HiFiIntelligentClub
+Event Design Reality Objects. The heart of HiFiIntelligentClub
