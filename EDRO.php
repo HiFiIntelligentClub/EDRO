@@ -141,7 +141,6 @@ class EDRO
 				constructor()
 					{
 					console.log('[Vv]EDRO: Construct');
-
 					//this.K			=0;
 					//this.L			=0;
 					this.intStep		=0;//Player session operation time
@@ -151,6 +150,9 @@ class EDRO
 
 					console.log('[..]EDRO: Construct');
 					}
+				_Report ()
+					{
+					}
 				}
 			console.log('[.]EDRO: Declare');
 		</script>
@@ -159,13 +161,27 @@ oo2oo;
 		}
 	public static function strObjectInit()
 		{
-		$str	= <<<oo2oo
+		return EDRO::strObjInit('EDRO');
+		}
+	public static function strObjInit($_strClassName)
+		{
+		$strClassName	=$_strClassName;
+			   unset($_strClassName);
+		$strObjName	='obj'.$strClassName;
+		$str="
 		<script>
-			console.log('[V]EDRO: Init');
-			objEDRO		=new EDRO();
-			console.log('[.]EDRO: Init');
+			console.log('[V]EDRO.Objects.".$strObjName.": Init ".$strClassName."');
+
+			var ".$strObjName."=new ".$strClassName."();
+			console.log('[.]EDRO.Objects.".$strObjName.": Init ".$strClassName."');
 		</script>
-oo2oo;
+		<script>
+			if(typeof(".$strObjName.")!='object')
+				{
+				objKIIM.parentNode.classList.remove('hidden');
+				objKIIM.innerHTML+='".$strObjName.".construct() error.<br/>';
+				}
+		</script>";
 		return $str;
 		}
 	}
