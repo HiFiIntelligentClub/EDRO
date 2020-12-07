@@ -30,7 +30,7 @@ class Objects
 	public function __construct($_objKIIM)
 		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>'', '_objCurrent'=>'', '_intShowTempo'=>'' ));
 
-		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
+		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub3';
 		$strPlatformPrefix	='';
 		if($this->arrReality['bIzAndroid'])
 			{
@@ -153,8 +153,8 @@ class Objects
 			print_r($мРасположение);
 			echo '</pre>';*/
 			}
-		/*
-		echo '<pre>';
+		
+		/*echo '<pre>';
 		print_r($this);
 		echo '</pre>';
 		exit;*/
@@ -188,7 +188,16 @@ oо2оo;
 				font-size	:small;
 				"
 			>
-			HiFiIntelligentClub.<?=strGetDomainName()?> © tubmulur@yandex.ru 2020 <ifRU>Мы на облаке Reg.Ru</ifRU><ifEN>Powered by Reg.Ru </ifEN>.
+			HiFiIntelligentClub.<?=strGetDomainName()?> © tubmulur@yandex.ru 2020 
+			<ifRU 
+				
+				>
+				На облаке Reg.Ru.
+			</ifRU>
+			<ifEN
+				>
+				On Reg.Ru cloud.
+			</ifEN>
 		</copyright>
 		<script>
 			var oEl=document.getElementById("PageCopyrightTag");
@@ -317,10 +326,10 @@ oо2оo;
 					objDesign._CheckElements();
 				//	console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
 					}
-				if(objKIIM_StatisticalMembrane.bIzRunning==true)
+				/*if(objKIIM_StatisticalMembrane.bIzRunning==true)
 					{
 					objKIIM_StatisticalMembrane._incTime();
-					}
+					}*/
 				objIndicatorMasterClock.objStr.innerHTML	=objEDRO.intStep++;
 				objEDRO.intVector++;
 				objEDRO._CircleControllerGraph;
