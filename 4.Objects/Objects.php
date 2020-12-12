@@ -30,7 +30,7 @@ class Objects
 	public function __construct($_objKIIM)
 		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>'', '_objCurrent'=>'', '_intShowTempo'=>'' ));
 
-		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub3';
+		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
 		$strPlatformPrefix	='';
 		if($this->arrReality['bIzAndroid'])
 			{
@@ -188,7 +188,7 @@ oо2оo;
 				font-size	:small;
 				"
 			>
-			HiFiIntelligentClub.<?=strGetDomainName()?> © tubmulur@yandex.ru 2020 
+		© HiFiIntelligentClub tubmulur@yandex.ru 2020 
 			<ifRU 
 				
 				>
@@ -291,7 +291,7 @@ oо2оo;
 						}
 					objPlayer.intPlayerLoadingAnim++;
 					objPlayer.strPlayerLoadingAnim	+='.';
-					document.title	=objPlayer.strPlayerLoadingAnim+decodeURIComponent(objPlayer.strStationName)+'|HiFiIntelligentClub.com';
+					document.title	=objPlayer.strPlayerLoadingAnim+decodeURIComponent(objPlayer.strStationName)+'on HiFiIntelligentClub.com';
 					objIndicatorMasterClock.objStrServerLoading.innerHTML	=objReality.intMaxLoadingTime+'/'+objReality.intLoadingTime+'/'+objPlayer.intLoadingDuration;
 					if(!objPlayer.bIzNeedToBeStoppedEvent)
 						{
@@ -316,7 +316,12 @@ oо2оo;
 					}
 				//if(objPlayer.bIzError)
 				//	{
+			
 				//	}
+				if(objReality.arrPlayer.bIzWaiting)
+					{
+				
+					}
 				if(objEDRO.intVector==2)
 					{
 				//	console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
@@ -326,10 +331,10 @@ oо2оo;
 					objDesign._CheckElements();
 				//	console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
 					}
-				/*if(objKIIM_StatisticalMembrane.bIzRunning==true)
+				if(objKIIM_StatisticalMembrane.bIzRunning==true)
 					{
 					objKIIM_StatisticalMembrane._incTime();
-					}*/
+					}
 				objIndicatorMasterClock.objStr.innerHTML	=objEDRO.intStep++;
 				objEDRO.intVector++;
 				objEDRO._CircleControllerGraph;
