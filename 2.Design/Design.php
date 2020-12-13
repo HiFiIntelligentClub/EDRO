@@ -43,14 +43,7 @@ class Design extends Reality
 		}
 	public static function strObjectInit()
 		{
-		$str	=<<<oo2oo
-		<script>
-			console.log('[V]EDRO.Design: _Init');
-			var objDesign=new Design();
-			console.log('[.]EDRO.Design: _Init');
-		</script>
-oo2oo;
-		return $str;
+		return EDRO::strObjInit('Design');
 		}
 	public static function strObjectDeclare()
 		{
@@ -93,7 +86,7 @@ oo2oo;
 						this.intElementWidth	=410;
 						}
 					this.intScreenWidth	=objDynaScreen.intWidth;
-					this.intScreenHeight	=(objDynaScreen.intHeight-110);
+					this.intScreenHeight	=(objDynaScreen.intHeight-180);
 					this.intWidthElements	=Math.floor(this.intScreenWidth/this.intElementWidth);
 					if(this.intWidthElements<1)
 						{
