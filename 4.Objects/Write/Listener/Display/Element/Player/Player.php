@@ -810,12 +810,14 @@ oo2oo;
 					//objKIIM_StatisticalMembrane._incTime();
 					objPlayer.objVisibleControls.classList.remove('stopped');
 					objPlayer.objVisibleControls.classList.remove('loadingAudio');
+					objPlayer.objVisibleControls.classList.remove('WaitingAudio');
 					objPlayer.objVisibleControls.classList.remove('playing');
 					objPlayer.objVisibleControls.classList.remove('errorAudio');
 					objPlayer.objVisibleControls.classList.remove('overload');
 					objPlayer.objVisibleControls.className	+=' loadingAudio';
 
 					objPlayer.objCurrentBlock.classList.remove('loadingAudio');
+					objPlayer.objCurrentBlock.classList.remove('WaitingAudio');
 					objPlayer.objCurrentBlock.classList.remove('playing');
 					objPlayer.objCurrentBlock.classList.remove('errorAudio');
 					objPlayer.objCurrentBlock.classList.remove('overload');
