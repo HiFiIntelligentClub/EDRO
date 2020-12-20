@@ -33,13 +33,13 @@ class Reality extends Objects
 	///////////////////////////////////////////!!!!
 		
 		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/Listeners/';
+		$this->arrReality['strRoleSignal']		='Listener';
 
-								  ЗапомнитьСлушателя::_ЛокалОблако($objKIIM, $this->arrReality['strListnersPath'], $this->arrEvent['arrParams']['strStyle']);
+		$this->arrReality['strListenerId']		=СоздатьСеанс::с($objKIIM, $this->arrReality['strRoleSignal'] , $this->arrEvent['arrParams']);
 		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($objKIIM, $this->arrReality['strListnersPath']);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
-		$this->arrReality['strListenerId']		=$_SESSION['strListener'];
-		$this->arrReality['strRoleSignal']		='Listener';
+		
 		$this->arrReality['strRoleLangSignal']		=rmLb(FileRead::str($objKIIM, $this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
 		$this->arrReality['strLangSignal']		=strGetDefaultLanguage();
 		$this->arrReality['bIzAndroid']			=$this->bIzAndroid();
@@ -120,15 +120,8 @@ class Reality extends Objects
 			}
 		}
 	public static function strObjectInit()
-		{
-		$str	=<<<oo2oo
-		<script>
-			console.log('[V]EDRO.Reality: _Init');
-			objReality=new Reality();
-			console.log('[.]EDRO.Reality: _Init');
-		</script>
-oo2oo;
-		return $str;
+		{	
+		return EDRO::strObjInit('Reality');
 		}
 	public static function strObjectDeclare()
 		{
