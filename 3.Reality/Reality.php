@@ -32,9 +32,9 @@ class Reality extends Objects
 
 	///////////////////////////////////////////!!!!
 		
-		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/Listeners/';
+		
 		$this->arrReality['strRoleSignal']		='Listener';
-
+		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
 		$this->arrReality['strListenerId']		=СоздатьСеанс::с($objKIIM, $this->arrReality['strRoleSignal'] , $this->arrEvent['arrParams']);
 		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($objKIIM, $this->arrReality['strListnersPath']);
 
