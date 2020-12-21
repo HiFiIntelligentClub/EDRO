@@ -177,7 +177,7 @@ oо2оo;
 		$str='
 		<copyright
 			id="PageCopyrightTag"
-			class="BC3 TC3 layer_5_Nav"
+			class="BC3 TC3 layer_5_Nav no-select"
 			style="
 				position	:fixed;
 				bottom		:0;
