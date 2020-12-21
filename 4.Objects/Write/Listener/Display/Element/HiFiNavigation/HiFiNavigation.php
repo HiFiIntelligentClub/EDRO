@@ -41,6 +41,7 @@ class HiFiNavigation
 		//echo $intNextPage;
 		//	$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intNextPage, true);
 		//	echo $arrEventLink['strHref'];
+		
 		?>
 		<pageNav
 			class="
@@ -61,6 +62,7 @@ class HiFiNavigation
 				{
 				?>
 				<a
+				id	="objPageForward"
 				<?php
 				$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intNextPage, true);
 				echo $arrEventLink['strHref'];
@@ -82,9 +84,12 @@ class HiFiNavigation
 			else
 				{
 				?>
-				<stopBlock
-					class="block right BBV BTA BC1 TC1 cursor no-select"
-					style="
+				<a
+					id	="objPageForward"
+					href	="#"
+					onclick	=""
+					class	="block right BBV BTA BC1 TC1 cursor no-select"
+					style	="
 						height		:40px;
 						width		:34%;
 						height		:100%;
@@ -92,7 +97,7 @@ class HiFiNavigation
 						text-decoration	:none;
 						"
 					>
-				</stopBlock>
+				</a>
 				<?php
 				}
 				?>
@@ -116,10 +121,21 @@ class HiFiNavigation
 					class="block tcenter"
 					>
 					<input 
+						id	="objPageNumberSelect"
 						onChange="
 							objEvent.arrParams.<?=$intPageParamName?>=this.value;
 							objEvent._UpdateURLDyn();
 							return false;
+							"
+						onFocusin="
+							//objHiFiNavigation.bizPageSelectFoucus=true;
+							bizHiFiNavigationInputSelect	=true;
+							//alert('on');
+							"
+						onfocusout="
+							//objHiFiNavigation.bizPageSelectFoucus=false;
+							bizHiFiNavigationInputSelect	=false;
+							//alert('off');
 							"
 					type	="number" 
 					value	="<?=$intPage?>"
@@ -135,7 +151,7 @@ class HiFiNavigation
 						>
 						<ifRU>из </ifRU>
 						<ifEN>of </ifEN>
-						<?=$intPages?>
+						<?=$intPages-1?>
 					</strPages>
 				</strPage>
 			</pagerNum>
@@ -143,9 +159,11 @@ class HiFiNavigation
 			if($intPage<1)
 				{
 				?>
-				<stopBlock
-					class="block left BBV BTA BC1 TC1 cursor no-select"
-					style="
+				<a
+					id	="objPageBackward"
+					onclick	=""
+					class	="block left BBV BTA BC1 TC1 cursor no-select"
+					style	="
 						height		:40px;
 						width		:34%;
 						height		:100%;
@@ -153,7 +171,7 @@ class HiFiNavigation
 						text-decoration	:none;
 						"
 					>
-				</stopBlock>
+				</a>
 				<?php
 				}
 			else
@@ -161,44 +179,47 @@ class HiFiNavigation
 				$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intPrevPage, true);
 				?>
 				<a
+					id	="objPageBackward"
+					<?php
+					echo $arrEventLink['strHref'];
+					echo $arrEventLink['strOnClick'];
+					?>
+					class="block left BBV BTA BC3 TC3 cursor no-select"
+					style="
+						padding-top	:10px;
+						width		:34%;
+						height		:100%;
+						text-align	:center;
+						text-decoration	:none;
+						"
+					>
+					<<
+				</a>
 				<?php
-				echo $arrEventLink['strHref'];
-				echo $arrEventLink['strOnClick'];
-				?>
-				class="block left BBV BTA BC3 TC3 cursor no-select"
-				style="
-					padding-top	:10px;
-					width		:34%;
-					height		:100%;
-					text-align	:center;
-					text-decoration	:none;
-					"
-				>
-				<<
-			</a>
-			<?php
 				}
 			?>
 		</pageNav>
 		<?php
-
+		echo HiFiNavigation::strObjectDeclare();
+		echo HiFiNavigation::strObjectInit();
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strObjectDeclare()
 		{
 		?>
 		<script>
-
+			class HiFiNavigation
+				{
+				objRight		='';
+				objLeft			='';
+				bizPageSelectFoucus	=true;
+				}
 		</script>
 		<?php
 		}
 	public static function strObjectInit()
 		{
-		?>
-		<script>
-
-		</script>
-		<?php
+		return EDRO::strObjInit('HiFiNavigation');
 		}
 	public static function strHTML($_objKIIM, $_arrPagination, $_arrParams)
 		{
