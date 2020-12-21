@@ -45,7 +45,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				class="fix HR0 V99 layer_4 default"
 				>
 				<ifCutDown
-					class="fix block layer_4  right sensor TC1 BC1 no-select"
+					class="block layer_4  right sensor TC1 BC1 no-select"
 					onclick="
 						this.parentNode.classList.remove(\'CutDown\');
 						this.parentNode.className+=\' Expanded\';
@@ -53,22 +53,22 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 					style="
 						text-align	:center;
 						line-height	:36px;
-						height		:38px;
-						width		:60px;
+						height		:40px;
+						width		:80px;
 						"
 					>
 					<ifRU>
-						МЕНЮ
+						ПОИСК
 					</ifRU>
 					<ifEN>
-						MENU
+						SEARCH
 					</ifEN>
 				</ifCutDown>
 				<ifExpanded
 					class="fix block layer_4  HL0 HV99 TC1 BC1 BBV"
 
 					style="
-						height		:150px;
+						height		:40px;
 						width		:100vw;
 						"
 					>
@@ -76,61 +76,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 						class="block"
 						style="
 							width		:100%;
+							min-width	:300px;
 							height		:40px;
 							padding		:0;
 							margin		:0;
-							"
-						>
-						<topTouchBuffer
-							class	="block TC2 BC2"
-							style	="
-								height	:10px;
-								width	:100%;
-								font-size	:x-small;
-								"
-							>
-							'.
-							//$_SERVER['HTTP_X_FORWARDED_FOR'].
-							'
-						</topTouchBuffer>
-						//Menu
-						<closeButton
-							class="sensor block right TC3 BC3"
-							style="
-								height		:20px;
-								width		:60px;
-								text-align	:center;
-								line-height	:18px;
-								"
-							onclick="
-								this.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
-								this.parentNode.parentNode.parentNode.className+=\' CutDown\';
-								"
-							>
-							<ifRU>
-								x
-							</ifRU>
-							<ifEN>
-								x
-							</ifEN>
-						</closeButton>
-						<bottomTouchBuffer
-							class	="block TC2 BC2"
-							style	="
-								height		:10px;
-								width		:100%;
-								font-size	:x-small;
-								"
-							>
-							<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
-							'.$_SERVER['REMOTE_ADDR'].'
-						</bottomTouchBuffer>
-					</menu>
-					<data
-						class="block scrollerY TC1 BC1"
-						style="
-							width	:100%;
-							height	:152px;
 							"
 						>
 						<form 
@@ -139,13 +88,102 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 							action		="/search"
 							onsubmit	="return false;"
 							style		="
-									width		:100%;
-									height		:152px;
+									width	:100%;
 									"
 								    
-							>'.
+							>
+							<topTouchBuffer
+								class	="block TC2 BC2"
+								style	="
+									height		:10px;
+									width		:100%;
+									font-size	:x-small;
+									line-height	:9px;
+									"
+								>
+								<ifEN>Search stations:</ifEN>
+								<ifRU>Поиск станций:</ifRU>
+							</topTouchBuffer>
+
+							<input 
+								id		="SearchBystrStyle"
+								name		="strstyle"
+								size		="15" 
+								maxlength	="20"
+								class		="block left HR0 LTR_RTL"
+
+								type		="text" 
+								placeholder	="Genre" 
+								value		="'.сПреобразовать($strSearchStyle).'"
+
+								onchange	="
+										objEvent.arrParams[\'strStyle\']	=encodeURIComponent(this.value);
+										objEvent._UpdateURLDyn();
+										"
+			
+								/>
+							<input 
+								id		="SearchBystrName"
+								name		="strname"
+								size		="25" 
+								maxlength	="250"
+								class		="block left HR0 LTR_RTL"
+
+								type		="text" 
+								placeholder	="Station name" 
+								value		="'.сПреобразовать($strSearchName).'"
+
+								onchange	="
+										objEvent.arrParams[\'strName\']	=encodeURIComponent(this.value);
+										objEvent._UpdateURLDyn();
+										"
+			
+								/>
+
+
+							<closeButton
+								class="sensor block right TC1 BC1"
+								style="
+									height		:20px;
+									width		:40px;
+									text-align	:center;
+									line-height	:18px;
+									"
+								onclick="
+									this.parentNode.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
+									this.parentNode.parentNode.parentNode.parentNode.parentNode.className+=\' CutDown\';
+									"
+								>
+								<ifRU>
+									x
+								</ifRU>
+								<ifEN>
+									x
+								</ifEN>
+							</closeButton>
+							<bottomTouchBuffer
+								class	="block TC2 BC2"
+								style	="
+									height		:10px;
+									width		:100%;
+									font-size	:x-small;
+									"
+								>
+								<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
+								'.$_SERVER['REMOTE_ADDR'].'
+							</bottomTouchBuffer>
+						</form>
+					</menu>
+					<data
+						class="block scrollerY TC1 BC1"
+						style="
+							width	:100%;
+							height	:152px;
+							"
+						>
+						'.
 							//FormInput::strHtml($objKIIM, array('RU'=>'РФИд','EN'=>'RFId'), $strSearchId).
-							FormInput::strHtml($objKIIM, array(
+							/*FormInput::strHtml($objKIIM, array(
 									'_RU'=>'Название',
 									'_EN'=>'Name'
 								), array(
@@ -162,25 +200,13 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 									'_strInputName'	=>'strStyle'
 								)).
 							FormInput::strHtml($objKIIM, array(
-									'_RU'=>'Ограничения',
-									'_EN'=>'Limiting'
-								), array(
-									'_strValue'	=>$strSearchBitrate,
+									'_RU'=>'Аккустика',
+									'_EN'=>'Accoustic',
+								),  array(
+									'_strValue'	=>$strSearchType,
 									'_strInputType'	=>'select',
-									'_strInputName'	=>'intBitrate',
-									'_arrInput'	=>array()
-								), array(
-									'bIzOn'		=>true,
-									'_strInputName'	=>'strCodec',
-									'_strValue'	=>$strSearchCodec,
-								
-								), array(
-									'bIzOn'		=>true,
-									'_strValue'	=>$strSearchBitrate,
-									'_strInputType'	=>'number',
-									'_strInputName'	=>'intBitrate'
-									)
-								).
+									'_strInputName'	=>'strType'
+								)).*/
 							/*FormInput::strHtml($objKIIM, array(
 									'_RU'=>'Кодек',
 									'_EN'=>'Codec'
@@ -192,7 +218,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 									'bIzEq'		=>false
 								
 								)).*/
-							'</form>';
+							// '</form>';
 							$this->strHTML	.=FileRead::str($objKIIM,'/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/SearchBlock.php');
 							$this->strHTML	.='<hr/>';
 							foreach($_SERVER as $strName => $strValue)
