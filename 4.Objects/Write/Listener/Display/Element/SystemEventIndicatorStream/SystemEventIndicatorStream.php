@@ -61,7 +61,9 @@ class SystemEventIndicatorStream
 				width		:100%;
 				"
 			>'.
+			Login::strHTML().
 			DynaScreenEventIndicator::strHtml().
+			Player::strIndicatorTop().
 			IndicatorHiFi::strHtml().
 			IndicatorMasterClock::strHTML().
 			IndicatorNetwork::strHTML().

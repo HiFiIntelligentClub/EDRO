@@ -30,22 +30,19 @@ class IndicatorHiFi
 		<HiFi
 			class="rel left no-select ifNoFollowingDj TC3 BC3"
 			style="
-				width		:110px;
 				height		:20px;
 				font-size	:smaller;
 				text-align	:center;
 				line-height	:18px;
 				"
 			>
-			'.
-			Player::strIndicatorTop().
-			'
 			<PictogramHelper
-				id		="contextHelper"
+				id		="strListener"
 				class		="block"
-				>'.
-				$_SESSION['strListener'].
-			'</PictogramHelper>
+				>
+
+
+			</PictogramHelper>
 		</HiFi>';
 		$this->strHTML.=$this->strObjectDeclare();
 		$this->strHTML.=$this->strObjectInit();
@@ -62,7 +59,7 @@ class IndicatorHiFi
 					console.log('[Vv]EDRO IndicatorHiFi: construct.');
 					
 				
-					this.objStr			=document.getElementById('contextHelper');
+					this.objStr			=document.getElementById('strListener');
 
 					console.log('[..]EDRO IndicatorHiFi: construct.');
 					}
