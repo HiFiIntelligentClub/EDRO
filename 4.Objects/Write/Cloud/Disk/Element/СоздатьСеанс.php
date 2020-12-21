@@ -34,18 +34,22 @@ class СоздатьСеанс
 		else
 			{
 			$оВсего		=FileRead::objО2О($objKIIM, $this->сРасполож.'/'.$this->сРоль.'Total.020');
+			//print_r($оВсего);
+			
 			if(isset($оВсего->int0Total))
 				{
-				$this->ч0ВсегоСлушателей	=$оВсего->int0Total;
+				$this->ч0ВсегоСлушателей	=($оВсего->int0Total);
 				}
-			
+			echo $this->ч0ВсегоСлушателей++;
+
 			$оO2oЗаписьИтого	=new O2oЗаписьИтого($objKIIM, $this->сРоль, array(
 							'int0Total'		=>$this->ч0ВсегоСлушателей,
 							'int0'.$this->сРоль	=>$this->ч0ВсегоСлушателей
 							)
 						);
-			$ч0ПорядковыйНомер		=($this->ч0ВсегоСлушателей+1);
-			$this->сМойНомерок		=сКодировать($ч0ПорядковыйНомер, 'к');
+		
+			$this->сМойНомерок		=сКодировать($this->ч0ВсегоСлушателей, 'к');
+			
 			$_SESSION['strListener']	= $this->сМойНомерок;
 			}
 		$this->сТекущийСеанс	=$this->сМойНомерок.$this->сМояПозицияО2О;
@@ -59,6 +63,8 @@ class СоздатьСеанс
 		$objKIIM_e=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>'Удаление сессий о2о'));
 			exec('rm -f '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'_* &'); 
 		KIIM::objFinish($objKIIM_e, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>'Удаление сессий о2о'));
+		//echo $this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс;
+		
 		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м));
 		
 		setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365));
