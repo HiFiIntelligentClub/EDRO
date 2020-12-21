@@ -99,7 +99,7 @@ class Objects
 		if(empty($strSearchName))
 			{
 			$objTotal	=FileRead::objJSON($objKIIM, $this->arrObjects['сРасположение'].'/total.plmr');
-			$this->arrObjects['ч0РасположениеTotal']	= $objTotal->total;
+			$this->arrObjects['ч0РасположениеTotal']	= $objTotal->int0Total;
 			if($this->arrObjects['ч0РасположениеTotal']==='')
 				{
 				echo 'No data';
@@ -324,17 +324,28 @@ oо2оo;
 					}
 				if(objEDRO.intVector==2)
 					{
-				//	console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
+					console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
 				//	console.log(objEDRO.intStep);
 					objEDRO.intVector	=0;
-					objDesign._UpdateDimensions();
-					objDesign._CheckElements();
-				//	console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
+					if(bizHiFiNavigationInputSelect)
+						{
+						console.log('[=^Vvv]objReality.bizAndroid&&objHiFiNavigation.bizPageSelectFoucus');
+						//alert('objReality.bizAndroid&&bizHiFiNavigationInputSelect');
+						}
+					else
+						{
+						console.log('[=^Vvv]!objReality.bizAndroid&&!objHiFiNavigation.bizPageSelectFoucus');
+						objDesign._UpdateDimensions();
+						objDesign._CheckElements();
+						}
+					
+					
+					console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
 					}
-				if(objKIIM_StatisticalMembrane.bIzRunning==true)
+				/*if(objKIIM_StatisticalMembrane.bIzRunning==true)
 					{
 					objKIIM_StatisticalMembrane._incTime();
-					}
+					}*/
 				objIndicatorMasterClock.objStr.innerHTML	=objEDRO.intStep++;
 				objEDRO.intVector++;
 				objEDRO._CircleControllerGraph;
