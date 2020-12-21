@@ -99,6 +99,18 @@ class FileRead
 			}
 		return $obj;
 		}
+	public static function objО2О($_objKIIM, $_strDataFile)
+		{
+		$objRead=new FileRead($objKIIM, $_strDataFile);
+		$obj =json_decode($objRead->str, false);
+		unset($objRead);
+		if($obj===NULL)
+			{
+			$objError=new ReportError($objKIIM, $strSetupFile.' is not a JSON.');
+			unset($objError);
+			}
+		return $obj;
+		}
 	public static function objJSON_l($_strDataFile)
 		{
 		$objRead=new FileRead($objKIIM, $_strDataFile);
@@ -146,8 +158,9 @@ class FileRead
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		return $str;
 		}
-	public static function _GetDesignHTML($_objKIIM, $_strDataFile, $_objEDRO) //_GetDesignHtml
-		{$objKIIM	=$_objKIIM;unset($_objKIIM);$objKIIM	=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+	public static function strGetDesignHTML($_objKIIM, $_strDataFile, $_objEDRO) //_GetDesignHtml
+		{$objKIIM	=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
 
 		$str		='';
 		$objEDRO	=$_objEDRO;
@@ -156,12 +169,14 @@ class FileRead
 			   unset($_strDataFile);
 		if(is_file($strDataFile))
 			{
-			require_once($strDataFile);
+			$str =include($strDataFile);
+			return $str;
 			}
 		else
 			{
 			$objError=new ReportError($objKIIM, $strDataFile.' Нет файла.');
 			unset($objError);
+			return '';
 			}
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		return $str;
