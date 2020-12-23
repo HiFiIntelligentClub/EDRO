@@ -28,10 +28,11 @@ class Event extends Design
 
 		// 0.strNDigit ->  arrAllIncomeActions
 		// 0.strNDigit ->  arrAllIncomeParametrs
-		$this->arrEvent			=arrGetEventSetter();
+		$this->arrEvent				=arrGetEventSetter();
+
 		
-		$this->arrEvent['bIsDynamic']	=$this->bIsDynamic();
-		$this->arrEvent['strObjectParams']='objEvent.arrParams={'.strArrayRec2JS($this->arrEvent, 'arrParams').'};';
+		$this->arrEvent['bIsDynamic']		=$this->bIsDynamic();
+		$this->arrEvent['strObjectParams']	='objEvent.arrParams={'.strArrayRec2JS($this->arrEvent, 'arrParams').'};';
 		//echo '<pre>';
 		//print_r($this->arrEvent);
 		//echo '</pre>';
@@ -78,14 +79,7 @@ class Event extends Design
 		}
 	public static function strObjectInit()
 		{
-		$str	=<<<oо2оo
-		<script>
-			console.log('[V]EDRO.Event: Init');
-			var objEvent=new Event();
-			console.log('[.]EDRO.Event: Init');
-		</script>
-oо2оo;
-		return $str;
+		return EDRO::strObjInit('Event');
 		}
 	public function strParamsInit()
 		{
@@ -103,6 +97,7 @@ oо2оo;
 		$str	=<<<oо2оo
 		<script>
 			console.log('[V]EDRO.Event: Declare');
+			var bizHiFiNavigationInputSelect	=false;
 			class Event
 				{
 				constructor()
@@ -131,7 +126,38 @@ oо2оo;
 					this.objNav		={'HFIC':'ICQR'};
 					this._SetLanguageMood();
 					this._SetRoleSignal();
+					document.onkeydown=function(e)
+						{
+						console.log(e.keyCode);
+						switch(e.keyCode)
+							{
+							case 9: //TAB
 
+							break;
+							case 32: //SpaceBar space fun :)
+
+							break;
+							case 27: //ESC
+								    
+							break;
+							case 37: //<-
+								objHiFiNavigation	=new HiFiNavigation();
+								if(objHiFiNavigation.objLeft.href)  //f&objHiFiNavigation.objRight.int0Page<=objHiFiNavigation.objRight.href.int0PageMaximum
+									{
+									var arrParams		=objHiFiNavigation.objLeft.href.split('?');
+									objEvent._GoToUrl(arrParams[1]);
+									}
+							break;
+							case 39: //->
+								objHiFiNavigation	=new HiFiNavigation();
+								if(objHiFiNavigation.objRight.href)//&&objHiFiNavigation.objRight.int0Page<=objHiFiNavigation.objRight.href.int0PageMaximu
+									{
+									var arrParams		=objHiFiNavigation.objRight.href.split('?');
+									objEvent._GoToUrl(arrParams[1]);
+									}
+							break;
+							}
+						}
 					window.onpopstate=function(event)
 						{
 						console.log('[Vvv]EDRO.Event: onpopstate');
@@ -262,8 +288,8 @@ oо2оo;
 
 					objSearch.objValueInputstrName.value		=objEvent.arrParams.strName;
 					objSearch.objValueInputstrStyle.value		=objEvent.arrParams.strStyle;
-					objSearch.objValueInputintBitrate.value		=objEvent.arrParams.intBitrate;
-					objSearch.objValueInputstrCodec.value		=objEvent.arrParams.strCodec;
+					//objSearch.objValueInputintBitrate.value		=objEvent.arrParams.intBitrate;
+					//objSearch.objValueInputstrCodec.value		=objEvent.arrParams.strCodec;
 
 					console.log(objSearch.objValueInputstrName.value);
 					objEvent.strURL			=obj.pathname+'?'+objEvent.strParams;
@@ -272,6 +298,38 @@ oо2оo;
 					objDynaScreen.objXHR.open('POST', objEvent.strURLDyn);
 					objDynaScreen.objXHR.send();
 					console.log('[..]EDRO.Objects: _CreateParamsArr(obj)');
+					}
+				_GoToUrl(strParams)
+					{
+					console.log('[Vv]EDRO.Objects: _GoToUrl(strParams)');
+					objReality.bIzHistory		=false;
+					objReality.bIzLoading		=true;
+					objReality.bIzDynaScreen	=true;
+					objReality.intLoadingTime	=0;
+					objEvent.strParams		=strParams;
+					//console.log(objEvent.strParams);
+					objEvent.arrParamsPair		=objEvent.strParams.split("&");
+					
+					//console.log(objEvent.arrParamsPair);
+					Object.keys(objEvent.arrParamsPair).forEach(function(strKey)
+						{
+						objEvent.arrParamsTemp	=objEvent.arrParamsPair[strKey].split('=');
+						objEvent.arrParams[objEvent.arrParamsTemp[0]]	=decodeURIComponent(objEvent.arrParamsTemp[1]);
+						});
+
+					objSearch.objValueInputstrName.value		=objEvent.arrParams.strName;
+					objSearch.objValueInputstrStyle.value		=objEvent.arrParams.strStyle;
+					//objSearch.objValueInputintBitrate.value		=objEvent.arrParams.intBitrate;
+					//objSearch.objValueInputstrCodec.value		=objEvent.arrParams.strCodec;
+
+					console.log(objSearch.objValueInputstrName.value);
+					//objEvent.strURL			=obj.pathname+'?'+objEvent.strParams;
+					objEvent.strURL			='/?'+objEvent.strParams;
+					objEvent.strURLDyn		=objEvent.strURL+'&d=1';//objObjects->objEvent
+					objDynaScreenEventIndicator.objHTML.style.display	="block"; 
+					objDynaScreen.objXHR.open('POST', objEvent.strURLDyn);
+					objDynaScreen.objXHR.send();
+					console.log('[..]EDRO.Objects: _GoToUrl(strParams)');
 					}
 				_CreateParamsStr()
 					{
@@ -337,16 +395,16 @@ oо2оo;
 					{
 					objSearch.objValueInputstrName.value	=decodeURIComponent(this.arrParams['strName']);
 					objSearch.objValueInputstrStyle.value	=decodeURIComponent(this.arrParams['strStyle']);
-					objSearch.objValueInputintBitrate.value	=this.arrParams['intBitrate'];
-					objSearch.objValueInputstrCodec.value	=this.arrParams['strCodec'];
+					//objSearch.objValueInputintBitrate.value	=this.arrParams['intBitrate'];
+					//objSearch.objValueInputstrCodec.value	=this.arrParams['strCodec'];
 					}
-				_SetLanguageMood()
+				_SetLanguageMood() //objEDRO->strReality['strLangSignal'];
 					{
-					console.log('[Vv]EDRO.Reality: Master Mood SET  _SetLanguageMood');
+					/*console.log('[Vv]EDRO.Reality: Master Mood SET  _SetLanguageMood');
 					document.body.className		+=' '+strSignalLang;
-					console.log('[..]EDRO.Reality: Master Mood SET  _SetLanguageMood');
+					console.log('[..]EDRO.Reality: Master Mood SET  _SetLanguageMood');*/
 					}
-				_SetRoleSignal()
+				_SetRoleSignal()//Visual placement of the role fact in objEDRO->strReality['strRoleSignal'];
 					{
 					console.log('[Vv]EDRO.Reality: Master Mood SET  _SetRoleSignal()');
 					this.objRoleSignal		=document.getElementById('SignalRole');
