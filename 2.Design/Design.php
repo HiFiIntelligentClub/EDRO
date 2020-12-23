@@ -25,21 +25,16 @@ class Design extends Reality
 	{
 	public function __construct($_objKIIM)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$objKIIM	=$_objKIIM;
+		unset($_objKIIM);
 
-		$arrParams['/']=
-		array(
-			'strTemplate'		=>'/home/EDRO/2.Design/.strFileList.php',
-			);
-		$arrParams['/search']=
-		array(
-			'strTemplate'		=>'/home/EDRO/2.Design/.strFileList.php',
-			);
-		$this->arrDesign	=$arrParams[$this->arrEvent['strAction']];
+		$arrParams		=arrAllEventIncomeParametrsDefault(); //[arrAction]['ArrAllowed']['strAction']
+		echo $this->arrEvent['strAction'];
+		$this->arrDesign	=$arrParams['arrAction']['arrAllowed'][$this->arrEvent['strAction']];
 
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		parent::__construct($objKIIM);
-
 		}
 	public static function strObjectInit()
 		{
