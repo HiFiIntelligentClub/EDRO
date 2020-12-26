@@ -24,166 +24,70 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class FormInput
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrName, $_arrParams, $_arrFirstSelectSetup=array('bIzOn'=>false), $_arrSecSelectSetup=array('bIzOn'=>false))
-		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+	public function __construct($_arrReality)
+		{//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));unset($_objKIIM);
 
-		$arrName['RU']	=$_arrName['_RU'];
-		$arrName['EN']	=$_arrName['_EN'];
-			   unset($_arrName);
 
-		$arrParams['strValue']		=$_arrParams['_strValue'];
-		$arrParams['strInputName']	=$_arrParams['_strInputName'];
-		$arrParams['strInputType']	=empty($_arrParams['_strInputType'])?'text':$_arrParams['_strInputType'];
-					         unset($_arrParams);
+		$strLang				=$_arrReality['strLang'];
+		$arrReality['strDisplayName']		=$_arrReality['arrName'][$strLang];
+		$arrReality['strInputName']		=$_arrReality['arrSetup']['strInputName'];
+		$arrReality['strInputValue']		=$_arrReality['arrSetup']['strInputValue'];
+		$arrReality['strInputType']		=$_arrReality['arrSetup']['strInputType'];
+		$arrReality['intInputSize']		=$_arrReality['arrSetup']['intInputSize'];
+		$arrReality['intInputMaxLength']	=$_arrReality['arrSetup']['intInputMaxLength'];
+		$arrReality['strInputWidth']		=$_arrReality['arrSetup']['strInputWidth'];
+					         unset($_arrReality);
+		//print_r($arrReality);
+		//exit;
 
-		$bIzShowFirstSelect			=$_arrFirstSelectSetup['bIzOn'];
-		if($bIzShowFirstSelect)
-			{
-			$arrFirstSelect['strInputName']	=$_arrFirstSelectSetup['strInputName'];
-			$arrFirstSelect['strValue']	=$_arrFirstSelectSetup['_strValue'];
-						   unset($_arrFirstSelectSetup);
-			}
-		$bIzShowSecSelect			=$_arrSecSelectSetup['bIzOn'];
-		if($bIzShowSecSelect)
-			{
-			$arrSecSelect['strInputName']	=$_arrSecSelectSetup['strInputName'];
-			$arrSecSelect['strValue']	=$_arrSecSelectSetup['_strValue'];
-						   unset($_arrSecSelectSetup);
-			}
-		$strShowEq	='';
-		$strInputWidth	='68%';
-		if($bIzShowFirstSelect)
-			{
-			$strFirstSelect='
-			<select
-				id=	"SearchBy'.$arrFirstSelect['strInputName'].'"
-				name	="'.strtolower($arrFirstSelect['strInputName']).'"
-				class	="block left tcenter     "
-				style	="
-					font-size	:larger;
-					width		:35%;
-					height		:100%;
-						"
-				value	="'.$arrFirstSelect['strValue'].'"
-				onChange="
-					objSearch.intPage=this.value;
-					//objSearch._CreateUrl();
-					//objDynaScreen.strURL=objSearch.strURL;
-					//objEvent.strURL=objSearch.strURL;
-					//objDynaScreen._Update();
-					//return false;
-					"
-				>
-				<option value="NotHiFi" selected>Not HiFi (All)</option>
-				<option value="HiFiMedium">HiFi beginner</option>
-				<option value="HiFiMedium">HiFi lover</option>
-				<option value="HiFiTop">HiFi expert</option>
-			</select>';
-			}
-		if($bIzShowSecSelect)
-			{
-			$strSecSelect='
-			<select
-				id=	"SearchBy'.$arrSecSelect['strInputName'].'"
-				name	="'.strtolower($arrSecSelect['strInputName']).'"
-				class	="block left tcenter     "
-				style	="
-					font-size	:larger;
-					width		:35%;
-					height		:100%;
-						"
-				value	="'.$arrSecSelect['strValue'].'"
-				onChange="
-					objSearch.intPage=this.value;
-					//objSearch._CreateUrl();
-					//objDynaScreen.strURL=objSearch.strURL;
-					//objEvent.strURL=objSearch.strURL;
-					//objDynaScreen._Update();
-					//return false;
-					"
-				>
-				<option value="Apple">Apple</option>
-				<option value="Android">Android</option>
-				<option value="Universal">Universal</option>
-				<option value="Loseless">Loseless</option>
-			</select>
-			';	
-			$strInputWidth='62%';
-			
-			}
+
 
 		$this->strHTML='
-			<input'.$arrParams['strInputName'].'
-				class="rel block BBV layer_4 TC1 BC1"
+			<input'.$arrReality['strInputName'].'
+				class="brick left"
 				style="
-					height			:35px;
-					margin-top		:1px;
+
+					width			:'.$arrReality['strInputWidth'].'
 					"
-				>
-				<ifRU
-					class="block left no-select BRJ"
-					style="
-						width		:25%;
-						height		:35px;
-						line-height	:33px;
-						text-align	:right;
-						font-size	:smaller;
-						padding-right	:5px;
-						"
-					>
-					'.$arrName['RU'].' :
-				</ifRU>
-				<ifEN
-					class="block left no-select  BRJ"
-					style="
-						width		:25%;
-						height		:35px;
-						line-height	:33px;
-						text-align	:right;
-						padding-right	:5px;
-						"
-					>
-					'.$arrName['EN'].' :
-				</ifEN>'.
-				$strFirstSelect.
-				$strSecSelect.
+				>'.
+
+				//$strFirstSelect.
+				//$strSecSelect.
 				'
 				<input 
-					id=		"SearchBy'.$arrParams['strInputName'].'"
-					size		="40"
-					maxlength	="40"
-					name		="'.strtolower($arrParams['strInputName']).'"
-					type		="'.$arrParams['strInputType'].'"
+					id=		"SearchBy'.$arrReality['strInputName'].'"
+					size		="'.$arrReality['intInputSize'].'"
+					maxlength	="'.$arrReality['intInputMaxLength'].'"
+					name		="'.strtolower($arrReality['strInputName']).'"
+					type		="'.$arrReality['strInputType'].'"
 					onchange	="
-							objEvent.arrParams[\''.$arrParams['strInputName'].'\']	=encodeURIComponent(this.value);
+							objEvent.arrReality[\''.$arrReality['strInputName'].'\']	=encodeURIComponent(this.value);
 							objEvent._UpdateURLDyn();
 							"
-					value		="'.сПреобразовать($arrParams['strValue'], 'вСтроку').'"
-					class		="block left HR0 LTR_RTL"
+					value		="'.сПреобразовать($arrReality['strInputValue'], 'вСтроку').'"
+					placeholder	="'.$arrReality['strDisplayName'].'"
 					style		="
-							width		:'.$strInputWidth.';
+							width		:70%;
+							border		:0;
+							outline		:0;
+							height		:30px;
+							font-size	:large;
 							text-align	:center;
-							height		:35px;
-							padding		:0;
-							border		:0px;
-							font-size	:x-large;
 							"
-						/>
+					class		="brick left HR0 LTR_RTL"
+					/>
 				<resetButton
-					class="block left  sensor TC1 HR0"
+					class="block left  sensor TC1 BC1"
 					style="
-						width			:15px;
-						height			:35px;
-						text-align		:right;
-						margin-bottom		:5px;
-						line-height		:15px;
-						background-color	 :white;
+						width			:10%;
+						height			:40px;
+						text-align		:center;
+						line-height		:99%;
+						background-color	:white;
 						"
 					onclick="
-						objSearch.objValueInput'.$arrParams['strInputName'].'.value	=\'\';
-						objEvent.arrParams.'.$arrParams['strInputName'].'=\'\';
+						objSearch.objValueInput'.$arrReality['strInputName'].'.value	=\'\';
+						objEvent.arrReality.'.$arrReality['strInputName'].'=\'\';
 						this.previousElementSibling.focus();
 						objEvent._UpdateURLDyn();
 						";
@@ -199,13 +103,13 @@ class FormInput
 					</ifEN>
 				</resetButton>
 
-			</input'.$arrParams['strInputName'].'>
+			</input'.$arrReality['strInputName'].'>
 			';
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strHTML($_objKIIM, $_arrName, $_arrParams, $_arrFirstSelectSetup=array('bIzOn'=>false), $_arrSecSelectSetup=array('bIzOn'=>false))
+	public static function strHTML($_arrReality)
 		{
-		$objFormInput=new FormInput($_objKIIM, $_arrName, $_arrParams, $_arrFormSetup);
+		$objFormInput=new FormInput($_arrReality);
 		return $objFormInput->strHTML;
 		}
 	}
