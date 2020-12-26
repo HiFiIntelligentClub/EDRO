@@ -8,7 +8,7 @@
 class Header
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR)
+	public function __construct($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q)
 		{
 		$objKIIM=$_objKIIM;unset($_objKIIM);
 		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
@@ -18,10 +18,10 @@ class Header
 		$intStrLenPx	=$intStrLen*12;
 		$arrSearch	=$_arrSearch;
 			   unset($_arrSearch);
-		$strBitrate	=$_strBitrate;
-			   unset($_strBitrate);
-		$strCodec	=$_strCodec;
-			   unset($_strCodec);
+		/*$strBitrate	=$_strBitrate;
+			   unset($_strBitrate);*/
+		/*$strCodec	=$_strCodec;
+			   unset($_strCodec);*/
 		$arrICQR	=$_arrICQR;
 			   unset($_arrICQR);
 		//$strStationLink=strLinkGroove($arrSearch, 'name', $str);
@@ -69,35 +69,31 @@ class Header
 							Radio station:
 						</ifEN>
 						<ifRU>
-							Радио:
+							Радио станция:
 						</ifRU>
 					</blockText>
-					<QRATE>
-						QRATE:
-					</QRATE>
-					<!--bitrate
+					<bitrate
 						class="block right TC1 BC1"
 						>
 						<ifRU class="block left">
-							Заявленный битрейт:
+							ICQR_Q:
 						</ifRU>
 						<ifEN class="block left">
-							Declared bitrate:
+							ICQR_Q:
 						</ifEN>
 						<bitrateValue
 							class="block left"
 							>
+							
 							'.
-							$strBitrate.
+							$_strICQR_Q.
 							'
 						</bitrateValue>
-						<ifEN class="block left"> kBit/Sec. </ifEN>
-						<ifRU class="block left"> кБит/Сек. </ifRU>
 						<type
 							class="block left"
 							style="height		:100%;"
 							>'.
-							AudioType::strHTML($objKIIM, $strCodec, $arrSearch).
+							//AudioType::strHTML($objKIIM, $strCodec, $arrSearch).
 						'</type>
 						<rightBufferBlock 
 							class="block left TC2 BC2"
@@ -105,7 +101,7 @@ class Header
 							>
 						</rightBufferBlock>
 
-					</bitrate-->
+					</bitrate>
 
 				</blockTitle>
 				<h2
@@ -121,9 +117,10 @@ class Header
 						"
 					>
 					<strScrolling 
-						class="block TC3 BC3"
+						class="block TC1 BC1"
 						style="
 							width		:'.$intStrLenPx.'px;
+							min-width	:90px;
 							height		:20px;
 							font-size	:large;
 							line-height	:20px;
@@ -175,9 +172,9 @@ class Header
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strHTML($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR)
+	public static function strHTML($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q)
 		{
-		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_strBitrate, $_strCodec, $_arrICQR);
+		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_strBitrate, $_strCodec, $_arrICQR, $_strICQR_Q);
 		return $objHeader->strHTML;
 		}
 	}
