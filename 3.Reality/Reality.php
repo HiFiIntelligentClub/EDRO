@@ -35,7 +35,7 @@ class Reality extends Objects
 		
 		$this->arrReality['strRoleSignal']		='Listener';
 		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
-		$this->arrReality['strListenerId']		=СоздатьСеанс::с($objKIIM, $this->arrReality['strRoleSignal'] , $this->arrEvent['arrParams']);
+		$this->arrReality['strListenerId']		=СоздатьСеанс::с($objKIIM, $this->arrReality['strRoleSignal'] , $this->arrEvent['arrReality']);
 		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($objKIIM, $this->arrReality['strListnersPath']);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +45,7 @@ class Reality extends Objects
 		$this->arrReality['bIzAndroid']			=$this->bIzAndroid();
 		$this->arrReality['bIzApple']			=$this->bIzApple();
 		$this->arrReality['bIzDesktop']			=$this->bIzDesktop();
+		//print_r($this->arrReality);
 		//print_r($_SESSION);
 		//print_r($this->arrReality);
 		//exit(0);
@@ -135,7 +136,7 @@ class Reality extends Objects
 					{
 					console.log('[Vv]EDRO.Reality: Construct');
 					//this.objDebugString		=document.getElementById('strPlayerPlayEventsDebugString');
-					this.arrPlayer		=[];
+					this.arrPlayer			=[];
 					this.arrPlayer.bIzLoading	=false;
 					this.arrPlayer.bIzPlaying	=false;
 					//this.arrParamG0.
@@ -144,8 +145,8 @@ class Reality extends Objects
 					this.intMaxLoadingTime		=0;
 					this.bIzError			=false;
 					this.bIzLoading			=false;
-					//this.bIzWaiting			=false;
-					//this.bIzPlaying			=false;
+					//this.bIzWaiting		=false;
+					//this.bIzPlaying		=false;
 					this.bIzHistory			=false;
 					this.bIzPlayer			=false;
 					this.bIzDynaScreen		=false;
