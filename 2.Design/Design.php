@@ -29,11 +29,15 @@ class Design extends Reality
 		$objKIIM	=$_objKIIM;
 		unset($_objKIIM);
 
-		$arrParams		=arrAllEventIncomeParametrsDefault(); //[arrAction]['ArrAllowed']['strAction']
-		echo $this->arrEvent['strAction'];
-		$this->arrDesign	=$arrParams['arrAction']['arrAllowed'][$this->arrEvent['strAction']];
+		$arrReality		=arrAllEventIncomeParametrsDefault(); //[arrAction]['ArrAllowed']['strEvent']
+		//print_r($arrReality);
+		//echo $this->arrEvent['strEvent'];
+		$this->arrDesign	=$arrReality['arrEvent']['arrDesign'][$this->arrEvent['strEvent']];
 
 		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//echo '<pre>';
+		//print_r($this->arrDesign);
+		//echo '</pre>';
 		parent::__construct($objKIIM);
 		}
 	public static function strObjectInit()
@@ -102,17 +106,17 @@ class Design extends Reality
 					//	console.log('[...]EDRO.Design: intTotalElements<=1');
 						}
 					objIndicatorDimensions.objStr.innerHTML	=this.intScreenWidth+'x'+this.intScreenHeight+'<br/>V'+this.intWidthElements+':H'+this.intHeightElements+':T'+this.intTotalElements;
-					if(objEvent.arrParams.int1OnPage!=this.intTotalElements)
+					if(objEvent.arrReality.int1OnPage!=this.intTotalElements)
 						{
-						//objEvent.arrParams.strName=objPlayer.strStationName; objEvent.arrParams.strStyle=\'\';objEvent.arrParams.intBitrate=\'\';objEvent.arrParams.strCodec=\'\';objEvent._UpdateURLDyn(true);
+						//objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);
 						//EDRO::strObjInit('Search');
 						objSearch	=new Search();
-						objEvent.arrParams.strName		=objSearch.strValueInputstrName;
-						objEvent.arrParams.strStyle		=objSearch.strValueInputstrStyle;
-						objEvent.arrParams.intBitrate		=objSearch.strValueInputintBitrate;
-						objEvent.arrParams.strCodec		=objSearch.strValueInputstrCodec;
-						objEvent.arrParams.int1OnPage		=this.intTotalElements;
-						//console.log(objEvent.arrParams.int1OnPage);
+						objEvent.arrReality.strName		=objSearch.strValueInputstrName;
+						objEvent.arrReality.strStyle		=objSearch.strValueInputstrStyle;
+						objEvent.arrReality.intBitrate		=objSearch.strValueInputintBitrate;
+						objEvent.arrReality.strCodec		=objSearch.strValueInputstrCodec;
+						objEvent.arrReality.int1OnPage		=this.intTotalElements;
+						//console.log(objEvent.arrReality.int1OnPage);
 						objEvent._UpdateURLDyn(false);
 						objIndicatorDimensions.objStr.style.backgroundColor	='red';
 						objIndicatorDimensions.objStr.style.color		='#FFF';
