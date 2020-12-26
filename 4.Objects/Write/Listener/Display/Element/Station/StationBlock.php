@@ -8,7 +8,7 @@
 class StationBlock
 	{
 	public  $strHTML;
-	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventParams)
+	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality)
 		{
 		$objKIIM=$_objKIIM;unset($_objKIIM);
 		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
@@ -21,11 +21,12 @@ class StationBlock
 		$strId			=$arrStatrion['strId'];
 		$strName		=$arrStatrion['strName'];
 		$strAudio		=$arrStatrion['strAudio'];
-		$strAudioType		=$arrStatrion['strAudioType'];
-		$strAudioBitrate	=$arrStatrion['strAudioBitrate'];
+		//$strAudioType		=$arrStatrion['strAudioType'];
+		//$strAudioBitrate	=$arrStatrion['strAudioBitrate'];
 		$strStyle		=$arrStatrion['strStyle'];
 		$int0ListNum		=$arrStatrion['int0ListNum'];
 		$arrICQR		=$arrStatrion['arrICQR'];
+		$strICQR_Q		=$arrStatrion['strICQR_Q'];
 					unset($arrStatrion);
 
 		/*if($_SESSION['strListener']=='e1NgS3lCcnYо26')
@@ -45,7 +46,7 @@ class StationBlock
 			class	="block left rel layer_1_1 BLL BRJ TC1 BC1"
 			style	="
 				width		:398px;
-				height		:80px;
+				height		:100px;
 				max-width	:99vw;
 				text-decoration	:none;
 				margin-right	:10px;
@@ -53,28 +54,29 @@ class StationBlock
 				"
 			>
 			<header
-				class="block BC1 BC1"
+				class="block BC1"
 				style="
 					width		:398px;
-					height		:40px;
+					height		:60px;
 					"
 				>
 				<player
 					class="left"
 					style="
 						width		:40px;
-						height		:40px;
+						height		:50px;
 						"
 					>'.
 					Player::strHTML($objKIIM, $strAudio, $strAudioType).
 				'</player>
 				<stationName
-					class="block left tcol1 bcol1"
+					class="block left TC1 BC1"
 					style="
 						width		:358px;
-						height		:40px;
+						height		:100%;
 						"
-					>'.Header::strHTML($objKIIM,  $strName, $arrEventParams, $strAudioBitrate, $strAudioType, $arrICQR).
+					>'.
+					Header::strHTML($objKIIM,  $strName, $arrEventReality, $strAudioBitrate, $strAudioType, $arrICQR, $strICQR_Q).
 				'</stationName>
 			</header>
 			<genre
@@ -82,153 +84,102 @@ class StationBlock
 				style="
 					height		:40px;
 					"
-				>
-				<bigFingerSupport 
-					title	="Successfull listeners"  
-					class	="rel left block BRJ scrollerY" 
-					style	="width:40px;height:40px;font-size:xx-small;">
+				>'.
+				StatisticIndicator::strDesign($arrPagination, $int0ListNum).
+				'
+				<blockText
+					class="block rel"
+					style="
+						height		:20px;
+						font-size	:xx-small;
+						"
+					>
+					<overlay 
+						title=""
+						class="abs TC1" 
+						style="
+							width			:100%;
+							height			:100%;
+							font-size		:xx-small;
+							background-color	:rgba(255,255,255,0.7);
+							font-size		:large;
+							text-align		:center;
+							"
+						>
+					</overlay>
+					<ifEN title="Declared styles:">
+						Declared:
+					</ifEN>
+					<ifRU title="Заявленные стили:">
+						Заявленные:
+					</ifRU>
+					
+				</blockText>
+				'.
+				Tag::strHTML($objKIIM, $strStyle, $arrEventReality, 'strStyle', 11).
+				'
+				<blockText
+					class="block left rel"
+					style="
+						font-size	:xx-small;
+						height		:20px;
+						width		:49%;
+						"
+					>
+					<overlay 
+						title="Feature. Will be avaliable soon."
+						class="
+							abs TC1
+							" 
+						style="
+							width			:100%;
+							height			:100%;
+							font-size		:xx-small;
+							text-align		:center;
+							background-color	:rgba(255,255,255,0.7);
+							"
+						>
+					</overlay>
+					<ifEN>
+						ICQR:
+					</ifEN>
+					<ifRU>
+						ICQR:
+					</ifRU>
+				</blockText>
+				<blockText
+					class="
+						block left rel
+						"
+					style="
+						font-size	:xx-small;
+						height		:20px;
+						width		:49%;
+						"
+					>
 					<overlay 
 						title="Feature. Will be avaliable soon."
 						class="abs TC1" 
-						style="width:100%;height:100%;background-color:rgba(255,255,255,0.7);font-size:large;text-align:center;line-height:39px"
-						>'.
-						($arrPagination['int0Start']+$int0ListNum+1).
-						'<!--indicator
-							class="abs"
-							style="left:0px;width:10px;height:20%;background-color:rgba(177,177,177,0.9);"
-							>
-						</indicator>
-						<indicator
-							class="abs"
-							style="left:10px;width:10px;height:20%;background-color:rgba(77,77,77,0.9);"
-							>
-						</indicator>
-						<indicator
-							class="abs"
-							style="left:20px;width:10px;height:20%;background-color:rgba(0,0,0,0.9);"
-							>
-						</indicator>
-						<indicator
-							class="abs"
-							style="left:30px;width:10px;height:20%;background-color:rgba(120,120,120,0.9);"
-							>
-						</indicator-->
+						style="width:100%;height:100%;background-color:rgba(255,255,255,0.7);font-size:large;text-align:center;"
+						>
 					</overlay>
-					<played
-						title	="Played"
-						class	="block"
-						>
-						<strHeader>+</strHeader>
-						<int>0</int>
-					</played>
-					<avgPlayingTime
-						title	="Average playing time"
-						class	="block"
-						>
-						<strHeader>+</strHeader>
-						<strFormattedString>0</strFormattedString>
-						<strUnit>s</strUnit>
-					</avgPlayingTime>
-					<liked 
-						title	="Liked"
-						class	="block"
-						>
-						<strHeader>+</strHeader>
-						<int>0</int>
-					</liked>
-					<avgLoadingTime
-						title	="Average loading time"
-						class	="block"
-						>
-						<strHeader>-</strHeader>
-						<strFormattedString>0</strFormattedString>
-						<strUnit>s</strUnit>
-					</avgLoadingTime>
-
-					<DropListener
-						title	="Drop listener"
-						class	="block"
-						>
-						<strHeader>-</strHeader>
-						<int>0</int>
-					</DropListener>
-					<Reconnects
-						title	="Reconnects while playing count"
-						class	="block"
-						>
-						<strHeader>-+</strHeader>
-						<int>0</int>
-					</<Reconnects>
-
-					<viewed
-						title	="Viewed"
-						class	="block"
-						>
-						<strHeader>_</strHeader>
-						<int>0</int>
-					</viewed>
-				</bigFingerSupport>
-				<genresByStationSection
-					class="brick ONE"
-					>
-					<brickText
-						class="block left"
-						style="
-							height:20px;
-							"
-						>
-						<overlay 
-							title="Feature. Will be avaliable soon."
-							class="abs TC1" 
-							style="width:100%;height:100%;background-color:rgba(255,255,255,0.7);font-size:large;text-align:center;"
-							>
-						</overlay>
-						<ifEN>
-							Declared styles:
-						</ifEN>
-						<ifRU>
-							Заявленные стили:
-						</ifRU>
-					</brickText>
-					'.
-					Tag::strHTML($objKIIM, $strStyle, $arrEventParams, 'strStyle', 11).
-					'
-				</genresByStationSection>
-				<genresByStationSection
-					class="brick ONE"
-					>
-					<brickText
-						class="block left"
-						style="
-							height:20px;
-							"
-						>
-						<overlay 
-							title="Feature. Will be avaliable soon."
-							class="abs TC1" 
-							style="width:100%;height:100%;background-color:rgba(255,255,255,0.7);font-size:large;text-align:center;"
-							>
-						</overlay>
-						<ifEN>
-							ICQR DETECT styles:
-						</ifEN>
-						<ifRU>
-							ICQR ОПРЕДЕЛИЛ стили:
-						</ifRU>
+					<ifEN>
+						Now:
+					</ifEN>
+					<ifRU>
+						Cейчас:
+					</ifRU>
 					
-					</brickText>
-				</genre>
-			</genresByStationSection>
-			<genresByStationSection>
-				<ICQR_Setup
-					class="block border-bottom"
-					style="
-						height		:20px;
-						width		:100%;
-						"
-					>
-				</ICQR_Setup>
-			</genresByStationSection>
+				</blockText>
+			</genre>
+			<ICQR_Setup
+				class="block border-bottom"
+				style="
+					height		:20px;
+					width		:100%;
+					"
+				>
+			</ICQR_Setup>
 			'.
 			//HFIC_CreatorsRespect::strHTML($objKIIM, $this->arr['_strCopyrightInfo']).
 			''.
@@ -251,9 +202,9 @@ class StationBlock
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		//print_r($this);
 		}
-	public static function strHTML($_objKIIM, $arrStatrion, $arrPagination, $arrEventParams)
+	public static function strHTML($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality)
 		{
-		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventParams);
+		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality);
 		return $objStationBlock->strHTML;
 		}
 	}
