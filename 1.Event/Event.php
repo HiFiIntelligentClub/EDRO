@@ -30,15 +30,15 @@ class Event extends Design
 		// 0.strNDigit ->  arrAllIncomeParametrs
 		$this->arrEvent				=arrGetEventSetter();
 
-		
-		$this->arrEvent['bIsDynamic']		=$this->bIsDynamic();
-		$this->arrEvent['strObjectParams']	='objEvent.arrParams={'.strArrayRec2JS($this->arrEvent, 'arrParams').'};';
+		$this->arrEvent['bIzDynamic']		=$this->bIzDynamic();
+		$this->arrEvent['strObjectReality']	='objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
 		//echo '<pre>';
 		//print_r($this->arrEvent);
 		//echo '</pre>';
 		//exit;
 		//Event::strObjectDeclare();
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		
 		parent::__construct($objKIIM);
 
 		
@@ -68,26 +68,23 @@ class Event extends Design
 		}
 
 
-	private function bIsDynamic()
+	private function bIzDynamic()
 		{
-		$bIsDynamic	=false;
+		$bIzDynamic	=false;
 		if(isset($_REQUEST['d']))
 			{
-			$bIsDynamic	=true;
+			$bIzDynamic	=true;
 			}
-		return $bIsDynamic;
+		return $bIzDynamic;
 		}
-	public static function strObjectInit()
-		{
-		return EDRO::strObjInit('Event');
-		}
-	public function strParamsInit()
+
+	public function strRealityInit()
 		{
 		
 		$str='<script>';
+			//$str.='alert(\'x\');';
 			$str.='console.log(\'[V]EDRO.Event: strParamsInit()\');';
-			//$str.='objEvent.arrParams={"strOne":"1234"};';
-			$str.=rmlb($this->arrEvent['strObjectParams']);
+			$str.=rmlb($this->arrEvent['strObjectReality']);
 			$str.='console.log(\'[.]EDRO.Event: strParamsInit()\');';
 		$str.='</script>';
 		return $str;
@@ -108,10 +105,10 @@ class Event extends Design
 					this.objXHR		=new XMLHttpRequest();
 					this.strURL		='';
 					this.strURLDyn		='';
-					this.arrParams		=[];
-					this.arrParamsPair	=[];
-					this.arrParamsTemp	=[];
-					/*this.arrParams={
+					this.arrReality		=[];
+					this.arrRealityPair	=[];
+					this.arrRealityTemp	=[];
+					/*this.arrReality={
 						'strPlayingStationId'	:'',
 						'strName'		:'',
 						'strStyle'		:'',
@@ -122,7 +119,7 @@ class Event extends Design
 						'int0PlayingStationNum'	:0,
 						};*/
 					this.strParams		='';
-					//console.log(this.arrParams);
+					//console.log(this.arrReality);
 					this.objNav		={'HFIC':'ICQR'};
 					this._SetLanguageMood();
 					this._SetRoleSignal();
@@ -144,16 +141,16 @@ class Event extends Design
 								objHiFiNavigation	=new HiFiNavigation();
 								if(objHiFiNavigation.objLeft.href)  //f&objHiFiNavigation.objRight.int0Page<=objHiFiNavigation.objRight.href.int0PageMaximum
 									{
-									var arrParams		=objHiFiNavigation.objLeft.href.split('?');
-									objEvent._GoToUrl(arrParams[1]);
+									var arrReality		=objHiFiNavigation.objLeft.href.split('?');
+									objEvent._GoToUrl(arrReality[1]);
 									}
 							break;
 							case 39: //->
 								objHiFiNavigation	=new HiFiNavigation();
 								if(objHiFiNavigation.objRight.href)//&&objHiFiNavigation.objRight.int0Page<=objHiFiNavigation.objRight.href.int0PageMaximu
 									{
-									var arrParams		=objHiFiNavigation.objRight.href.split('?');
-									objEvent._GoToUrl(arrParams[1]);
+									var arrReality		=objHiFiNavigation.objRight.href.split('?');
+									objEvent._GoToUrl(arrReality[1]);
 									}
 							break;
 							}
@@ -243,7 +240,7 @@ class Event extends Design
 					console.log('[Vv]EDRO.Objects: _PlayStation(strPlayerId)');
 					objReality.bIzPlayer			=true;
 					objEvent.strEvent			='/getStation';
-					objEvent.arrParams.strStationId		=strPlayerId;
+					objEvent.arrReality.strStationId		=strPlayerId;
 					objEvent._RequestURLDyn();
 					console.log('[..]EDRO.Objects: _PlayStation(strPlayerId)');
 					}
@@ -252,7 +249,7 @@ class Event extends Design
     					console.log('[Vv]EDRO.Objects: _Search()');
 					objReality.bIzDynaScreen		=true;
 					objEvent.strEvent			='/Search';
-					objEvent.arrParams.page			=0;
+					objEvent.arrReality.page			=0;
 					objDynaScreenEventIndicator.objHTML.style.display="block";
 					this._CreateURL();
 					//objEvent.PushEvent; ////// ++
@@ -277,19 +274,19 @@ class Event extends Design
 					objReality.intLoadingTime	=0;
 					objEvent.strParams		=obj.search.substr(1);
 					//console.log(objEvent.strParams);
-					objEvent.arrParamsPair		=objEvent.strParams.split("&");
+					objEvent.arrRealityPair		=objEvent.strParams.split("&");
 					
-					//console.log(objEvent.arrParamsPair);
-					Object.keys(objEvent.arrParamsPair).forEach(function(strKey)
+					//console.log(objEvent.arrRealityPair);
+					Object.keys(objEvent.arrRealityPair).forEach(function(strKey)
 						{
-						objEvent.arrParamsTemp	=objEvent.arrParamsPair[strKey].split('=');
-						objEvent.arrParams[objEvent.arrParamsTemp[0]]	=decodeURIComponent(objEvent.arrParamsTemp[1]);
+						objEvent.arrRealityTemp	=objEvent.arrRealityPair[strKey].split('=');
+						objEvent.arrReality[objEvent.arrRealityTemp[0]]	=decodeURIComponent(objEvent.arrRealityTemp[1]);
 						});
 
-					objSearch.objValueInputstrName.value		=objEvent.arrParams.strName;
-					objSearch.objValueInputstrStyle.value		=objEvent.arrParams.strStyle;
-					//objSearch.objValueInputintBitrate.value		=objEvent.arrParams.intBitrate;
-					//objSearch.objValueInputstrCodec.value		=objEvent.arrParams.strCodec;
+					objSearch.objValueInputstrName.value		=objEvent.arrReality.strName;
+					objSearch.objValueInputstrGenre.value		=objEvent.arrReality.strGenre;
+					//objSearch.objValueInputintBitrate.value		=objEvent.arrReality.intBitrate;
+					//objSearch.objValueInputstrCodec.value		=objEvent.arrReality.strCodec;
 
 					console.log(objSearch.objValueInputstrName.value);
 					objEvent.strURL			=obj.pathname+'?'+objEvent.strParams;
@@ -308,19 +305,19 @@ class Event extends Design
 					objReality.intLoadingTime	=0;
 					objEvent.strParams		=strParams;
 					//console.log(objEvent.strParams);
-					objEvent.arrParamsPair		=objEvent.strParams.split("&");
+					objEvent.arrRealityPair		=objEvent.strParams.split("&");
 					
-					//console.log(objEvent.arrParamsPair);
-					Object.keys(objEvent.arrParamsPair).forEach(function(strKey)
+					//console.log(objEvent.arrRealityPair);
+					Object.keys(objEvent.arrRealityPair).forEach(function(strKey)
 						{
-						objEvent.arrParamsTemp	=objEvent.arrParamsPair[strKey].split('=');
-						objEvent.arrParams[objEvent.arrParamsTemp[0]]	=decodeURIComponent(objEvent.arrParamsTemp[1]);
+						objEvent.arrRealityTemp	=objEvent.arrRealityPair[strKey].split('=');
+						objEvent.arrReality[objEvent.arrRealityTemp[0]]	=decodeURIComponent(objEvent.arrRealityTemp[1]);
 						});
 
-					objSearch.objValueInputstrName.value		=objEvent.arrParams.strName;
-					objSearch.objValueInputstrStyle.value		=objEvent.arrParams.strStyle;
-					//objSearch.objValueInputintBitrate.value		=objEvent.arrParams.intBitrate;
-					//objSearch.objValueInputstrCodec.value		=objEvent.arrParams.strCodec;
+					objSearch.objValueInputstrName.value		=objEvent.arrReality.strName;
+					objSearch.objValueInputstrGenre.value		=objEvent.arrReality.strGenre;
+					//objSearch.objValueInputintBitrate.value		=objEvent.arrReality.intBitrate;
+					//objSearch.objValueInputstrCodec.value		=objEvent.arrReality.strCodec;
 
 					console.log(objSearch.objValueInputstrName.value);
 					//objEvent.strURL			=obj.pathname+'?'+objEvent.strParams;
@@ -336,11 +333,11 @@ class Event extends Design
 					console.log('[Vv]EDRO.Reality: _CreateParamsStr()');
 					//console.log(this.arrParam);
 					objEvent.strParams		='';
-					Object.keys(objEvent.arrParams).forEach(function(strKey)
+					Object.keys(objEvent.arrReality).forEach(function(strKey)
 						{
-						objEvent.arrParams[strKey]	=encodeURIComponent(objEvent.arrParams[strKey]);
-						//alert(objEvent.arrParams[strKey]);
-						objEvent.strParams	+='&'+strKey+'='+objEvent.arrParams[strKey];
+						objEvent.arrReality[strKey]	=encodeURIComponent(objEvent.arrReality[strKey]);
+						//alert(objEvent.arrReality[strKey]);
+						objEvent.strParams	+='&'+strKey+'='+objEvent.arrReality[strKey];
 						});
 					objEvent.strParams		=objEvent.strParams.substr(1);
 					//alert(objEvent.strParams);
@@ -393,10 +390,10 @@ class Event extends Design
 					}
 				_ActualizeSearch()
 					{
-					objSearch.objValueInputstrName.value	=decodeURIComponent(this.arrParams['strName']);
-					objSearch.objValueInputstrStyle.value	=decodeURIComponent(this.arrParams['strStyle']);
-					//objSearch.objValueInputintBitrate.value	=this.arrParams['intBitrate'];
-					//objSearch.objValueInputstrCodec.value	=this.arrParams['strCodec'];
+					objSearch.objValueInputstrName.value	=decodeURIComponent(this.arrReality['strName']);
+					objSearch.objValueInputstrGenre.value	=decodeURIComponent(this.arrReality['strGenre']);
+					//objSearch.objValueInputintBitrate.value	=this.arrReality['intBitrate'];
+					//objSearch.objValueInputstrCodec.value	=this.arrReality['strCodec'];
 					}
 				_SetLanguageMood() //objEDRO->strReality['strLangSignal'];
 					{
@@ -435,6 +432,10 @@ class Event extends Design
 		</script>
 oо2оo;
 		return $str;
+		}
+	public static function strObjectInit()
+		{
+		return EDRO::strObjInit('Event');
 		}
 	}
 ?>
