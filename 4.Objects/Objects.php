@@ -32,6 +32,9 @@ class Objects
 
 		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
 		$strPlatformPrefix	='';
+		$strHiFiType		=$this->arrEvent['arrReality']['strHiFiType'];
+		$strHiFiType		='HiFi beginner';
+
 		if($this->arrReality['bIzAndroid'])
 			{
 			$strPlatformPrefix	='/Android';
@@ -41,69 +44,60 @@ class Objects
 			$strPlatformPrefix	='/Apple';
 			}
 		$сРасположениеКорень	=$сРасположениеКорень.$strPlatformPrefix;
-		$strSearchName		=сПреобразовать(mb_strtolower(trim($this->arrEvent['arrParams']['strName'])),'вКоманду');
+		$strSearchName		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strName']),'вКоманду');
 		if(strlen($strSearchName)<3)
 			{
 			$strSearchName	='';
 			}
-		$strSearchStyle		=сПреобразовать(str_replace("\'","'", mb_strtolower(trim($this->arrEvent['arrParams']['strStyle']))),'вКоманду');
-		if(mb_strtolower($strSearchStyle)=="транс")	//++aac
-			{					//++aac
-			$strSearchStyle="trance";		//++aac
-			}					//++aac
-		$strSearchBitrate	=сПреобразовать(str_replace("\'","'", mb_strtolower(trim($this->arrEvent['arrParams']['intBitrate']))),'вКоманду');
-		if($strSearchBitrate===0)
-			{
-			$strSearchBitrate='';
-			}
-		$strSearchCodec		=сПреобразовать(str_replace("\'","'", mb_strtolower(trim($this->arrEvent['arrParams']['strCodec']))),'вКоманду');
+		//$strSearchStyle		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strStyle']),'вКоманду');
+		$strSearchGenre		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strGenre']),'вКоманду');
+		$strSearch		=мЖанр_мЯзык_мТранскрипция($strSearchGenre);
 
-		$strSearchSuffix   	=empty($strSearchName)? 'unordered':'search';
+		$strSearchICQR		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strICQRType']),'вКоманду');
 
-		$strSearchPath	='';
+		$strSearchType   	=empty($strSearchName)? 'unordered':'search';
 
-		if(empty($strSearchStyle))
+		$strSearchPath		='/Stations';
+		$strSearchPath		.= '/ICQR_Q/'.$strHiFiType.'/unordered';
+		if($strSearchGenre=='')
 			{
 			
 			}
 		else
 			{
-			$strSearchPath	.= '/Styles/search'.'/'.$strSearchStyle.'/unordered';
+			$strSearchPath	.= '/Genres/search'.'/'.$strSearchGenre.'/unordered';
 			}
 		
-		if(empty($strSearchCodec))
+		/*
+		if($strSearchICQRType=='')
 			{
 			
 			}
 		else
 			{
-			$strSearchPath	.= '/Codecs/search'.'/'.$strSearchCodec.'/unordered';
+			$strSearchPath	.= '/ICQRType/search'.'/'.$strSearchCodec.'/unordered';
 			}
-
-		if(empty($strSearchBitrate))
-			{
-
-			}
-		else
-			{
-			$strSearchPath	.= '/Bitrates/search'.'/'.$strSearchBitrate.'/unordered';
-			}
+		*/
 
 		if($strSearchPath=='')
 			{
 			$strSearchPath='/Stations/unordered';
 			}
 
+		$strSearchPath;
+
 		$this->arrObjects['сРасположение']		=$сРасположениеКорень.$strSearchPath;
 
-		if(empty($strSearchName))
+		if($strSearchName=='')
 			{
 			$objTotal	=FileRead::objJSON($objKIIM, $this->arrObjects['сРасположение'].'/total.plmr');
+
 			$this->arrObjects['ч0РасположениеTotal']	= $objTotal->int0Total;
-			if($this->arrObjects['ч0РасположениеTotal']==='')
+			if($this->arrObjects['ч0РасположениеTotal']=='')
 				{
 				echo 'No data';
 				}
+			
 			$this->arrObjects['мРасположение']		=Pagination::arr($objKIIM, $this);
 			for($int0I=$this->arrObjects['мРасположение']['int0Start'];$int0I<=$this->arrObjects['мРасположение']['int0Untill'];$int0I++)
 				{
@@ -112,7 +106,7 @@ class Objects
 			}
 		else
 			{
-			$this->arrObjects['сРасположение']	=substr($this->arrObjects['сРасположение'], 0, -9).'search';
+			echo $this->arrObjects['сРасположение']	=substr($this->arrObjects['сРасположение'], 0, -9).'search';
 			$strSearch		=$this->arrObjects['сРасположение'].'/*'.$strSearchName.'*';
 			$strPattern		='ls -R -1 '.$strSearch;
 			$arrSearch		=exec($strPattern, $arrSearchPaths, $arrSearchPaths2);
@@ -121,7 +115,9 @@ class Objects
 			$мРасположение		=array();
 			if(is_array($arrSearchPaths))
 				{
-				foreach($arrSearchPaths as $intPosition=>$strRecord)
+				print_r($arrSearchPaths);
+				exit;
+				/*foreach($arrSearchPaths as $intPosition=>$strRecord)
 					{
 					if(preg_match('/^[0-9]+\.plmr$/', $strRecord, $arrMatches)===1)
 						{
@@ -132,28 +128,31 @@ class Objects
 						$мРасположение[]	=$strPath.'/'.$strRecord;
 						$ч1РасположениеTotal++;
 						}
-					}
+					}*/
 				}
 			if($ч1РасположениеTotal>1)
 				{
-				$ч0РасположениеTotal=($ч1РасположениеTotal-1);
+				$ч0РасположениеTotal			=($ч1РасположениеTotal-1);
 				}
 			else
 				{
-				$ч0РасположениеTotal=0;
+				$ч0РасположениеTotal			=0;
 				}
 			$this->arrObjects['ч0РасположениеTotal']	=$ч0РасположениеTotal;
 			$this->arrObjects['мРасположение']		=Pagination::arr($objKIIM, $this);
 
 			for($int0I=$this->arrObjects['мРасположение']['int0Start'];$int0I<=$this->arrObjects['мРасположение']['int0Untill'];$int0I++)
 				{
-				$this->arrObjects['мТаблица'][]	=$мРасположение[$int0I];
+				$this->arrObjects['мТаблица'][]		=$мРасположение[$int0I];
 				}
 			/*echo '<pre>';
 			print_r($мРасположение);
 			echo '</pre>';*/
 			}
-		
+		echo '<pre>';
+		print_r($this->arrObjects);
+		echo '</pre>';
+		//exit;
 		/*echo '<pre>';
 		print_r($this);
 		echo '</pre>';
@@ -324,23 +323,23 @@ oо2оo;
 					}
 				if(objEDRO.intVector==2)
 					{
-					console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
+				//	console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
 				//	console.log(objEDRO.intStep);
 					objEDRO.intVector	=0;
 					if(bizHiFiNavigationInputSelect)
 						{
-						console.log('[=^Vvv]objReality.bizAndroid&&objHiFiNavigation.bizPageSelectFoucus');
+						//console.log('[=^Vvv]objReality.bizAndroid&&objHiFiNavigation.bizPageSelectFoucus');
 						//alert('objReality.bizAndroid&&bizHiFiNavigationInputSelect');
 						}
 					else
 						{
-						console.log('[=^Vvv]!objReality.bizAndroid&&!objHiFiNavigation.bizPageSelectFoucus');
+						//console.log('[=^Vvv]!objReality.bizAndroid&&!objHiFiNavigation.bizPageSelectFoucus');
 						objDesign._UpdateDimensions();
 						objDesign._CheckElements();
 						}
 					
 					
-					console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
+				//	console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
 					}
 				/*if(objKIIM_StatisticalMembrane.bIzRunning==true)
 					{
