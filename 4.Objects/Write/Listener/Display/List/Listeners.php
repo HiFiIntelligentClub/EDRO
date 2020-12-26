@@ -20,7 +20,7 @@ class Listeners
 		           unset($_мСлушатели);
 		$this->strHTML='
 			<activeListeners 
-				class="fixed V3 block scrollerY scrollerGlide  layer_5 BC2 TC2" 
+				class="fixed V3 block BTA layer_5 BC1 TC1" 
 				style="
 					left		:0px;
 					Width		:100%;
@@ -30,17 +30,18 @@ class Listeners
 				>
 				<listenersAmount
 					class	="block left"
-					style	="font-size:xx-small;width:70px;"
+					style	="font-size:xx-small;width:50px;line-height:10px;"
 					>
-					
 					<listeners5mins 
-						class	="TC3 BC3 block right"
+						class	="TC3 BC3 block left"
+						style	="width:100%;;text-align:left;"
 						title	="Listeners in past 5 minutes."
 						>5m:'.
 						$мСлушатели['чСлушателиЗаПятьМинут'].
 					'<listeners5mins>'.
 					'<listeners24hours 
-						class	="TC3 BC3 block right"
+						class	="TC3 BC3 block left"
+						style	="width:100%;text-align:right;"
 						title	="Listeners in past 24 hours."
 						>24h:'.
 						$мСлушатели['чСлушателиЗа24Часа'].
@@ -54,13 +55,14 @@ class Listeners
 					':
 				</listenersAmount>
 				';
+		$ч0СлушателиНаЭкране=0;
 		foreach($мСлушатели5Мин as $чСлушательИД=>$мСлушательПараметры)
 			{
 			if(!empty($мСлушательПараметры['strStyle']))
 				{
 				$this->strHTML.='
 					<activeListener 
-						class="block left BRJ BRL BC1 TC1" 
+						class="block left scrollerY scrollerGlide BRJ BC1 TC1" 
 						style="
 							height:20px;
 							"
@@ -70,6 +72,11 @@ class Listeners
 				$this->strHTML.='
 					</activeListener>
 					';
+				if($ч0СлушателиНаЭкране>10)
+					{
+					break;
+					}
+				$ч0СлушателиНаЭкране++;
 				}
 			}
 		$this->strHTML.='
