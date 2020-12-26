@@ -6,7 +6,6 @@ Email:    assminog@gmail.com
 Email:    tubmulur@yandex.ru
 Phone:    +7(911)787-44-57
 Whatsapp: +7(911)787-44-57
-Telegram: https://t.me/HficSamin
 VK:       https://vk.com/Hfic.Samin
 VK:       https://vk.com/HiFiIntelligentClub
 Facebook: https://facebook.com/Hfic.Samin
@@ -21,7 +20,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //      <  **>               /// /  
  //////   jl                ///// /    
 ./././././././*/
-class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Шеорше ля фам, господа конкуренты. Hfic.Samin
+class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Шеорше ля фам, господа конкуренты. Hfic.Samin -> PreReleased at 21-21-2021
 	{
 	private $arr;
 	public $strHTML;
@@ -30,27 +29,65 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 	private $strFile;
 	private $strType;
 	private $strAudio;
-	public function __construct($_objKIIM, $_arrValues=array()) //$_arrValues 'name' 'style' 'bitrate' 'codec'
-		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-			$strSearchName		=$_arrValues['strName'];
-			$strSearchStyle		=$_arrValues['strStyle'];
-			$strSearchBitrate	=($_arrValues['intBitrate']==0)?'':$_arrValues['intBitrate'];
-			$strSearchCodec		=$_arrValues['strCodec'];
-			unset($_arrValues);
+	public function __construct($_objKIIM, $_arrValues=array(), $_arrReality) //$_arrValues 'name' 'style' 'bitrate' 'codec'
+		{$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));unset($_objKIIM);
+
+		$strSearchName		=$_arrValues['strName'];
+		$strSearchStyle		=$_arrValues['strStyle'];
+				   unset($_arrValues);
+		$strLang		=$_arrReality['strLangSignal'];
+				   unset($_arrReality);
+		$arrInputName 		=
+			array(
+			'strLang'	=> $strLang,
+			'arrName'	=>
+				array(
+				'RU'=>'Название',
+				'EN'=>'Name'
+				), 
+			'arrSetup'	=>
+				array(
+
+				'strInputValue'		=> $strSearchName,
+				'strInputType'		=> 'text',
+				'strInputName'		=> 'strName',
+				'intInputSize'		=>  25,
+				'intInputMaxLength'	=>  250,
+				'strInputWidth'		=> '40%',
+				)
+			);
+		$arrInputGenre 		=
+			array(
+			'strLang'	=>$strLang,
+			'arrName'	=>
+				array(
+				'RU'=>'Жанр',
+				'EN'=>'Genre'
+				), 
+			'arrSetup'	=>
+				array(
+
+				'strInputValue'		=> $strSearchStyle,
+				'strInputType'		=> 'text',
+				'strInputName'		=> 'strGenre',
+				'intInputSize'		=>  15,
+				'intInputMaxLength'	=>  20,
+				'strInputWidth'		=> '40%',
+				)
+			);
 
 		$this->strHTML	='
-			<hficMenu
-				class="fix HR0 V99 layer_4 default"
+			<hficSearch
+				class="fix HR0 V99 layer_5 default"
 				>
 				<ifCutDown
-					class="block layer_4  right sensor TC1 BC1 no-select"
-					onclick="
+					class	="block right sensor TC1 BC1 no-select"
+					onclick	="
 						this.parentNode.classList.remove(\'CutDown\');
 						this.parentNode.className+=\' Expanded\';
+						objSearch.objValueInputstrGenre.focus();
 						"
-					style="
+					style	="
 						text-align	:center;
 						line-height	:36px;
 						height		:40px;
@@ -65,186 +102,108 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 					</ifEN>
 				</ifCutDown>
 				<ifExpanded
-					class="fix block layer_4  HL0 HV99 TC1 BC1 BBV"
+					class	="fix HL0 HV99 TC1 BC1 BBV" 
 
-					style="
-						height		:40px;
+					style	="
+						height		:59px;
 						width		:100vw;
+						min-width	:320px;
 						"
 					>
-					<menu
-						class="block"
-						style="
-							width		:100%;
-							min-width	:300px;
-							height		:40px;
-							padding		:0;
-							margin		:0;
-							"
+					<form 
+						id		="formStationSearch"
+						class		="block TC1 BC1"
+						action		="/search"
+						onsubmit	="return false;"
+						style		="
+								width	:100%;
+								"
 						>
-						<form 
-							id		="formStationSearch"
-							class		="block TC1 BC1"
-							action		="/search"
-							onsubmit	="return false;"
-							style		="
-									width	:100%;
-									"
-								    
-							>
-							<topTouchBuffer
-								class	="block TC2 BC2"
-								style	="
-									height		:10px;
-									width		:100%;
-									font-size	:x-small;
-									line-height	:9px;
-									"
-								>
-								<ifEN>Search stations:</ifEN>
-								<ifRU>Поиск станций:</ifRU>
-							</topTouchBuffer>
-
-							<input 
-								id		="SearchBystrStyle"
-								name		="strstyle"
-								size		="15" 
-								maxlength	="20"
-								class		="block left HR0 LTR_RTL"
-
-								type		="text" 
-								placeholder	="Genre" 
-								value		="'.сПреобразовать($strSearchStyle).'"
-
-								onchange	="
-										objEvent.arrParams[\'strStyle\']	=encodeURIComponent(this.value);
-										objEvent._UpdateURLDyn();
-										"
-			
-								/>
-							<input 
-								id		="SearchBystrName"
-								name		="strname"
-								size		="25" 
-								maxlength	="250"
-								class		="block left HR0 LTR_RTL"
-
-								type		="text" 
-								placeholder	="Station name" 
-								value		="'.сПреобразовать($strSearchName).'"
-
-								onchange	="
-										objEvent.arrParams[\'strName\']	=encodeURIComponent(this.value);
-										objEvent._UpdateURLDyn();
-										"
-			
-								/>
-
-
-							<closeButton
-								class="sensor block right TC1 BC1"
-								style="
-									height		:20px;
-									width		:40px;
-									text-align	:center;
-									line-height	:18px;
-									"
-								onclick="
-									this.parentNode.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
-									this.parentNode.parentNode.parentNode.parentNode.parentNode.className+=\' CutDown\';
-									"
-								>
-								<ifRU>
-									x
-								</ifRU>
-								<ifEN>
-									x
-								</ifEN>
-							</closeButton>
-							<bottomTouchBuffer
-								class	="block TC2 BC2"
-								style	="
-									height		:10px;
-									width		:100%;
-									font-size	:x-small;
-									"
-								>
-								<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
-								'.$_SERVER['REMOTE_ADDR'].'
-							</bottomTouchBuffer>
-						</form>
-					</menu>
-					<data
-						class="block scrollerY TC1 BC1"
-						style="
-							width	:100%;
-							height	:152px;
-							"
-						>
-						'.
-							//FormInput::strHtml($objKIIM, array('RU'=>'РФИд','EN'=>'RFId'), $strSearchId).
-							/*FormInput::strHtml($objKIIM, array(
-									'_RU'=>'Название',
-									'_EN'=>'Name'
-								), array(
-									'_strValue'	=>$strSearchName,
-									'_strInputType'	=>'text',
-									'_strInputName'	=>'strName'
-								)).
-							FormInput::strHtml($objKIIM, array(
-									'_RU'=>'Стиль',
-									'_EN'=>'Style'
-								), array(
-									'_strValue'	=>$strSearchStyle,
-									'_strInputType'	=>'text',
-									'_strInputName'	=>'strStyle'
-								)).
-							FormInput::strHtml($objKIIM, array(
-									'_RU'=>'Аккустика',
-									'_EN'=>'Accoustic',
-								),  array(
-									'_strValue'	=>$strSearchType,
-									'_strInputType'	=>'select',
-									'_strInputName'	=>'strType'
-								)).*/
-							/*FormInput::strHtml($objKIIM, array(
-									'_RU'=>'Кодек',
-									'_EN'=>'Codec'
-								), array(
-									'_strValue'	=>$strSearchCodec,
-									'_strInputType'	=>'text',
-									'_strInputName'	=>'strCodec'
-								), array(
-									'bIzEq'		=>false
-								
-								)).*/
-							// '</form>';
-							$this->strHTML	.=FileRead::str($objKIIM,'/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/SearchBlock.php');
-							$this->strHTML	.='<hr/>';
-							foreach($_SERVER as $strName => $strValue)
-								{
-								$this->strHTML	.='<srv class="block">'.$strName.' - '.$strValue.'</srv>';
-								}
-							$this->strHTML	.='<hr/>';
-						$this->strHTML	.='
-						</questions>';
-
-						$this->strHTML	.='
-						<bottomTouchBuffer
-						class	="block TC1 BC1"
+						<topTouchBuffer
+							class	="block TC2 BC2"
 							style	="
-							height	:200px;
-							width	:100%;
+								height		:10px;
+								width		:100%;
+								font-size	:x-small;
+								line-height	:9px;
 								"
 							>
+							<genre
+								class	="block left"
+								style	="width		:40%"
+								>[=]
+								<ifEN>Search by genre</ifEN>
+								<ifRU>Поиск станций по жанру:</ifRU>
+							</genre>
+							<genre
+								class	="block left"
+								style	="
+									width		:50%
+									"
+									>[+]
+								<ifEN>Search by name:</ifEN>
+								<ifRU>Поиск станций по имени:</ifRU>
+							</genre>
+						</topTouchBuffer>'.
+						FormInput::strHtml($arrInputGenre).
+						FormInput::strHtml($arrInputName).
+						'<closeButton
+							class="sensor block right TC3 BC3"
+							style="
+								height		:39px;
+								width		:10%;
+								text-align	:center;
+								line-height	:36px;
+								"
+							onclick="
+								this.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
+								this.parentNode.parentNode.parentNode.parentNode.className+=\' CutDown\';
+								"
+							>
+							<ifRU>
+								x
+							</ifRU>
+							<ifEN>
+								x
+							</ifEN>
+						</closeButton>
+						<bottomTouchBuffer
+							class	="abs block TC2 BC2"
+							style	="
+								bottom		:0;
+								height		:10px;
+								width		:100%;
+								font-size	:x-small;
+								"
+							>
+							<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
+							'.$_SERVER['REMOTE_ADDR'].'
 						</bottomTouchBuffer>
-					</data>
+					</form>';
+				//<data
+				//	class="block scrollerY TC1 BC1"
+				///	style="
+				//		width	:100%;
+				//		height	:152px;
+				//		"
+					//	>
+					//		//FormInput::strHtml($objKIIM, array('RU'=>'РФИд','EN'=>'RFId'), $strSearchId).
+					//		$this->strHTML	.=FileRead::str($objKIIM,'/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/SearchBlock.php');
+					//		$this->strHTML	.='<hr/>';
+					//		foreach($_SERVER as $strName => $strValue)
+					//			{
+					//			$this->strHTML	.='<srv class="block">'.$strName.' - '.$strValue.'</srv>';
+					///			}
+					//		$this->strHTML	.='<hr/>';
+					//	$this->strHTML	.='
+					//	</questions>';
+
+					$this->strHTML	.='
 				</ifExpanded>
 				'.
 				$this->strObjectInit();
-
 				$this->strHTML	.=
-			'</hficMenu>
+			'</hficSearch>
 			';
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
@@ -265,8 +224,8 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				this.objStationSearch		=document.getElementById('formStationSearch');
 				this.objValueInputstrName	=document.getElementById('SearchBystrName');
 				this.strValueInputstrName	=this.objValueInputstrName.value;
-				this.objValueInputstrStyle	=document.getElementById('SearchBystrStyle');
-				this.strValueInputstrStyle	=this.objValueInputstrStyle.value;
+				this.objValueInputstrGenre	=document.getElementById('SearchBystrGenre');
+				this.strValueInputstrGenre	=this.objValueInputstrGenre.value;
 				//this.objValueInputintBitrate	=document.getElementById('SearchByintBitrate');
 				//this.strValueInputintBitrate	=this.objValueInputintBitrate.value;
 				//this.objValueInputstrCodec	=document.getElementById('SearchBystrCodec');
@@ -280,10 +239,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 oo2oo;
 		return $str;
 		}
-	public static function strHTML($_objKIIM, $_arrValues=array())
+	public static function strHTML($_objKIIM, $_arrValues=array(), $_arrReality)
 		{
 		//$arrData['_strName']=$_objData->strName;
-		$obj=new StationSearchBlock($_objKIIM, $_arrValues);
+		$obj=new StationSearchBlock($_objKIIM, $_arrValues, $_arrReality);
 		return $obj->strHTML;
 		}
 	}
