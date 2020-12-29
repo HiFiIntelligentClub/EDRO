@@ -32,58 +32,61 @@ class Objects
 
 		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
 		$strPlatformPrefix	='';
-		$strHiFiType		=$this->arrEvent['arrReality']['strHiFiType'];
-		$strHiFiType		='HiFi beginner';
-
+		$strHiFiType		=сПреобразовать($this->arrEvent['arrReality']['strHiFiType'], 'вСтроку');
+		//$strHiFiType		='/HiFi beginner';
+		$arrHiFi['Low quality']		='Low';   //NoHiFi
+		$arrHiFi['HiFi beginner']	='beginner'; //HiFi
+		$arrHiFi['HiFi casual']		='casual'; //HiFi
+		$arrHiFi['HiFi often']		='often';  //HiFi
+		$arrHiFi['HiFi mustbe']		='mustbe'; //HiFi
+		//$arrHiFi[]='HiFi 2';       //2.1
+		foreach($arrHiFi as $strHiFiTypeName =>$strHiFiShortName)
+			{
+			if(strpos($strHiFiType, $strHiFiShortName)!==FALSE)
+				{
+				$strHiFiType	=$strHiFiTypeName;
+				}
+			}
+		if($strHiFiType=='')
+			{
+			$strHiFiType		='/HiFi beginner';
+			}
+		else
+			{
+			$strHiFiType		='/'.$strHiFiType;
+			}
+		$this->arrEvent['arrReality']['strHiFiType']	=$strHiFiType;
 		if($this->arrReality['bIzAndroid'])
 			{
 			$strPlatformPrefix	='/Android';
 			}
 		if($this->arrReality['bIzApple'])
 			{
-			$strPlatformPrefix	='/Apple';
+			echo $strPlatformPrefix	='/Apple';
 			}
-		$сРасположениеКорень	=$сРасположениеКорень.$strPlatformPrefix;
+		$сРасположениеКорень	=$сРасположениеКорень;
 		$strSearchName		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strName']),'вКоманду');
 		if(strlen($strSearchName)<3)
 			{
 			$strSearchName	='';
 			}
-		//$strSearchStyle		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strStyle']),'вКоманду');
 		$strSearchGenre		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strGenre']),'вКоманду');
 		$strSearch		=мЖанр_мЯзык_мТранскрипция($strSearchGenre);
 
-		$strSearchICQR		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strICQRType']),'вКоманду');
 
-		$strSearchType   	=empty($strSearchName)? 'unordered':'search';
+		
 
-		$strSearchPath		='/Stations';
-		$strSearchPath		.= '/ICQR_Q/'.$strHiFiType.'/unordered';
+		$strSearchType   	=empty($strSearchName)? '/unordered/':'/search/';
+
+		$strSearchPath		='/Stations/ICQR_Q'.$strHiFiType.$strPlatformPrefix;
 		if($strSearchGenre=='')
 			{
-			
+			$strSearchPath	.=$strSearchType;
 			}
 		else
 			{
-			$strSearchPath	.= '/Genres/search'.'/'.$strSearchGenre.'/unordered';
+			$strSearchPath	.='/Genres/search/'.$strSearchGenre.$strSearchType;
 			}
-		
-		/*
-		if($strSearchICQRType=='')
-			{
-			
-			}
-		else
-			{
-			$strSearchPath	.= '/ICQRType/search'.'/'.$strSearchCodec.'/unordered';
-			}
-		*/
-
-		if($strSearchPath=='')
-			{
-			$strSearchPath='/Stations/unordered';
-			}
-
 		$strSearchPath;
 
 		$this->arrObjects['сРасположение']		=$сРасположениеКорень.$strSearchPath;
@@ -92,7 +95,7 @@ class Objects
 			{
 			$objTotal	=FileRead::objJSON($objKIIM, $this->arrObjects['сРасположение'].'/total.plmr');
 
-			$this->arrObjects['ч0РасположениеTotal']	= $objTotal->int0Total;
+			$this->arrObjects['ч0РасположениеTotal']	= ($objTotal->int1Total-1);
 			if($this->arrObjects['ч0РасположениеTotal']=='')
 				{
 				echo 'No data';
@@ -106,18 +109,21 @@ class Objects
 			}
 		else
 			{
-			echo $this->arrObjects['сРасположение']	=substr($this->arrObjects['сРасположение'], 0, -9).'search';
-			$strSearch		=$this->arrObjects['сРасположение'].'/*'.$strSearchName.'*';
-			$strPattern		='ls -R -1 '.$strSearch;
+			
+			$this->arrObjects['сРасположение']	=$this->arrObjects['сРасположение'];
+			$strSearch		=$this->arrObjects['сРасположение'];
+			$strPattern		='ls -R -1 "'.$strSearch.'"'.'*'.$strSearchName.'*';
+			
 			$arrSearch		=exec($strPattern, $arrSearchPaths, $arrSearchPaths2);
+			//print_r($arrSearchPaths);
 			$strPath		='';
 			$ч1РасположениеTotal	=0;
 			$мРасположение		=array();
 			if(is_array($arrSearchPaths))
 				{
-				print_r($arrSearchPaths);
-				exit;
-				/*foreach($arrSearchPaths as $intPosition=>$strRecord)
+				//print_r($arrSearchPaths);
+				//exit;
+				foreach($arrSearchPaths as $intPosition=>$strRecord)
 					{
 					if(preg_match('/^[0-9]+\.plmr$/', $strRecord, $arrMatches)===1)
 						{
@@ -128,7 +134,7 @@ class Objects
 						$мРасположение[]	=$strPath.'/'.$strRecord;
 						$ч1РасположениеTotal++;
 						}
-					}*/
+					}
 				}
 			if($ч1РасположениеTotal>1)
 				{
@@ -145,18 +151,21 @@ class Objects
 				{
 				$this->arrObjects['мТаблица'][]		=$мРасположение[$int0I];
 				}
-			/*echo '<pre>';
-			print_r($мРасположение);
-			echo '</pre>';*/
+			//echo '<pre>';
+			//print_r($мРасположение);
+			//echo '</pre>';
 			}
-		echo '<pre>';
-		print_r($this->arrObjects);
-		echo '</pre>';
+		/*if($this->arrReality['bIzAndroid'])
+			{
+			echo '<pre>';
+			print_r($this->arrEvent['arrReality']['strHiFiType']);
+			echo '</pre>';
+			exit;
+			}*/
+		//echo '<pre>';
+		//print_r($this);
+		//echo '</pre>';
 		//exit;
-		/*echo '<pre>';
-		print_r($this);
-		echo '</pre>';
-		exit;*/
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strObjectInit()
@@ -178,16 +187,17 @@ oо2оo;
 			id="PageCopyrightTag"
 			class="BC3 TC3 layer_5_Nav no-select"
 			style="
+				line-height	:9px;
 				position	:fixed;
 				bottom		:0;
 				left		:0;
 				width		:100%;
-				height		:20px;
+				height		:10px;
 				text-align	:center;
 				font-size	:small;
 				"
 			>
-		© HiFiIntelligentClub tubmulur@yandex.ru 2020 
+		<font style="font-size:xx-small">© HiFiIntelligentClub.COM tubmulur@yandex.ru 2020 
 			<ifRU 
 				
 				>
@@ -197,6 +207,7 @@ oо2оo;
 				>
 				On Reg.Ru cloud.
 			</ifEN>
+			</font>
 		</copyright>
 		<script>
 			var oEl=document.getElementById("PageCopyrightTag");
@@ -321,32 +332,25 @@ oо2оo;
 					{
 				
 					}
-				if(objEDRO.intVector==2)
+				if(objReality.intVector==2)
 					{
-				//	console.log('[=^Vvv]EDRO.Event: (objEDRO.intVector==2)');
-				//	console.log(objEDRO.intStep);
-					objEDRO.intVector	=0;
+					objReality.intVector	=0;
 					if(bizHiFiNavigationInputSelect)
 						{
-						//console.log('[=^Vvv]objReality.bizAndroid&&objHiFiNavigation.bizPageSelectFoucus');
-						//alert('objReality.bizAndroid&&bizHiFiNavigationInputSelect');
 						}
 					else
 						{
-						//console.log('[=^Vvv]!objReality.bizAndroid&&!objHiFiNavigation.bizPageSelectFoucus');
 						objDesign._UpdateDimensions();
 						objDesign._CheckElements();
 						}
-					
-					
-				//	console.log('[[=^...]EDRO.Event: (objEDRO.intVector==2)');
 					}
-				/*if(objKIIM_StatisticalMembrane.bIzRunning==true)
+				if(objReality.intStep2News==60)
 					{
-					objKIIM_StatisticalMembrane._incTime();
-					}*/
-				objIndicatorMasterClock.objStr.innerHTML	=objEDRO.intStep++;
-				objEDRO.intVector++;
+					objReality.intStep2News	=0;
+					}
+				objIndicatorMasterClock.objStr.innerHTML	=objReality.intStep++;
+				objReality.intVector++;
+				objReality.intStep2News++;
 				objEDRO._CircleControllerGraph;
 				return 0;
 				}
