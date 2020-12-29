@@ -59,8 +59,6 @@ class StationList
 		$int0ListNum		=0;
 		foreach($objEDRO->arrObjects['мТаблица'] as $сРасположение)
 			{
-			echo $сРасположение;
-			exit;
 			$objStation				=FileRead::objJSON($objKIIM, $сРасположение);
 			///$objGenres				=FileRead::objJSON($objKIIM, $сРасположение);
 			$arrStationS['strId']			=strSafeUsers($objStation->id);
@@ -135,11 +133,13 @@ class StationList
 			$strICQRSuffix				='';
 			if($objEDRO->arrReality['bIzAndroid'])
 				{
-				$strAudio	=сПреобразовать($arrStationS['strId'], 			"вСтроку");
+				    
+				$strAudio	=сКодировать($arrStationS['strId'], 'д');
 				}
 			else
 				{
 				$strAudio	=$arrStationS['strId'];
+				//echo	$strAudio;
 				}
 			
 			$arrStation=
@@ -159,21 +159,6 @@ class StationList
 			$this->strHTML.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality']);
 			$int0ListNum++;
 			}
-		//for($int0I=$arrPagination['int0Start'];$int0I<=$arrPagination['int0Untill'];$int0I++)
-		//	{
-		//	$objStation	=FileRead::objJSON($objKIIM, $objEDRO->arrObjects['сРасположение'].'/'.$int0I.'.plmr');
-		//	$arrStation=
-		//	array(
-		//		'strName'		=>$objStation->server_name,
-		//		'strAudio'		=>сКодировать($objStation->listen_url, $_сДействие='к'),
-		//		'strAudioType'		=>$objStation->server_type,
-		//		'strAudioBitrate'	=>$objStation->bitrate,
-		///		'strStyle'		=>$objStation->genre,
-		//		);
-		//	$arrPagination['int0CurrentStation']=$int0I;
-		//	$this->strHTML.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality']);
-		//	}
-		//	}
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public function _HTML($_objKIIM, $_objEDRO)
