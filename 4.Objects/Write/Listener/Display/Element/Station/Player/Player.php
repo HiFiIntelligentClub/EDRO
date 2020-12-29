@@ -24,7 +24,7 @@ class Player
 		//$this->arr=$_arrData;
 		if(!empty($this->strAudio))
 			{//
-			$this->strHTML=VectorKIIM_elementWaiting4Event_statisticalMembrane::strHTML($objKIIM).
+			$this->strHTML=
 			    '<ifReady
 				class="block cursor no-select TC1 BC1"
 				onclick="objPlayer.play(this,\''.$this->strAudio.'\', \''.$strAudioType.'\' );"
@@ -222,7 +222,7 @@ class Player
 				class	="abs V99 block cursor BC1 TC1 layer_2_2 select scrollerY"
 				style	="
 					text-align	:left;
-					Width		:100vw;
+					Width		:80vw;
 					height		:40px;
 					"
 				>
@@ -520,14 +520,14 @@ class Player
 					"
 				>
 				<playerPlayingButton
-					class	="block BLL BRJ BTA BBW"
+					class	="brick left BLL BRJ BTA BBW"
 					style	="
-						    width	:30px;
-						    height	:30px;
+						    width	:40px;
+						    height	:40px;
 						    "
 					>
 					<playerPlayingButton
-						class	="block left"
+						class	="brick left"
 						onclick	="objPlayer.stop();"
 						style="
 							text-align	:center;
@@ -587,10 +587,11 @@ class Player
 				
 				<playerPlayingText
 					id	="playerControlAlwaysVisiblePlaying"
-					class	="block scrollerY"
+					class	="block scrollerY left"
 					onclick	=""
 					style="
 						height		:100%;
+						width		:50%;
 						"
 					>
 				</playerPlayingText>
@@ -598,7 +599,7 @@ class Player
 			</ifPlaying>
 			<ifNoConnection
 				class	="cursor layer_2_2 no-select TC3 BC3"
-				onclick	="objPlayer.play();"
+				onclick	="objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);"
 				style	="
 					display		:none;
 					color		:#000;
@@ -609,7 +610,7 @@ class Player
 			</ifNoConnection>
 			<ifNoConnection
 				class	="abs cursor layer_2_2 no-select BC1 TC1"
-				onclick	="objPlayer.play();"
+				onclick	="objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);"
 				style	="
 					display		:none;
 					width		:100vw;
@@ -664,9 +665,8 @@ class Player
 			<ifStopped
 				class	="block cursor layer_2_2 BC3 TC3 no-select "
 				onclick	="
-					/*var objPlayerIndicatorMembrane			=this.nextElementSibling;*/
 					/*objPlayer.objAudio.src				=objPlayerIndicatorMembrane.getAttribute(\'playerId\');*/
-					objPlayer.play();
+					objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);
 					"
 				style	="
 					display		:none;
@@ -699,7 +699,7 @@ class Player
 					onclick	="
 						/*objPlayer.objAudio.src			=this.parentNode.getAttribute(\'playerId\');
 						objPlayer.objAudio.play();*/
-						objPlayer.play();
+						objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);
 						"
 					style	="
 						text-align	:center;
@@ -766,6 +766,7 @@ class Player
 				this.objStation			='';
 				this.strCurrentID		='';
 				this.strPlayingID		='';
+				this.strCurrentAudioLink	='';
 				this.strStationName		='';
 				this.objAudio.crossorigin	="use-credentials";
 				this.objVisibleControls		=document.getElementById('playerControlAlwaysVisible');
@@ -826,7 +827,7 @@ class Player
 					console.log('[Vvv]EDRO.Objects.Player: bIzWhileHumanEvent=false');
 					//objPlayer.objDebugString.innerHTML+='objPlayer.objAudio.onloadstart .bIzWhileHumanEvent=false;<br/>';
 					objPlayer.bIzWhileHumanEvent=false;
-					objKIIM_StatisticalMembrane._start(objPlayer.objStation);
+					
 					console.log('[...]EDRO.Objects.Player: onLoadStart');
 					}
 				this.objAudio.onwaiting		=function()
@@ -900,7 +901,6 @@ class Player
 					objPlayer.bIzWhileHumanEvent	=false;
 					//this.bIzWeThinkPlayerIsPlaying		=true;
 					console.log('[Vvv]EDRO.Objects.Player: bIzWeThinkPlayerIsPlaying=true');
-					objKIIM_StatisticalMembrane._stop();
 					//objPlayer.bIzPlayedOnceEvent		=true; //New - 30.08.2020
 					objPlayer.objVisibleControls.classList.remove('stopped');
 					objPlayer.objVisibleControls.classList.remove('loadingAudio');
@@ -1024,9 +1024,8 @@ class Player
 							objPlayer.objPlayingBlock.classList.remove('WaitingAudio');
 							objPlayer.objPlayingBlock.className	+=' errorAudio';
 							}
-						objKIIM_StatisticalMembrane._stop();
 						console.log('[....]EDRO.Objects.Player: objPlayingBlock');
-						return false;
+						return true;
 						}
 					else
 						{
@@ -1041,7 +1040,6 @@ class Player
 							//console.log('[Vvvv]EDRO.Objects.Player: bIzWeThinkPlayerIsPlaying=false');
 							//jPlayer.objDebugString.innerHTML+='objPlayer.objAudio.onError<br/>';
 
-							objKIIM_StatisticalMembrane._stop();
 							objPlayer.objVisibleControls.classList.remove('errorAudio');
 							objPlayer.objVisibleControls.classList.remove('stopped');
 							objPlayer.objVisibleControls.classList.remove('loadingAudio');
@@ -1057,7 +1055,6 @@ class Player
 								objPlayer.objPlayingBlock.classList.remove('WaitingAudio');
 								objPlayer.objPlayingBlock.classList.remove('errorAudio');
 								objPlayer.objPlayingBlock.className	+=' stopped';
-								objKIIM_StatisticalMembrane._stop();
 								}
 							//objPlayer.stop();
 							console.log('[====]EDRO.Objects.Player: bIzNeedToBeStoppedEvent?');
@@ -1293,12 +1290,12 @@ class Player
 				objPlayer.strStationName			=objPlayer.objCurrentBlock.getElementsByTagName('strScrolling')[0].innerHTML;
 				objPlayer.intNum				=objPlayer.objCurrentBlock.attributes.num.value;
 
-				objEvent.arrParams.int0PlayingStationNum		=objPlayer.intNum;
-				objEvent.arrParams.strPlayingStationId			=objPlayer.strCurrentID;
-				objPlayer.objVisibleControlsPlaying.innerHTML			='<a style="color:white;text-decoration:none" href="#" onClick="objEvent.arrParams.strName=objPlayer.strStationName; objEvent.arrParams.strStyle=\'\';objEvent.arrParams.intBitrate=\'\';objEvent.arrParams.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
+				objEvent.arrReality.int0PlayingStationNum		=objPlayer.intNum;
+				objEvent.arrReality.strPlayingStationId			=objPlayer.strCurrentID;
+				objPlayer.objVisibleControlsPlaying.innerHTML			='<a style="color:white;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
 				objPlayer.objVisibleControlsLoadingStationName.innerHTML	=objPlayer.strStationName;
 				objPlayer.objVisibleControlsNoConnectionStationName.innerHTML	=objPlayer.strStationName;
-				objPlayer.objVisibleControlsStopped.innerHTML			='<a style="color:gray;text-decoration:none" href="#" onClick="objEvent.arrParams.strName=objPlayer.strStationName; objEvent.arrParams.strStyle=\'\';objEvent.arrParams.intBitrate=\'\';objEvent.arrParams.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
+				objPlayer.objVisibleControlsStopped.innerHTML			='<a style="color:gray;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
 				objPlayer.objVisibleControlsOverloadStationName.innerHTML	=objPlayer.strStationName;
 				objPlayer.objVisibleControlsStopped.setAttribute('playerId', objPlayer.strCurrentID);
 				//objPlayer.objVisibleControlsStopped.setAttribute('playerId', strAudio);
@@ -1312,6 +1309,8 @@ class Player
 					{
 					console.log('[Vvv]EDRO.Objects.Player: bIzAndroid');
 					objPlayer.objAudio.src		=strAudio;
+					objPlayer.strCurrentAudioLink	=strAudio;
+					objPlayer.objAudio.volume	=1;
 					objPlayer.objAudio.play();
 					console.log('[...]EDRO.Objects.Player: bIzAndroid');
 					}
