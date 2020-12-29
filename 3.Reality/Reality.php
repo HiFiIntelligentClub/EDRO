@@ -41,7 +41,7 @@ class Reality extends Objects
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
 		$this->arrReality['strRoleLangSignal']		=rmLb(FileRead::str($objKIIM, $this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
-		$this->arrReality['strLangSignal']		=strGetDefaultLanguage();
+		$this->arrReality['strLangSignal']		=strGetDomainLang();
 		$this->arrReality['bIzAndroid']			=$this->bIzAndroid();
 		$this->arrReality['bIzApple']			=$this->bIzApple();
 		$this->arrReality['bIzDesktop']			=$this->bIzDesktop();
@@ -94,8 +94,8 @@ class Reality extends Objects
 	private function bIzApple()
 		{
 		$bIz=false;
-		$strUserAgent=strtolower($_SERVER['HTTP_USER_AGENT']);
-		if((strpos($strUserAgent, 'iPad')!==false)||(strpos($strUserAgent, 'iPhone')!==false)||(strpos($strUserAgent, 'iPod')!==false))
+		 $strUserAgent=strtolower($_SERVER['HTTP_USER_AGENT']);
+		if((strpos($strUserAgent, 'ipad')!==false)||(strpos($strUserAgent, 'iphone')!==false)||(strpos($strUserAgent, 'ipod')!==false))
 			{
 			$bIz=true;
 			}
@@ -105,7 +105,7 @@ class Reality extends Objects
 	private function bIzDesktop()
 		{
 		$bIz=false;
-		if(!$this->bIzAndroid()||!$this->bIzApple())
+		if(!$this->bIzAndroid()&&!$this->bIzApple())
 			{
 			$bIz=true;
 			}
@@ -136,6 +136,10 @@ class Reality extends Objects
 					{
 					console.log('[Vv]EDRO.Reality: Construct');
 					//this.objDebugString		=document.getElementById('strPlayerPlayEventsDebugString');
+					this.intStep			=0;
+					this.intVector			=0;
+					this.intStep2News		=0;
+
 					this.arrPlayer			=[];
 					this.arrPlayer.bIzLoading	=false;
 					this.arrPlayer.bIzPlaying	=false;
@@ -179,7 +183,7 @@ class Reality extends Objects
 					/*		1  1 1 1=1 десктоп    					*/
 					/*		0  0 0 0						*/
 					/*									*/
-					if((this.deviceType.indexOf("android")==-1)&&(this.deviceType.indexOf("iphone")==-1) || (this.deviceType.indexOf("ipad")==-1)|| (this.deviceType.indexOf("ipod")==-1))
+					if((this.deviceType.indexOf("android")==-1)&&(this.deviceType.indexOf("iphone")==-1 || this.deviceType.indexOf("ipad")==-1|| this.deviceType.indexOf("ipod")==-1))
 						{
 						//this.objDebugString.innerHTML='Hfic.Samin+!!Desktop test!! all is ok';  //temp
 						return true;
