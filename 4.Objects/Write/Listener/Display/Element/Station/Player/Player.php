@@ -50,13 +50,10 @@ class Player
 					</ifRU>
 				</ifOverload>
 				<recordLabelAudioMeta
-					class="block no-select"
+					class="block no-select doubleLine"
 					style="
 						text-align	:center;
-						width		:34px;
-						height		:34px;
-						margin-top	:3px;
-						margin-left	:3px;
+						width		:40px;
 						"
 					>
 					<recordLabel
@@ -219,11 +216,10 @@ class Player
 			>'.
 			'
 			<ifReady
-				class	="abs V99 block cursor BC1 TC1 layer_2_2 select scrollerY"
+				class	="abs V99 block cursor BC1 TC1 layer_2_2 select scrollerY doubleLine"
 				style	="
 					text-align	:left;
 					Width		:80vw;
-					height		:40px;
 					"
 				>
 				<Hfic_Samin
@@ -242,7 +238,7 @@ class Player
 							"
 					/>
 				</Hfic_Samin>
-				<ReadyButtonStat
+				<!--ReadyButtonStat
 					class	="block right BLL TC3 BC3"
 					style	="
 						text-align	:left;
@@ -252,7 +248,7 @@ class Player
 						"
 					>
 
-				</ReadyButtonStat>
+				</ReadyButtonStat-->
 				<readyText
 					class	="block scrollerY"
 					style	="
@@ -306,19 +302,17 @@ class Player
 				</readyText>
 			</ifReady>
 			<ifOverload
-				class	="abs"
+				class	="abs line"
 				style	="
 					display		:none;
 					top		:20px;
 					left		:0px;
 					width		:100vw;
-					height		:20px;
-					line-height	:20px;
 					color		:#fff;
 					background-color:red;
 					"
 				>
-				<playerOverloadStat
+				<!--playerOverloadStat
 					class	="block right BLL TC3 BC3"
 					style	="
 						text-align	:left;
@@ -337,7 +331,7 @@ class Player
 						>
 						0
 					</loadingErrors>
-				</playerOverloadStat>
+				</playerOverloadStat-->
 
 				<playerOverloadText
 					class	="block scrollerY"
@@ -362,14 +356,11 @@ class Player
 			</ifOverload>
 			<ifLoadingAudio
 				id	="objLoadingAudioTopSmall"
-				class	="block cursor layer_2_2 no-select"
+				class	="block cursor TC1 layer_2_2 no-select line"
 				onclick	="objPlayer.stop();"
 				style	="
 					display		:none;
-					height		:20px;
-					line-height	:20px;
 					text-align	:center;
-					color		:#000;
 					background-color:yellow;
 					"
 				>
@@ -386,28 +377,23 @@ class Player
 			</ifLoadingAudio>
 			<ifLoadingAudio
 
-				class	="abs cursor TC3 layer_2_2 no-select"
+				class	="abs cursor TC3 layer_2_2 no-select doubleLine"
 				style	="
 					display		:none;
 					top		:20px;
 					left		:0px;
 					width		:100vw;
-					height		:40px;
 					text-align	:center;
-					line-height	:20px;
-					background-color:yellow;
 					"
 				>
 				<playerLoadingButton
-					class	="block left BLJ TC3 BC3"
+					class	="block left BLJ TC3 BC3 doubleLine"
 					id	="playerControlAlwaysVisibleLoading"
 					onclick	="objPlayer.stop();"
 					style	="
 						text-align	:center;
 						height		:100%;
 						width		:40px
-						line-height	:38px;
-						font-size	:x-large;
 						"
 					>
 					<ifRU
@@ -421,7 +407,7 @@ class Player
 						☒
 					</ifEN>
 				</playerLoadingButton>
-				<playerLoadingStat
+				<!--playerLoadingStat
 					id	="playerControlAlwaysVisibleLoadingStat"
 					class	="block right BLL TC3 BC3"
 					style	="
@@ -458,7 +444,7 @@ class Player
 							0
 						</digit>
 					</loadingErrors>
-				</playerLoadingStat>
+				</playerLoadingStat-->
 				
 				<playerLoadingText
 					id	="playerControlAlwaysVisibleLoadingText"
@@ -484,14 +470,12 @@ class Player
 			</ifLoadingAudio>
 			<ifPlaying
 				id	="objPlayingAudioTopSmall"
-				class="block cursor layer_2_2 no-select TC3 BC3"
+				class="block cursor layer_2_2 no-select BRJ TC3 line"
 				onclick	="objPlayer.stop();"
 				style	="
 					display		:none;
-					height		:20px;
-					line-height	:21px;
 					text-align	:center;
-					background-color:green;
+					color		:#FFF;
 					/*background-color:#062b88;*/
 					"
 				>'.
@@ -508,68 +492,62 @@ class Player
 				</ifEN>
 			</ifPlaying>
 			<ifPlaying
-				class	="abs cursor layer_2_2 select TC3"
+				class	="abs cursor layer_2_2 select TC3 doubleLine"
 				style	="
 					display		:none;
 					top		:20px;
 					left		:0;
 					width		:100vw;
-					height		:40px;
 					text-align	:left;
 					background-color:#062b88;
 					"
 				>
 				<playerPlayingButton
-					class	="brick left BLL BRJ BTA BBW"
+					class	="brick left BRJ doubleLine"
 					style	="
 						    width	:40px;
-						    height	:40px;
 						    "
 					>
 					<playerPlayingButton
 						class	="brick left"
 						onclick	="objPlayer.stop();"
 						style="
-							text-align	:center;
-							height		:100%;
-							width		:40px;
-							line-height	:38px;
-							color		:#062b88;
-							background-color:#7df3ff;
+							text-align	: center;
+							width		: 40px;
+							color		: #FFF;
+							background-color: #6fb6ff9c;
 							"
 						>
 						■
-						</playerPlayingButton>
+					</playerPlayingButton>
 				</playerPlayingButton>
-				<playerPlayingStat
-					id	="playerControlAlwaysVisibleLoadingStat"
-					class	="block right BLL TC3 BC3"
+				<playerPlayingText
+					id	="playerControlAlwaysVisiblePlaying"
+					class	="block scrollerY left"
+					onclick	=""
+					style="
+						height		:100%;
+						width		:50%;
+						"
+					>
+				</playerPlayingText>
+				<playerPlayingLike
+					id	="playerControlAlwaysVisiblePlayingLike"
+					class	="block left BLL TC3 BC3"
 					style	="
+						font-size	:x-large;
 						text-align	:left;
 						height		:100%;
 						width		:100px;
 						line-height	:13px;
 						"
+					onclick	="
+						alert(\'coming soon!\');
+
+						"
 					>
-					<playingDuration
-						id	="playerControlAlwaysVisiblePlayingDuration"
-						class="block"
-						>
-						0
-					</playingDuration>
-					<lplayingErrors
-						id	="playerControlAlwaysVisiblePlayingErrors"
-						class="block"
-						>
-						0
-					</playingErrors>
-					<lplayingErrorDuration
-						id	="playerControlAlwaysVisiblePlayingErrorDuration"
-						class="block"
-						>
-						0
-					</playingErrorDuration>
-				</playerPlayingStat>
+					[+]
+				</playerPlayingLike>
 				<!--a 
 					class="block left"
 					href		="/getStationToTheTop"
@@ -585,42 +563,31 @@ class Player
 					</ifEN>
 				</a-->
 				
-				<playerPlayingText
-					id	="playerControlAlwaysVisiblePlaying"
-					class	="block scrollerY left"
-					onclick	=""
-					style="
-						height		:100%;
-						width		:50%;
-						"
-					>
-				</playerPlayingText>
+
 
 			</ifPlaying>
 			<ifNoConnection
-				class	="cursor layer_2_2 no-select TC3 BC3"
-				onclick	="objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);"
+				class	="cursor layer_2_2 no-select TC3 BC3 doubleLine"
+				onclick	="objPlayer.play();"
 				style	="
 					display		:none;
 					color		:#000;
-					height		:40px;
 					text-align	:center;
 					"
 				>⚠
 			</ifNoConnection>
 			<ifNoConnection
-				class	="abs cursor layer_2_2 no-select BC1 TC1"
-				onclick	="objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);"
+				class	="abs cursor layer_2_2 no-select BC1 TC1 doubleLine"
+				onclick	="objPlayer.play();"
 				style	="
 					display		:none;
 					width		:100vw;
-					height		:40px;
 					top		:20px;
 					left		:0px;
 					text-align	:center;
 					"
 				>
-				<playerNoConnectionStat
+				<!--playerNoConnectionStat
 					class	="block right BLL TC3 BC3"
 					style	="
 						text-align	:left;
@@ -639,7 +606,7 @@ class Player
 						>
 						0
 					</NoConnectionErrors>
-				</playerNoConnectionStat>
+				</playerNoConnectionStat-->
 				<playerNoConnectionext
 					class	="block scrollerY"
 					style	="
@@ -663,18 +630,14 @@ class Player
 				</playerNoConnectionext>
 			</ifNoConnection>
 			<ifStopped
-				class	="block cursor layer_2_2 BC3 TC3 no-select "
+				class	="block cursor layer_2_2 TC3 no-select line"
 				onclick	="
 					/*objPlayer.objAudio.src				=objPlayerIndicatorMembrane.getAttribute(\'playerId\');*/
-					objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);
+					objPlayer.play();
 					"
 				style	="
 					display		:none;
-					height		:20px;
 					text-align	:center;
-					line-height	:19px;
-					font-size	:small;
-					background-color:green;
 					"
 				>'.
 				//PlayerEventIndicator::strHTML(). Osciloscope - disabled temporary
@@ -682,14 +645,12 @@ class Player
 				▷
 			</ifStopped>
 			<ifStopped
-				class	="abs cursor layer_2_2 BC1 select"
+				class	="abs cursor layer_2_2 BC1 select doubleLine"
 				style	="
 					display		:none;
 					left		:0;
 					top		:20px;
 					width		:100vw;
-					height		:40px;
-					line-height	:21px;
 					text-align	:center;
 					color		:#777;
 					"
@@ -699,13 +660,11 @@ class Player
 					onclick	="
 						/*objPlayer.objAudio.src			=this.parentNode.getAttribute(\'playerId\');
 						objPlayer.objAudio.play();*/
-						objPlayer.play(objPlayer.objCurrentBlock, objPlayer.strCurrentAudioLink);
+						objPlayer.play();
 						"
 					style	="
 						text-align	:center;
-						height		:100%;
 						width		:40px;
-						line-height	:38px;
 						"
 					>
 					▷
@@ -736,7 +695,16 @@ class Player
 					style	="
 						height		:100%;
 						"
+					onClick	="
+						objEvent.arrReality.strID=\'\';
+						objEvent.arrReality.strName=\'\'; 
+						objEvent.arrReality.strStyle=\'\';
+						objEvent.arrReality.intBitrate=\'\';
+						objEvent.arrReality.strCodec=\'\';
+						objEvent._UpdateURLDyn(true);"
+						"
 					>
+					
 				</playerPlayText>
 			</ifStopped>
 		</playerControlAlwaysVisible>
@@ -759,14 +727,13 @@ class Player
 				{
 				console.log('[Vv]EDRO.Objects.Player: Player.constructor()');
 
-				//this.objAudio			=document.getElementById("objHiFiIntelligentClubAudio");
-				this.objAudio			=document.createElement('audio');
+				this.objAudio			=document.getElementById("objHiFiIntelligentClubAudio");
+				//this.objAudio			=document.createElement('audio');
 				this.intPlayerLoadingAnim	=0;
 				this.strPlayerLoadingAnim	=0;
 				this.objStation			='';
 				this.strCurrentID		='';
 				this.strPlayingID		='';
-				this.strCurrentAudioLink	='';
 				this.strStationName		='';
 				this.objAudio.crossorigin	="use-credentials";
 				this.objVisibleControls		=document.getElementById('playerControlAlwaysVisible');
@@ -849,15 +816,16 @@ class Player
 					objPlayer.objVisibleControls.classList.remove('errorAudio');
 					objPlayer.objVisibleControls.classList.remove('overload');
 					objPlayer.objVisibleControls.className	+=' WaitingAudio';
-
-					objPlayer.objCurrentBlock.classList.remove('WaitingAudio');
-					//objPlayer.objCurrentBlock.classList.remove('loadingAudio');
-					//objPlayer.objCurrentBlock.classList.remove('playing');
-					objPlayer.objCurrentBlock.classList.remove('errorAudio');
-					objPlayer.objCurrentBlock.classList.remove('overload');
-					objPlayer.objCurrentBlock.className	+=' WaitingAudio'
+					if(typeof(objPlayer.objCurrentBlock)=='object')
+						{
+						objPlayer.objCurrentBlock.classList.remove('WaitingAudio');
+						//objPlayer.objCurrentBlock.classList.remove('loadingAudio');
+						//objPlayer.objCurrentBlock.classList.remove('playing');
+						objPlayer.objCurrentBlock.classList.remove('errorAudio');
+						objPlayer.objCurrentBlock.classList.remove('overload');
+						objPlayer.objCurrentBlock.className	+=' WaitingAudio'
+						}
 					objPlayer.objAudio.play(); //++n
-					
 					//console.log('[Vvv]EDRO.Objects.Player: AFTER:objAudio.Load()');
 					//objPlayer.bIzWhileHumanEvent=false;
 					//objPlayer.objDebugString.innerHTML+='objPlayer.objAudio.onWaiting .bIzWhileHumanEvent=false;<br/>';
@@ -883,6 +851,10 @@ class Player
 					{
 					//alert('.oncanplaythrough');
 					console.log('[Vvv]EDRO.Objects.Player: onCanPlayThrough()');
+					objReality.arrPlayer.bIzLoading	=false;
+					objReality.arrPlayer.bIzPlaying	=true;
+					objReality.arrPlayer.bIzWaiting	=false;
+					objPlayer.bIzWhileHumanEvent	=false;
 					//objPlayer.objDebugString.innerHTML+='objPlayer.objAudio.oncanplaythrough<br/>';
 					objPlayer.objAudio.play();
 					//this.play();
@@ -1292,10 +1264,10 @@ class Player
 
 				objEvent.arrReality.int0PlayingStationNum		=objPlayer.intNum;
 				objEvent.arrReality.strPlayingStationId			=objPlayer.strCurrentID;
-				objPlayer.objVisibleControlsPlaying.innerHTML			='<a style="color:white;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
+				//objPlayer.objVisibleControlsPlaying.innerHTML			='<a style="color:white;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
 				objPlayer.objVisibleControlsLoadingStationName.innerHTML	=objPlayer.strStationName;
 				objPlayer.objVisibleControlsNoConnectionStationName.innerHTML	=objPlayer.strStationName;
-				objPlayer.objVisibleControlsStopped.innerHTML			='<a style="color:gray;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
+				//objPlayer.objVisibleControlsStopped.innerHTML			='<a style="color:gray;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
 				objPlayer.objVisibleControlsOverloadStationName.innerHTML	=objPlayer.strStationName;
 				objPlayer.objVisibleControlsStopped.setAttribute('playerId', objPlayer.strCurrentID);
 				//objPlayer.objVisibleControlsStopped.setAttribute('playerId', strAudio);
@@ -1309,7 +1281,6 @@ class Player
 					{
 					console.log('[Vvv]EDRO.Objects.Player: bIzAndroid');
 					objPlayer.objAudio.src		=strAudio;
-					objPlayer.strCurrentAudioLink	=strAudio;
 					objPlayer.objAudio.volume	=1;
 					objPlayer.objAudio.play();
 					console.log('[...]EDRO.Objects.Player: bIzAndroid');
