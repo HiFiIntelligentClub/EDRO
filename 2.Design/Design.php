@@ -23,16 +23,16 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 ./././././././*/
 class Design extends Reality
 	{
+	public	$arrDesign;
 	public function __construct($_objKIIM)
 		{
 		//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-		$objKIIM	=$_objKIIM;
-		unset($_objKIIM);
+		//$objKIIM	=$_objKIIM;
+		//unset($_objKIIM);
 
-		$arrReality		=arrAllEventIncomeParametrsDefault(); //[arrAction]['ArrAllowed']['strEvent']
 		//print_r($arrReality);
 		//echo $this->arrEvent['strEvent'];
-		$this->arrDesign	=$arrReality['arrEvent']['arrDesign'][$this->arrEvent['strEvent']];
+		$this->arrDesign['strTemplate']	='/home/EDRO/2.Design/Templates/Station/StationList.pho';
 
 		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		//echo '<pre>';
@@ -54,8 +54,6 @@ class Design extends Reality
 				constructor()
 					{
 					console.log('[Vv]EDRO.Design: Construct');
-					this.intBodyHeight;
-					this.intBodyWidth;
 					this.objStationsOnPage;
 					//objEvent._CreateParamsArr();
 					//this._UpdateDimensions();
@@ -70,8 +68,6 @@ class Design extends Reality
 					}
 				_UpdateDimensions()
 					{
-					//this.intBodyHeight	=document.body.offsetHeight;
-					//this.intBodyWidth	=document.body.offsetWidth;
 					objDynaScreen._GetDimensions();
 					this.objElement		=document.getElementsByTagName('station')[0];
 					if(typeof(this.objElement)=='object')
@@ -102,19 +98,19 @@ class Design extends Reality
 					if(this.intTotalElements<1)
 						{
 					//	console.log('[Vvv]EDRO.Design: intTotalElements<=1');
-						this.intTotalElements=1;
+						this.intTotalElements		=1;
 					//	console.log('[...]EDRO.Design: intTotalElements<=1');
 						}
-					objIndicatorDimensions.objStr.innerHTML	=this.intScreenWidth+'x'+this.intScreenHeight+'<br/>V'+this.intWidthElements+':H'+this.intHeightElements+':T'+this.intTotalElements;
+					//objIndicatorDimensions.objStr.innerHTML	=this.intScreenWidth+'x'+this.intScreenHeight+'<br/>V'+this.intWidthElements+':H'+this.intHeightElements+':T'+this.intTotalElements;
 					if(objEvent.arrReality.int1OnPage!=this.intTotalElements)
 						{
 						//objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);
 						//EDRO::strObjInit('Search');
-						objSearch	=new Search();
+						objSearch				=new Search();
 						objEvent.arrReality.strName		=objSearch.strValueInputstrName;
-						objEvent.arrReality.strStyle		=objSearch.strValueInputstrStyle;
-						objEvent.arrReality.intBitrate		=objSearch.strValueInputintBitrate;
-						objEvent.arrReality.strCodec		=objSearch.strValueInputstrCodec;
+						objEvent.arrReality.strGenre		=objSearch.strValueInputstrGenre;
+						//objEvent.arrReality.intBitrate	=objSearch.strValueInputintBitrate;
+						//objEvent.arrReality.strCodec		=objSearch.strValueInputstrCodec;
 						objEvent.arrReality.int1OnPage		=this.intTotalElements;
 						//console.log(objEvent.arrReality.int1OnPage);
 						objEvent._UpdateURLDyn(false);
