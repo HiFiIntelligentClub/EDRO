@@ -1,1 +1,1 @@
-# Page navigation vidget
+# Page navigation widget
