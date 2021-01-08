@@ -24,7 +24,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class HiFiNavigation
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrPagination, $arrParams)
+	public function __construct($_objKIIM, $_arrPagination, $arrReality)
 		{
 		$objKIIM=$_objKIIM;
 		   unset($_objKIIM);
@@ -39,18 +39,27 @@ class HiFiNavigation
 		$intPrevPage		=($intPage-1);
 		//echo $intPageParamName;
 		//echo $intNextPage;
-		//	$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intNextPage, true);
+		//	$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intNextPage, true);
 		//	echo $arrEventLink['strHref'];
 		
 		?>
+		<pageNavShader
+			class="
+				fixed V1 block layer_4 BC1 TC1 BBV doubleLine
+				"
+			style="
+				left		:0;
+				width		:100%;
+				"
+			>
+		</pageNavShader>
 		<pageNav
 			class="
-				fixed V1 block layer_5_nav BC1 TC1 BBV
+				fixed V1 block layer_5 BC1 TC1 BBV  doubleLine
 				"
 			style="
 				left		:15%;
 				width		:70%;
-				height		:40px;
 				text-align	:center;
 				margin		:auto;
 				"
@@ -64,15 +73,13 @@ class HiFiNavigation
 				<a
 				id	="objPageForward"
 				<?php
-				$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intNextPage, true);
+				$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intNextPage, true);
 				echo $arrEventLink['strHref'];
 				echo $arrEventLink['strOnClick'];
 				?>
-					class="block right BBV BTA BC3 TC3 cursor no-select"
+					class="block right BBV BTA BC3 TC3 cursor no-select doubleLine"
 					style="
-						padding-top	:10px;
 						width		:34%;
-						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
 						"
@@ -90,7 +97,6 @@ class HiFiNavigation
 					onclick	=""
 					class	="block right BBV BTA BC1 TC1 cursor no-select"
 					style	="
-						height		:40px;
 						width		:34%;
 						height		:100%;
 						text-align	:center;
@@ -102,19 +108,16 @@ class HiFiNavigation
 				}
 				?>
 			<pagerNum
-				class="fix V1 block tcenter BC1 TC1 BLL BRJ BBV BTA no-select"
+				class="fix V1 block tcenter BC1 TC1 BLL BRJ BBV BTA no-select doubleLine"
 				style="
 					left		:36%;
 					width		:28%;
-					height		:40px;
 					"
 				>
 
 				<strPage
-					class="block TC2 BC2" 
-					style="
-						font-size	:x-small;
-						"
+					class="TC3 BC3 halfLine" 
+				
 					>[<?=$intStart?>-<?=$intEnd ?>][<?=$intTotal-$intEnd?>][<?=$intTotal?>]
 				</strPage>
 				<strPage
@@ -122,8 +125,13 @@ class HiFiNavigation
 					>
 					<input 
 						id	="objPageNumberSelect"
+						class	=""
+						style	="
+							width:40%;
+							"
 						onChange="
-							objEvent.arrParams.<?=$intPageParamName?>=this.value;
+							//bizHiFiNavigationInputSelect	=false; //Need to send result
+							objEvent.arrReality.<?=$intPageParamName?>=this.value;
 							objEvent._UpdateURLDyn();
 							return false;
 							"
@@ -145,13 +153,20 @@ class HiFiNavigation
 					/>
 					
 					<strPages
+						id	="objPageMaximum"
+						class	="line"
 						style="
 							font-size	:x-small;
+							width:60%;
 							"
 						>
 						<ifRU>из </ifRU>
 						<ifEN>of </ifEN>
-						<?=$intPages-1?>
+						<int0Max
+							id	="objPageMaximum"
+							>
+							<?=$intPages?>
+						</int0Max>
 					</strPages>
 				</strPage>
 			</pagerNum>
@@ -164,7 +179,6 @@ class HiFiNavigation
 					onclick	=""
 					class	="block left BBV BTA BC1 TC1 cursor no-select"
 					style	="
-						height		:40px;
 						width		:34%;
 						height		:100%;
 						text-align	:center;
@@ -176,7 +190,7 @@ class HiFiNavigation
 				}
 			else
 				{
-				$arrEventLink=arrEventLink($arrParams, $intPageParamName, $intPrevPage, true);
+				$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intPrevPage, true);
 				?>
 				<a
 					id	="objPageBackward"
@@ -184,11 +198,9 @@ class HiFiNavigation
 					echo $arrEventLink['strHref'];
 					echo $arrEventLink['strOnClick'];
 					?>
-					class="block left BBV BTA BC3 TC3 cursor no-select"
+					class="block left BBV BTA BC3 TC3 cursor no-select doubleLine"
 					style="
-						padding-top	:10px;
 						width		:34%;
-						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
 						"
@@ -200,7 +212,6 @@ class HiFiNavigation
 			?>
 		</pageNav>
 		<?php
-		echo HiFiNavigation::strObjectDeclare();
 		echo HiFiNavigation::strObjectInit();
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
@@ -208,12 +219,63 @@ class HiFiNavigation
 		{
 		?>
 		<script>
+			console.log('[Vv]HiFiNavigation declare.');
 			class HiFiNavigation
 				{
 				objRight		='';
 				objLeft			='';
-				bizPageSelectFoucus	=true;
+				//bizPageSelectFoucus	=true;
+				int0Page		=0;
+				int0PageMaximum		=0;
+				constructor()
+					{
+					this.objXHR		=new XMLHttpRequest();
+					this.objRight		=document.getElementById("objPageForward");
+					this.objLeft		=document.getElementById("objPageBackward");
+					this.int0Page		=document.getElementById("objPageNumberSelect").value;
+					this.int0PageMaximum	=document.getElementById("objPageMaximum").innerHTML;
+					this.objXHR.onload	=function()
+						{
+						console.log('[Vvv]EDRO.Objects: objXHR.onload');
+						if(objHiFiNavigation.objXHR.status==200)
+							{	
+							if(objReality.bIzPlayer)
+								{
+								}
+							if(objReality.bIzDynaScreen)
+								{
+								}
+							if(objReality.bIzCheckMaNet)
+								{
+								}
+							}
+						else
+							{
+							}
+						console.log('[...]EDRO.Objects: objXHR.onload');
+						}
+					this.objXHR.onProgress		=function(event)
+						{
+						console.log('[Vvv]EDRO.Objects: objXHR.onProgress');
+						if(event.lengthComputable)
+							{
+							//console.log('Получено'+event.loaded+'байт из'+event.total+'байт.');
+							}
+						else
+							{
+							//console.log('Получено'+event.loaded+'байт');
+							}
+						console.log('[...]EDRO.Objects: objXHR.onProgress');
+						}
+					this.objXHR.onError=function()
+						{
+						console.log('[Vvv]EDRO.Objects: objXHR.onError');
+						console.log('[...]EDRO.Objects: objXHR.onError');
+						}
+					console.log('[..]EDRO.Event: Constructor');
+					}
 				}
+			console.log('[..]HiFiNavigation declare.');
 		</script>
 		<?php
 		}
@@ -221,9 +283,9 @@ class HiFiNavigation
 		{
 		return EDRO::strObjInit('HiFiNavigation');
 		}
-	public static function strHTML($_objKIIM, $_arrPagination, $_arrParams)
+	public static function strHTML($_objKIIM, $_arrPagination, $_arrReality)
 		{
-		$objHiFiNavigation=new HiFiNavigation($_objKIIM, $_arrPagination, $_arrParams);
+		$objHiFiNavigation=new HiFiNavigation($_objKIIM, $_arrPagination, $_arrReality);
 		return $objHiFiNavigation->strHTML;
 		}
 	}
