@@ -19,23 +19,37 @@ class DynaScreen
 		}
 	public static function strStart($objEDRO, $strSearchForm)
 		{
-		if($objEDRO->arrEvent['bIsDynamic'])
+
+		if($objEDRO->arrEvent['bIzDynamic'])
 			{
-			$str='<brickTop class="block" style="width:100%;height:50px"></brickTop>';
+			$intHeight	=82;
+			if($objEDRO->arrReality['bIzApple'])
+				{
+				$intHeight	=62;
+				}
+			$str		=$objEDRO->strRealityInit();
+			$str		.='				<brickTop 
+					class="block" 
+					style="width:100%;height:'.$intHeight.'px;margin:0;padding:0;"
+					>
+				</brickTop>';
+
 			}
 		else
 			{
+
 			require_once('/home/EDRO.SetOfTools/System/4.Styles/0.CSS.Styles.php');
 			require_once('/home/EDRO.SetOfTools/System/5.Templates/0.strKIIM.Template.php');
 			require_once('/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php');
-			$str		=$objEDRO->strParamsInit();
+			$str		=$objEDRO->strRealityInit();
 			$str		.=$strSearchForm;
+			$str		.=Listeners::strHTML($objKIIM, $objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
+			$str		.=FileRead::strGetDesignHTML(array(), '/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_UpdateMessage.php', $objEDRO);
 			$str		.='
 			<dynaScreen
 				id	="DynaScreen"
-				class	="block layer_2_1"
+				class	="fixed block layer_2_1"
 				style	="
-					position		:fixed;
 					top			:0;
 					left			:0;
 					width			:100%;
@@ -43,26 +57,30 @@ class DynaScreen
 					display			:block;
 					"
 				>
-				<brickTop class="block" style="width:100%;height:50px"></brickTop>
+				<brickTop 
+					class="block" 
+					style="width:100%;height:82px;margin:0;padding:0;"
+					>
+				</brickTop>
 				';
 			}
 		
-		$str.='<marginTop class="block" style="width:100%;height:2%"></marginTop>';
+		//$str.='<marginTop class="block" style="width:100%;height:2%"></marginTop>';
 		//$str.='<pageDate id="pageDateTimeServer" style="display:none">'.сКодировать(date('Y-m-d H:i:s').$_SESSION['strListener'], 'вКоманду').'</pageDate>';
-		file_put_contents('/home/HiFiIntelligentClub.Ru/tmp/symbols.txt', сКодировать(date('Y-m-d H:i:s').$_SESSION['strListener'], 'вКоманду'));
+		//file_put_contents('/home/HiFiIntelligentClub.Ru/tmp/symbols.txt', сКодировать(date('Y-m-d H:i:s').$_SESSION['strListener'], 'вКоманду'));
 
 		return $str;
 		}
-	public static function strEnd($bIsDynamic)
+	public static function strEnd($bIzDynamic)
 		{
 		$str='';
-		if($bIsDynamic)
+		if($bIzDynamic)
 			{
-			$str.='<brickBottom class="block" style="width:100%;height:200px"></brickBottom>';
+			//$str.='<brickBottom class="block" style="width:100%;height:200px"></brickBottom>';
 			}
 		else
 			{
-			$str='<brickBottom class="block" style="width:100%;height:100px"></brickBottom>';
+			//$str='<brickBottom class="block" style="width:100%;height:100px"></brickBottom>';
 			$str.='</dynaScreen>';
 			$str.=DynaScreen::strObjectInit();
 			$str.=Design::strObjectInit();
