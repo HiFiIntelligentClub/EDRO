@@ -64,26 +64,29 @@ class FormInput
 							objEvent.arrReality[\''.$arrReality['strInputName'].'\']	=encodeURIComponent(this.value);
 							objEvent._UpdateURLDyn();
 							"
+					onFocusin	="
+							//objSearch.strActiveInputWidth	=this.parentNode.style.width;
+							//this.parentNode.style.width	=\'80%\';
+							
+							"
+					onFocusout	="
+							//this.parentNode.style.width	=objSearch.strActiveInputWidth;
+							"
 					value		="'.сПреобразовать($arrReality['strInputValue'], 'вСтроку').'"
 					placeholder	="'.$arrReality['strDisplayName'].'"
 					style		="
-							width		:70%;
+							width		:87%;
 							border		:0;
 							outline		:0;
-							height		:30px;
-							font-size	:large;
 							text-align	:center;
 							"
-					class		="brick left HR0 LTR_RTL"
+					class		="brick left HR0 LTR_RTL doubleLineLarge"
 					/>
 				<resetButton
-					class="block left  sensor TC1 BC1"
+					class="left  sensor TC1 BC1 doubleLine"
 					style="
-						width			:10%;
-						height			:40px;
+						width			:5%;
 						text-align		:center;
-						line-height		:99%;
-						background-color	:white;
 						"
 					onclick="
 						objSearch.objValueInput'.$arrReality['strInputName'].'.value	=\'\';
@@ -105,7 +108,7 @@ class FormInput
 
 			</input'.$arrReality['strInputName'].'>
 			';
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strHTML($_arrReality)
 		{
