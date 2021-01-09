@@ -30,13 +30,15 @@ class Pagination
 		print_r($objEDRO->arrEvent);
 		echo '</pre>';*/
 		//exit;
-		//$objEDRO->arrEvent['arrParams']['int0PlayingStationNum'];
-		$objKIIM=$_objKIIM;
+		//$objEDRO->arrEvent['arrReality']['int0PlayingStationNum'];
+		//$objKIIM=$_objKIIM;
 		   unset($_objKIIM);
-		/*echo*/$int0PlayingStationNum		=$objEDRO->arrEvent['arrParams']['int0PlayingStationNum'];
+			print_r($objEDRO);
+			exit;
+		/*echo*/$int0PlayingStationNum		=$objEDRO->arrEvent['arrReality']['int0PlayingStationNum'];
 		/*echo*/$int1PlayingStationNum		=($int0PlayingStationNum+1);
-		/*echo*/$int0Page	=($objEDRO->arrEvent['arrParams']['int0Page']); //0,1,xxx
-		/*echo*/$int1OnPage	=$objEDRO->arrEvent['arrParams']['int1OnPage']; //1-> 8 = 8
+		/*echo*/$int0Page	=($objEDRO->arrEvent['arrReality']['int0Page']); //0,1,xxx
+		/*echo*/$int1OnPage	=$objEDRO->arrEvent['arrReality']['int1OnPage']; //1-> 8 = 8
 		/*echo*/$int0Start	=0+($int0Page*$int1OnPage);//From 0 to 7 intStart=8 ->15 intStart=16;
 		/*echo*/$int1Untill	=($int0Start+$int1OnPage);//From 0 to 7 including 7 = 8
 		/*echo*/$int0Untill	=($int1Untill-1);
@@ -69,11 +71,19 @@ class Pagination
 				}
 
 		unset($objTotal);
-		/*echo*/$int1Pages	=intRoundUp(($int1Total)/$int1OnPage);//totall is not from 0, to find we need to convert ;
+		if($int1OnPage==0)
+			{
+			
+			$int1Pages		=intRoundUp(($int1Total)/1);
+			}
+		else
+			{
+			/*echo*/$int1Pages	=intRoundUp(($int1Total)/$int1OnPage);//totall is not from 0, to find we need to convert ;
+			}
 		$int0Pages		=($int1Pages-1);
 		if($int0Page>$int0Pages)
 			{
-			$objEDRO->arrEvent['arrParams']['int0Page']	=$int0Pages;
+			$objEDRO->arrEvent['arrReality']['int0Page']	=$int0Pages;
 			$int0Page					=$int0Pages;
 			/*echo*/ $int0Start	=0+($int0Pages*$int1OnPage);//From 0 to 7 intStart=8 ->15 intStart=16;
 			/*echo*/ $int1Untill	=($int0Start+$int1OnPage);//From 0 to 7 including 7 = 8
