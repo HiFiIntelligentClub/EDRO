@@ -25,7 +25,6 @@ class Event extends Design
 	{
 	public function __construct($_objKIIM)
 		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-
 		// 0.strNDigit ->  arrAllIncomeActions
 		// 0.strNDigit ->  arrAllIncomeParametrs
 		$this->arrEvent				=arrGetEventSetter();
@@ -85,6 +84,7 @@ class Event extends Design
 			//$str.='alert(\'x\');';
 			$str.='console.log(\'[V]EDRO.Event: strParamsInit()\');';
 			$str.=rmlb($this->arrEvent['strObjectReality']);
+			$str.='objEvent._Search();';
 			$str.='console.log(\'[.]EDRO.Event: strParamsInit()\');';
 		$str.='</script>';
 		return $str;
@@ -169,9 +169,10 @@ class Event extends Design
 							if(objReality.bIzPlayer)
 								{
 								//console.log(objObjects.objXHR.response);
-								var strAudio 		= JSON.parse(objEvent.objXHR.response);
+								var strAudio 		= objEvent.objXHR.response;
 								//strAudio
-								objPlayer.objAudio.src	=strAudio;
+								objPlayer.objAudio.src		=strAudio;
+								objPlayer.objAudio.volume	=1;
 								objPlayer.objAudio.play();
 								//objPlayer.objAudio.load();
 								objPlayer.objVisibleControlsStopped.setAttribute('playerId', strAudio);
@@ -251,9 +252,8 @@ class Event extends Design
 					objEvent.strEvent			='/Search';
 					objEvent.arrReality.page			=0;
 					objDynaScreenEventIndicator.objHTML.style.display="block";
-					this._CreateURL();
 					//objEvent.PushEvent; ////// ++
-					this._Request();
+					this._RequestURLDyn() //objObjects->objEvent
 					console.log('[..]EDRO.Objects: _Search()');
 					}
 				_CheckMaNet()
@@ -335,7 +335,7 @@ class Event extends Design
 					objEvent.strParams		='';
 					Object.keys(objEvent.arrReality).forEach(function(strKey)
 						{
-						objEvent.arrReality[strKey]	=encodeURIComponent(objEvent.arrReality[strKey]);
+						objEvent.arrReality[strKey]	=objEvent.arrReality[strKey];
 						//alert(objEvent.arrReality[strKey]);
 						objEvent.strParams	+='&'+strKey+'='+objEvent.arrReality[strKey];
 						});
@@ -369,7 +369,7 @@ class Event extends Design
 						}
 					console.log('[..]EDRO.Objects: _Request()');//objObjects->objEvent
 					}
-				_UpdateURLDyn(bIzHistory=true) //objObjects->objEvent 
+				_UpdateURLDyn(bIzHistory=true, objProcessing='') //objObjects->objEvent 
 					{//(CAUTION!!!:Inside of updating object must be information of EDRO DESIGN MATRIX position!!)
 					//    //  ///  Don't create functions with declareddestination of the request!! 06.08.2020 ChekMaNet
 					console.log('[Vv]EDRO.Objects: objDynaScreen objXHR.send()'+objEvent.strURL);//objObjects->objEvent
@@ -386,6 +386,10 @@ class Event extends Design
 						}
 					objDynaScreen.objXHR.open('POST', objEvent.strURLDyn);
 					objDynaScreen.objXHR.send();
+					if(objProcessing)
+						{
+						objProcessing.classList.remove('loading');
+						}
 					console.log('[..]EDRO.Objects: objDynaScreen objXHR.send()'+objEvent.strURL);//objObjects->objEvent4
 					}
 				_ActualizeSearch()
