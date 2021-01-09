@@ -30,16 +30,48 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 	private $strType;
 	private $strAudio;
 	public function __construct($_objKIIM, $_arrValues=array(), $_arrReality) //$_arrValues 'name' 'style' 'bitrate' 'codec'
-		{$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));unset($_objKIIM);
+		{
+		//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//unset($_objKIIM);
 
+		
+		//if($_arrValues['strGenre']!==''&&isset($_arrValues['strStyle'])&&$strStyle!=''&&$strStyle!='undefined')
+		//	{
+		// *  * $strSearchGenre		=$_arrValues['strStyle'];
+		//	}
+		//else
+		//	{
+		$arrInputDefaults	=arrAllEventIncomeParametrsDefault();
 		$strSearchName		=$_arrValues['strName'];
-		$strSearchStyle		=$_arrValues['strStyle'];
+		$strSearchId		=$_arrValues['strId'];
+		$strSearchGenre		=$_arrValues['strGenre'];
+		//	}
+		
 				   unset($_arrValues);
 		$strLang		=$_arrReality['strLangSignal'];
 				   unset($_arrReality);
-		$arrInputName 		=
+		$arrInputID	=
 			array(
-			'strLang'	=> $strLang,
+			'strLang'=>$strLang,
+			'arrName'	=>
+				array(
+				'RU'=>'ID',
+				'EN'=>'ИД'
+				), 
+			'arrSetup'	=>
+				array(
+
+				'strInputValue'		=> $strSearchId,
+				'strInputType'		=> 'text',
+				'strInputName'		=> 'strStationId',
+				'intInputSize'		=>  15,
+				'intInputMaxLength'	=>  $arrInputDefaults['arrReality']['strStationID']['int0MaxLength'],
+				'strInputWidth'		=> '5%',
+				)
+			);
+		$arrInputName 	=
+			array(
+			'strLang'=> $strLang,
 			'arrName'	=>
 				array(
 				'RU'=>'Название',
@@ -52,13 +84,13 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				'strInputType'		=> 'text',
 				'strInputName'		=> 'strName',
 				'intInputSize'		=>  25,
-				'intInputMaxLength'	=>  250,
-				'strInputWidth'		=> '40%',
+				'intInputMaxLength'	=>  $arrInputDefaults['arrReality']['strName']['int0MaxLength'],
+				'strInputWidth'		=> '50%',
 				)
 			);
-		$arrInputGenre 		=
+		$arrInputGenre 	=
 			array(
-			'strLang'	=>$strLang,
+			'strLang'=>$strLang,
 			'arrName'	=>
 				array(
 				'RU'=>'Жанр',
@@ -67,12 +99,12 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 			'arrSetup'	=>
 				array(
 
-				'strInputValue'		=> $strSearchStyle,
+				'strInputValue'		=> $strSearchGenre,
 				'strInputType'		=> 'text',
 				'strInputName'		=> 'strGenre',
 				'intInputSize'		=>  15,
-				'intInputMaxLength'	=>  20,
-				'strInputWidth'		=> '40%',
+				'intInputMaxLength'	=>  $arrInputDefaults['arrReality']['strGenre']['int0MaxLength'],
+				'strInputWidth'		=> '35%',
 				)
 			);
 
@@ -81,7 +113,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				class="fix HR0 V99 layer_5 default"
 				>
 				<ifCutDown
-					class	="block right sensor TC1 BC1 no-select"
+					class	="block right sensor TC3 BC3 no-select doubleLineLargeButton BLL BBV"
 					onclick	="
 						this.parentNode.classList.remove(\'CutDown\');
 						this.parentNode.className+=\' Expanded\';
@@ -89,8 +121,6 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 						"
 					style	="
 						text-align	:center;
-						line-height	:36px;
-						height		:40px;
 						width		:80px;
 						"
 					>
@@ -120,12 +150,9 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 								"
 						>
 						<topTouchBuffer
-							class	="block TC2 BC2"
+							class	="block TC2 BC2 halfLine"
 							style	="
-								height		:10px;
 								width		:100%;
-								font-size	:x-small;
-								line-height	:9px;
 								"
 							>
 							<genre
@@ -145,15 +172,14 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 								<ifRU>Поиск станций по имени:</ifRU>
 							</genre>
 						</topTouchBuffer>'.
+						//FormInput::strHtml($arrInputID).
 						FormInput::strHtml($arrInputGenre).
 						FormInput::strHtml($arrInputName).
 						'<closeButton
-							class="sensor block right TC3 BC3"
+							class="sensor block right TC3 BC3 doubleLineLarge"
 							style="
-								height		:39px;
 								width		:10%;
 								text-align	:center;
-								line-height	:36px;
 								"
 							onclick="
 								this.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
@@ -168,12 +194,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 							</ifEN>
 						</closeButton>
 						<bottomTouchBuffer
-							class	="abs block TC2 BC2"
+							class	="abs block TC2 BC2 Line"
 							style	="
 								bottom		:0;
-								height		:10px;
 								width		:100%;
-								font-size	:x-small;
 								"
 							>
 							<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
@@ -205,7 +229,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				$this->strHTML	.=
 			'</hficSearch>
 			';
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	private function strObjectInit()
 		{
