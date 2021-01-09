@@ -64,7 +64,7 @@ class Player
 							width		: 40px;
 							line-height	: 19px;
 							padding		: 0;
-							/*font-size	: ;*/
+							font-size	: initial;
 							"
 						>
 						<ifEN
@@ -251,11 +251,6 @@ class Player
 					<ifRU>
 						<marquee direction="up" scrollamount="1" style="font-size:small"><paragraph></paragraph>Приветствуем вас в HiFI Intelligent Club.<br/><br/><br/>
 						Дорогие Бродкастеры. В настоящий момент, мы не поддерживаем станции с длиной названия более 256 символов. По техническим причинам.<br/><br/>
-						Просим корректно заполнять поля "Кодек и битрейт".<br/><br/>
-						Станции, у которых вместо кодека или битрейта название проекта, не участвуют в поиске по кодеку или битрейту.<br/><br/>
-						Чтобы прочитать вступительную речь, <br/><br/>
-						нажмите на клавишу МЕНЮ, <br/><br/><br/><br/>
-						и прокрутите поля поиска вниз.<br/>
 						<br/><br/><br/><br/>
 						Эйчфик Самин.<br/><br/>
 						Президент <br/><br/>
@@ -273,14 +268,6 @@ class Player
 						<paragraph></paragraph>HiFiIntelligentClub.<br/><br/><br/>
 						Dear broadcasters, by the technical reasons station names with more than 256 symbols length, are not supported now.<br/><br/>
 						We are focusing on this problem now. <br/><br/>
-						Also, stations with incorrect codec or bitrate filled fields, are not searchable by codec or bitrate.<br/><br/>
-						To read our initial words,<br/><br/><br/>
-						press "MENU" button ->> <br/><br/><br/><br/>
-						Than scroll down the search fields.<br/>
-						<br/><br/><br/><br/>
-						It\'s only in Russian now.<br/><br/>
-						And I can\'t translate it right now. <br/><br/>
-						But Il\'l do it as soon as possible.<br/>
 						<br/><br/><br/><br/>
 									
 						<b style="font-size:x-large;">
@@ -374,7 +361,7 @@ class Player
 					display		:none;
 					left		:0px;
 					width		:100vw;
-					text-align	:center;
+					text-align	:left;
 					"
 				>
 				<playerLoadingButton
