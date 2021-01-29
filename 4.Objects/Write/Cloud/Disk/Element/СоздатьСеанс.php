@@ -10,6 +10,7 @@ class СоздатьСеанс
 	private	$сРасполож			= '/home/EDRO.o2o';
 	private	$сРоль				= 'Listener';
 	private $сОконч				= 'O20';
+	public	$сПредидущаяПозиция		= '';
 	private	$ч0ВсегоСлушателей		= 0;
 	private $сМояПозицияО2О			= '';
 	private	$сТекущийСеанс			= '';
@@ -24,8 +25,12 @@ class СоздатьСеанс
 		$this->сМояПозицияО2О		= '_'.floor(microtime(true)).'.'.$this->сОконч;
 		if($_SERVER['strListener']!='')
 			{
-			echo $_SERVER['strListener']."\n";
+			//echo $_SERVER['strListener']."\n";
 			$this->сМойНомерок	=$_SERVER['strListener'];
+			if(is_file($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч))
+				{
+				$this->сПредидущаяПозиция	=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч);
+				}
 			}
 		else
 			{
@@ -62,6 +67,7 @@ class СоздатьСеанс
 		//echo $this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс;
 		
 		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м));
+		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч, strMyJson($м))
 		
 		//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
 
