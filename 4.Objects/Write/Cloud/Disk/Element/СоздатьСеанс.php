@@ -22,14 +22,10 @@ class СоздатьСеанс
 				   unset($_м);
 
 		$this->сМояПозицияО2О		= '_'.floor(microtime(true)).'.'.$this->сОконч;
-		if(isset($_SESSION['strListener'])&&!empty($_SESSION['strListener']))
+		if($_SERVER['strListener']!='')
 			{
-
-			$this->сМойНомерок	=$_SESSION['strListener'];
-			}
-		elseif(isset($_COOKIE)&&isset($_COOKIE['strListener'])&&!empty($_COOKIE['strListener']))
-			{
-			$this->сМойНомерок	=$_COOKIE['strListener'];
+			echo $_SERVER['strListener']."\n";
+			$this->сМойНомерок	=$_SERVER['strListener'];
 			}
 		else
 			{
@@ -40,7 +36,7 @@ class СоздатьСеанс
 				{
 				$this->ч0ВсегоСлушателей	=($оВсего->int0Total);
 				}
-			echo $this->ч0ВсегоСлушателей++;
+			$this->ч0ВсегоСлушателей++;
 
 			$оO2oЗаписьИтого	=new O2oЗаписьИтого($objKIIM, $this->сРоль, array(
 							'int0Total'		=>$this->ч0ВсегоСлушателей,
@@ -50,7 +46,7 @@ class СоздатьСеанс
 		
 			$this->сМойНомерок		=сКодировать($this->ч0ВсегоСлушателей, 'к');
 			
-			$_SESSION['strListener']	= $this->сМойНомерок;
+		//	$_SESSION['strListener']	= $this->сМойНомерок;
 			}
 		$this->сТекущийСеанс	=$this->сМойНомерок.$this->сМояПозицияО2О;
 		if(!is_dir($this->сРасполож.'/'.$this->сРоль))
@@ -67,7 +63,7 @@ class СоздатьСеанс
 		
 		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м));
 		
-		setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365));
+		//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
