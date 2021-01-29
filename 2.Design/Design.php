@@ -31,14 +31,13 @@ class Design extends Reality
 		//unset($_objKIIM);
 
 		//print_r($arrReality);
-		//echo $this->arrEvent['strEvent'];
-		$this->arrDesign['strTemplate']	='/home/EDRO/2.Design/Templates/Station/StationList.pho';
-
+		echo $this->arrDesign['strTemplate']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Events/'.сПреобразовать($this->arrEvent['strEvent'], "вКоманду").'/run.php';
+		
 		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		//echo '<pre>';
 		//print_r($this->arrDesign);
 		//echo '</pre>';
-		parent::__construct($objKIIM);
+		parent::__construct($_objKIIM);
 		}
 	public static function strObjectInit()
 		{
