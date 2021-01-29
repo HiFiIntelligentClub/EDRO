@@ -27,9 +27,9 @@ class СоздатьСеанс
 			{
 			//echo $_SERVER['strListener']."\n";
 			$this->сМойНомерок	=$_SERVER['strListener'];
-			if(is_file($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч))
+			if(is_file($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0.'.$this->сОконч))
 				{
-				$this->сПредидущаяПозиция	=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч);
+				$this->сПредидущаяПозиция	=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0.'.$this->сОконч);
 				}
 			}
 		else
@@ -67,7 +67,18 @@ class СоздатьСеанс
 		//echo $this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс;
 		
 		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м));
-		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'.'.$this->сОконч, strMyJson($м))
+
+		if(is_dir($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок))
+			{
+			}
+		else
+			{
+			if(mkdir($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок)===FALSE)
+				{
+				_Report('Cant create dir: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок);
+				}
+			}
+		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0.'.$this->сОконч, strMyJson($м));
 		
 		//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
 
