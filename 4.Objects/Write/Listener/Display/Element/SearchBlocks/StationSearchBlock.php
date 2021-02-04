@@ -41,7 +41,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 		//	}
 		//else
 		//	{
-		$arrInputDefaults	=arrAllEventIncomeParametrsDefault();
+		$arrInputDefaults	=arrAllEventIncomeParametrsFallBack();
 		$strSearchName		=$_arrValues['strName'];
 		$strSearchId		=$_arrValues['strId'];
 		$strSearchGenre		=$_arrValues['strGenre'];
@@ -143,7 +143,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 					<form 
 						id		="formStationSearch"
 						class		="block TC1 BC1"
-						action		="/search"
+						event		="/search"
 						onsubmit	="return false;"
 						style		="
 								width	:100%;
