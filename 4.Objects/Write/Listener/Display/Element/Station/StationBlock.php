@@ -8,7 +8,7 @@
 class StationBlock
 	{
 	public  $strHTML;
-	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality)
+	public function __construct($_objKIIM, $arrStation, $arrPagination, $arrEventReality)
 		{
 		$objKIIM=$_objKIIM;unset($_objKIIM);
 		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
@@ -16,18 +16,27 @@ class StationBlock
 		print_r($arrStatrion);
 		echo '</pre>';
 		exit;*/
-
-
-		$strId			=$arrStatrion['strId'];
-		$strName		=$arrStatrion['strName'];
-		$strAudio		=$arrStatrion['strAudio'];
-		//$strAudioType		=$arrStatrion['strAudioType'];
-		//$strAudioBitrate	=$arrStatrion['strAudioBitrate'];
-		$strStyle		=$arrStatrion['strStyle'];
-		$int0ListNum		=$arrStatrion['int0ListNum'];
-		$arrICQR		=$arrStatrion['arrICQR'];
-		$strICQR_Q		=$arrStatrion['strICQR_Q'];
-					unset($arrStatrion);
+		//echo '/home/ЕДРО:ПОЛИМЕР/HiFiIntelligentClub/Stations/belongs/Genred/'.$arrStatrion['strId'].'.plmr';
+		$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
+		//print_r($arrStationGenres);
+		$strGenre	='';
+		if(is_array($arrStationGenres))
+			{
+			foreach($arrStationGenres as $strGenre)
+				{
+				$strGenres	.=Tag::strHTML(array(), $strGenre, $arrEventReality, 'strGenre', 11);
+				}
+			}
+		$strId			=$arrStation['strId'];
+		$strName		=$arrStation['strName'];
+		$strAudio		=$arrStation['strAudio'];
+		//$strAudioType		=$arrStation['strAudioType'];
+		//$strAudioBitrate	=$arrStation['strAudioBitrate'];
+		$strStyle		=$arrStation['strStyle'];
+		$int0ListNum		=$arrStation['int0ListNum'];
+		$arrICQR		=$arrStation['arrICQR'];
+		$strICQR_Q		=$arrStation['strICQR_Q'];
+					unset($arStatrion);
 
 		/*if($_SESSION['strListener']=='e1NgS3lCcnYо26')
 			{
@@ -50,13 +59,14 @@ class StationBlock
 				max-width	:99vw;
 				text-decoration	:none;
 				margin-right	:10px;
-				margin-bottom	:9px; //Jesus will let off this deviation of 1 from standard.
+				margin-bottom	:7px; //Jesus will let off this deviation of 1 from standard.
+				margin-top	:0;
 				"
 			>
 			<header
 				class="block BC1"
 				style="
-					width		:398px;
+					width		:100%;
 					height		:60px;
 					"
 				>
@@ -116,7 +126,7 @@ class StationBlock
 					
 				</blockText>
 				'.
-				Tag::strHTML($objKIIM, $strStyle, $arrEventReality, 'strStyle', 11).
+				$strGenres.
 				'
 				<blockText
 					class="block left rel"

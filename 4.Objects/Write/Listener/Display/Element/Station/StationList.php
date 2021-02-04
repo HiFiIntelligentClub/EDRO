@@ -23,8 +23,13 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 ./././././././*/
 class StationList
 	{
-	public $strHTML;
-	private $arrEDRO=
+	public $strHTML		='';
+	private $strEvent	='Print';
+	private $strDesign	='';
+	private $strReality	='';
+	private $strObject	='';
+	private	$objEDRO;
+	/*private $arrEDRO=
 	array(
 		'arrE'=>
 		array(
@@ -49,30 +54,56 @@ class StationList
 		array(
 			'strHTML'=>''
 			),
-		);
+		);*/
 	public function __construct($_objKIIM, $objEDRO)
 		{
 		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		unset($_objKIIM);
+		$this->objEDRO		=$objEDRO;
+		$this->_Event();
+		$this->_Design();
+		$this->_Reality($objKIIM);
 
-		$arrPagination=$objEDRO->arrObjects['мРасположение'];
-		$int0ListNum		=0;
-		foreach($objEDRO->arrObjects['мТаблица'] as $сРасположение)
+		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		}
+	public function _Event()
+		{
+		}
+	public function _Reality($objKIIM)
+		{
+		$arrPagination				=$this->objEDRO->arrObjects['мРасположение'];
+		$int0ListNum				=0;
+		foreach($this->objEDRO->arrObjects['мТаблица'] as $сРасположение)
 			{
-			$objStation				=FileRead::objJSON($objKIIM, $сРасположение);
-			///$objGenres				=FileRead::objJSON($objKIIM, $сРасположение);
-			$arrStationS['strId']			=strSafeUsers($objStation->id);
-			$arrStationS['strStationName']		=strSafeUsers($objStation->server_name);
-			$arrStationS['strICQR_Q']		=strSafeUsers($objStation->strICQR_Q);
-			//$objStation->server_type		=strSafeUsers($objStation->server_type);
-			//$objStation->bitrate			=strSafeUsers($objStation->bitrate);
-			//$objStation->genre			=strSafeUsers($objStation->genre);
-			$arrStationS['strICQR_LIVE']		=strSafeUsers($objStation->strICQR_live);
-			$arrStationS['arrStationDeclaredGenres']=array();
-			$arrStationS['arrICQRGenres']		=array();
-			$arrStationS['arrCurrentGenres']	=array();
-			$arrStationS['arrCurrentDjMessages']	=array();
-			$arrStationS['arrStationShedullerNotice']=
+			$objStation			=FileRead::objJSON($objKIIM, $сРасположение);
+			///$objGenres			=FileRead::objJSON($objKIIM, $сРасположение);
+			$arrStationGenres		=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
+			$arrStationS['strId']		=strSafeUsers($objStation->id);
+			$arrStationS['strStationName']	=strSafeUsers($objStation->server_name);
+			if(isset($objStation->strICQR_Q))
+				{
+				$arrStationS['strICQR_Q']			=strSafeUsers($objStation->strICQR_Q);
+				}
+			else
+				{
+				$arrStationS['strICQR_Q']			='N/A';
+				}
+			//$objStation->server_type			=strSafeUsers($objStation->server_type);
+			//$objStation->bitrate				=strSafeUsers($objStation->bitrate);
+			//$objStation->genre				=strSafeUsers($objStation->genre);
+			if(isset($objStation->strICQR_Q))
+				{
+				$arrStationS['strICQR_LIVE']			=strSafeUsers($objStation->strICQR_live);
+				}
+			else
+				{
+				$arrStationS['strICQR_LIVE']			='RECORD';
+				}
+			$arrStationS['arrStationDeclaredGenres']	=array();
+			$arrStationS['arrICQRGenres']			=array();
+			$arrStationS['arrCurrentGenres']		=array();
+			$arrStationS['arrCurrentDjMessages']		=array();
+			$arrStationS['arrStationShedullerNotice']	=
 				array(
 				'strShedulledProgramName'=>
 					array(
@@ -118,22 +149,12 @@ class StationList
 						'Date/Time2',
 						)
 					),
-				    
 				);
-			//echo'<pre>';
-			//print_r($objStation);
-			//echo'</pre>';
 			$arrICQR				=array();
-			//echo'<pre>';
-			//	print_r($arrStationS);
-			//echo'</pre>';
-			//$a					=strSafeUsers(sarrConnect_RU);
-			//$b					=strSafeUsers(sarrConnect_EN);
 			$strICQRPrefix				='';
 			$strICQRSuffix				='';
 			if($objEDRO->arrReality['bIzAndroid'])
 				{
-				    
 				$strAudio	=сКодировать($arrStationS['strId'], 'д');
 				}
 			else
@@ -141,7 +162,6 @@ class StationList
 				$strAudio	=$arrStationS['strId'];
 				//echo	$strAudio;
 				}
-			
 			$arrStation=
 			array(
 				'strId'			=>$arrStationS['strId'],
@@ -152,14 +172,27 @@ class StationList
 				// 'strAudioType'	=>$objStation->server_type,
 				// 'strAudioBitrate'	=>$objStation->bitrate,
 				// 'strStyle'		=>$objStation->genre,
-				// 'arrICQR'		=>$arrICQR
+				'arrICQR'		=>$arrICQR
 				);
-		
+			//echo'<pre>';
+			//print_r($objStation);
+			//echo'</pre>';
+
+			//echo'<pre>';
+			//	print_r($arrStationS);
+			//echo'</pre>';
+			//$a					=strSafeUsers(sarrConnect_RU);
+			//$b					=strSafeUsers(sarrConnect_EN);
 			$arrPagination['int0CurrentStation']	=$int0I;
-			$this->strHTML.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality']);
+			$this->strHTML		.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality']);
 			$int0ListNum++;
 			}
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		}
+	public function _Design()
+		{
+		}
+	public function _Object()
+		{
 		}
 	public function _HTML($_objKIIM, $_objEDRO)
 		{
