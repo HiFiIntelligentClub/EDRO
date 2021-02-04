@@ -43,7 +43,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 		//	{
 		$arrInputDefaults	=arrAllEventIncomeParametrsFallBack();
 		$strSearchName		=$_arrValues['strName'];
-		$strSearchId		=$_arrValues['strId'];
+		$strSearchId		=$_arrValues['strStationID'];
 		$strSearchGenre		=$_arrValues['strGenre'];
 		//	}
 		
