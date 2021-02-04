@@ -30,17 +30,21 @@ class Objects
 	public function __construct($_objKIIM)
 		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>'', '_objCurrent'=>'', '_intShowTempo'=>'' ));
 
-		$сРасположениеКорень	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
+		//$this->arrReality['сРасположениеКорень']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub'; //moved to REALITY
 		$strPlatformPrefix	='';
 		$strHiFiType		=сПреобразовать($this->arrEvent['arrReality']['strHiFiType'], 'вСтроку');
 		//$strHiFiType		='/HiFi beginner';
+
 		$arrHiFi['Low quality']		='Low';   //NoHiFi
 		$arrHiFi['HiFi beginner']	='beginner'; //HiFi
 		$arrHiFi['HiFi casual']		='casual'; //HiFi
 		$arrHiFi['HiFi often']		='often';  //HiFi
 		$arrHiFi['HiFi mustbe']		='mustbe'; //HiFi
 		//$arrHiFi[]='HiFi 2';       //2.1
+		//print_r($this->arrEvent['arrReality']['strStationID']);
+		//exit();
 		foreach($arrHiFi as $strHiFiTypeName =>$strHiFiShortName)
+
 			{
 			if(strpos($strHiFiType, $strHiFiShortName)!==FALSE)
 				{
@@ -64,7 +68,8 @@ class Objects
 			{
 			echo $strPlatformPrefix	='/Apple';
 			}
-		$сРасположениеКорень	=$сРасположениеКорень;
+		//$сРасположениеКорень	=$сРасположениеКорень;
+
 		$strSearchName		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strName']),'вКоманду');
 		if(strlen($strSearchName)<3)
 			{
@@ -73,12 +78,11 @@ class Objects
 		$strSearchGenre		=сПреобразовать(mb_strtolower($this->arrEvent['arrReality']['strGenre']),'вКоманду');
 		$strSearch		=мЖанр_мЯзык_мТранскрипция($strSearchGenre);
 
-
-		
-
 		$strSearchType   	=empty($strSearchName)? '/unordered/':'/search/';
+		//echo $сРасположениеКорень.'/Stations/strICQRTypeF.php';
+		include($this->arrReality['сРасположениеКорень'].'/Stations/strICQRTypeF.php');
 
-		$strSearchPath		='/Stations/ICQR_Q'.$strHiFiType.$strPlatformPrefix;
+		$strSearchPath		='/Stations/'.$strICQRTypeF.'/'.$strHiFiType.$strPlatformPrefix;
 		if($strSearchGenre=='')
 			{
 			$strSearchPath	.=$strSearchType;
@@ -89,8 +93,18 @@ class Objects
 			}
 		$strSearchPath;
 
-		$this->arrObjects['сРасположение']		=$сРасположениеКорень.$strSearchPath;
+		
 
+		if($this->arrEvent['arrReality']['strStationID']!='')
+			{
+			}
+		else
+			{
+			
+			}
+
+
+		$this->arrObjects['сРасположение']		=$this->arrReality['сРасположениеКорень'].$strSearchPath;
 		if($strSearchName=='')
 			{
 			$objTotal	=FileRead::objJSON($objKIIM, $this->arrObjects['сРасположение'].'/total.plmr');
@@ -100,12 +114,14 @@ class Objects
 				{
 				echo 'No data';
 				}
-			
+		//exit;
 			$this->arrObjects['мРасположение']		=Pagination::arr($objKIIM, $this);
+
 			for($int0I=$this->arrObjects['мРасположение']['int0Start'];$int0I<=$this->arrObjects['мРасположение']['int0Untill'];$int0I++)
 				{
 				$this->arrObjects['мТаблица'][]	=$this->arrObjects['сРасположение'].'/'.$int0I.'.plmr';
 				}
+
 			}
 		else
 			{
@@ -166,18 +182,12 @@ class Objects
 		//print_r($this);
 		//echo '</pre>';
 		//exit;
+
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strObjectInit()
 		{
-		$str	=<<<oо2оo
-		<script>
-			console.log('[V]EDRO.O: Declare');
-			console.log('[.++.+.*.*.++.+.+]EDRO.Event: Init event stream graph circle.');
-			objEDRO._CircleControllerGraph	=setInterval(objEDRO.funControllerGraph, 1000);
-			console.log('[.]EDRO.O: Declare');
-		</script>
-oо2оo;
+		$str='';
 		return $str;
 		}
 	public static function strCopyrightDeclare()
@@ -185,16 +195,13 @@ oо2оo;
 		$str='
 		<copyright
 			id="PageCopyrightTag"
-			class="BC3 TC3 layer_5_Nav no-select"
+			class="BC3 TC3 layer_5_Nav no-select halfLine"
 			style="
-				line-height	:9px;
+				text-align	:center;
 				position	:fixed;
 				bottom		:0;
 				left		:0;
 				width		:100%;
-				height		:10px;
-				text-align	:center;
-				font-size	:small;
 				"
 			>
 		<font style="font-size:xx-small">© HiFiIntelligentClub.COM tubmulur@yandex.ru 2020 
@@ -216,147 +223,34 @@ oо2оo;
 		}
 	public static function strAudioDeclare()
 		{
-		/*$str='
-		<audio 
-			id="objHiFiIntelligentClubAudio"
-			class	="fix layer_5"
-			style	="margin-top:60px;"
-			controls	=""
-			name		="media"
+		$str='
+		<shader
+			class	="fix brick layer_5"
+			style	="
+				margin-top	:60px;
+				height		:40px;
+				width		:40px;
+				"
 			>
-			<source src="" type="audio/mpeg"/>
-		</audio>';
-		return $str;*/
+			<audio 
+				id		="objHiFiIntelligentClubAudio"
+				class		="block right"
+				
+				controls	=""
+				name		="media"
+				>
+				<source 
+					src		="" 
+					type		="audio/mpeg"
+					/>
+			</audio>
+		</shader>
+		';
+		return $str;
 		}
 	public static function strObjectDeclare()
 		{
-		$str	=	<<<oо2оo
-
-		<script>
-			console.log('[V]EDRO.O: Declare');
-			objEDRO.funControllerGraph= function()
-				{
-				var objDate	=new Date();
-				if(objPlayer.bIzPlaying) //!!!    objReality.bIzPlayerPlaying!!!
-					{
-					document.title	=objPlayer.strStationName+' at HiFiIntelligentClub.com';
-					//objPlayer.objVisibleControlsPlayingDuration.innerHTML=objPlayer.intPlayingDuration;
-					//objPlayer.objVisibleControlsPlayingDuration.innerHtml	=objPlayer.intPlayingDuration;
-					objPlayer.intPlayingDuration++;
-					}
-				if(objReality.arrPlayer.bIzLoading||objReality.arrPlayer.bIzPlaying)
-					{
-				//	console.log(objPlayer.objAudio.textTracks);
-					if(objPlayer.objAudio.networkState==1)
-						{
-						objIndicatorNetwork.objStrSrvReady.style.backgroundColor	='yellow';
-						objIndicatorNetwork.objStrSrvReady.style.color			='black';
-						}
-					else if(objPlayer.objAudio.networkState==2)
-						{
-						objIndicatorNetwork.objStrSrvReady.style.backgroundColor	='green';
-						objIndicatorNetwork.objStrSrvReady.style.color			='white';
-						}
-					else
-						{
-						objIndicatorNetwork.objStrSrvReady.style.backgroundColor	='red';
-						objIndicatorNetwork.objStrSrvReady.style.color			='white';
-						}
-
-					if(objPlayer.objAudio.readyState==0)
-						{
-						objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='red';
-						objIndicatorNetwork.objStrSrvPortsReady.style.color		='white';
-						}
-					else if(objPlayer.objAudio.readyState==1)
-						{
-						objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='yellow';
-						objIndicatorNetwork.objStrSrvPortsReady.style.color		='black';
-						}
-					else if(objPlayer.objAudio.readyState==2)
-						{
-						objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='blue';
-						objIndicatorNetwork.objStrSrvPortsReady.style.color		='white';
-						}
-					else if(objPlayer.objAudio.readyState==3)
-						{
-						objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='green';
-						objIndicatorNetwork.objStrSrvPortsReady.style.color		='white';
-						}
-					else
-						{
-						objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='white';
-						objIndicatorNetwork.objStrSrvPortsReady.style.color		='black';
-						}
-					objPlayer.intPlayingDuration++;
-					}
-				
-				if(objReality.arrPlayer.bIzLoading)
-					{
-					//objPlayer.objVisibleControlsLoadingDuration.innerHTML=objPlayer.intLoadingDuration;
-					if(objPlayer.intPlayerLoadingAnim==3)
-						{
-						objPlayer.intPlayerLoadingAnim	=0;
-						objPlayer.strPlayerLoadingAnim	='';
-						}
-					objPlayer.intPlayerLoadingAnim++;
-					objPlayer.strPlayerLoadingAnim	+='.';
-					document.title	=objPlayer.strPlayerLoadingAnim+decodeURIComponent(objPlayer.strStationName)+'on HiFiIntelligentClub.com';
-					objIndicatorMasterClock.objStrServerLoading.innerHTML	=objReality.intMaxLoadingTime+'/'+objReality.intLoadingTime+'/'+objPlayer.intLoadingDuration;
-					if(!objPlayer.bIzNeedToBeStoppedEvent)
-						{
-						//objPlayer.objAudio.load();
-						}
-					objPlayer.intLoadingDuration++;
-					//objPlayer.bIzLoading=false;
-					}
-				else
-					{
-					objPlayer.strPlayerLoadingAnim	='';
-					document.title	=objPlayer.strPlayerLoadingAnim+decodeURIComponent(objPlayer.strStationName)+'|HiFiIntelligentClub.com';
-					}
-				if(objReality.bIzLoading)
-					{
-					objIndicatorMasterClock.objStrServerLoading.innerHTML	=objReality.intMaxLoadingTime+'/'+objReality.intLoadingTime;
-					if(objReality.intLoadingTime>=objReality.intMaxLoadingTime)
-						{
-						objReality.intMaxLoadingTime=objReality.intLoadingTime;
-						}
-					objReality.intLoadingTime++;
-					}
-				//if(objPlayer.bIzError)
-				//	{
-			
-				//	}
-				if(objReality.arrPlayer.bIzWaiting)
-					{
-				
-					}
-				if(objReality.intVector==2)
-					{
-					objReality.intVector	=0;
-					if(bizHiFiNavigationInputSelect)
-						{
-						}
-					else
-						{
-						objDesign._UpdateDimensions();
-						objDesign._CheckElements();
-						}
-					}
-				if(objReality.intStep2News==60)
-					{
-					objReality.intStep2News	=0;
-					}
-				objIndicatorMasterClock.objStr.innerHTML	=objReality.intStep++;
-				objReality.intVector++;
-				objReality.intStep2News++;
-				objEDRO._CircleControllerGraph;
-				return 0;
-				}
-			console.log('[.]EDRO.O: Declare');
-		</script>
-oо2оo;
+		$str='';
 		return $str;
 		}
 	}
