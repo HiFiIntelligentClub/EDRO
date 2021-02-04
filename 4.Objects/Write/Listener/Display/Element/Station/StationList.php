@@ -77,7 +77,7 @@ class StationList
 			{
 			$objStation			=FileRead::objJSON($objKIIM, $сРасположение);
 			///$objGenres			=FileRead::objJSON($objKIIM, $сРасположение);
-			$arrStationGenres		=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
+			
 			$arrStationS['strId']		=strSafeUsers($objStation->id);
 			$arrStationS['strStationName']	=strSafeUsers($objStation->server_name);
 			if(isset($objStation->strICQR_Q))
@@ -91,7 +91,7 @@ class StationList
 			//$objStation->server_type			=strSafeUsers($objStation->server_type);
 			//$objStation->bitrate				=strSafeUsers($objStation->bitrate);
 			//$objStation->genre				=strSafeUsers($objStation->genre);
-			if(isset($objStation->strICQR_Q))
+			if(isset($objStation->strICQR_live))
 				{
 				$arrStationS['strICQR_LIVE']			=strSafeUsers($objStation->strICQR_live);
 				}
@@ -153,7 +153,7 @@ class StationList
 			$arrICQR				=array();
 			$strICQRPrefix				='';
 			$strICQRSuffix				='';
-			if($objEDRO->arrReality['bIzAndroid'])
+			if($this->objEDRO->arrReality['bIzAndroid'])
 				{
 				$strAudio	=сКодировать($arrStationS['strId'], 'д');
 				}
@@ -162,6 +162,7 @@ class StationList
 				$strAudio	=$arrStationS['strId'];
 				//echo	$strAudio;
 				}
+			$arrStationGenres		=(array)FileRead::objJSON($objKIIM, $this->objEDRO->arrReality['сРасположениеКорень'].'/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
 			$arrStation=
 			array(
 				'strId'			=>$arrStationS['strId'],
@@ -183,8 +184,8 @@ class StationList
 			//echo'</pre>';
 			//$a					=strSafeUsers(sarrConnect_RU);
 			//$b					=strSafeUsers(sarrConnect_EN);
-			$arrPagination['int0CurrentStation']	=$int0I;
-			$this->strHTML		.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality']);
+			$arrPagination['int0CurrentStation']	=$int0ListNum;
+			$this->strHTML		.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $this->objEDRO->arrEvent['arrReality']);
 			$int0ListNum++;
 			}
 		}

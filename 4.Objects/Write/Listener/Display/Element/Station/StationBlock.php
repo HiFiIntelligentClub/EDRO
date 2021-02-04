@@ -17,22 +17,22 @@ class StationBlock
 		echo '</pre>';
 		exit;*/
 		//echo '/home/ЕДРО:ПОЛИМЕР/HiFiIntelligentClub/Stations/belongs/Genred/'.$arrStatrion['strId'].'.plmr';
-		$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
+		//$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
 		//print_r($arrStationGenres);
 		$strGenre	='';
-		if(is_array($arrStationGenres))
+		/*if(is_array($arrStationGenres))
 			{
 			foreach($arrStationGenres as $strGenre)
 				{
 				$strGenres	.=Tag::strHTML(array(), $strGenre, $arrEventReality, 'strGenre', 11);
 				}
-			}
+			}*/
 		$strId			=$arrStation['strId'];
 		$strName		=$arrStation['strName'];
 		$strAudio		=$arrStation['strAudio'];
 		//$strAudioType		=$arrStation['strAudioType'];
 		//$strAudioBitrate	=$arrStation['strAudioBitrate'];
-		$strStyle		=$arrStation['strStyle'];
+		//$strStyle		=$arrStation['strStyle'];
 		$int0ListNum		=$arrStation['int0ListNum'];
 		$arrICQR		=$arrStation['arrICQR'];
 		$strICQR_Q		=$arrStation['strICQR_Q'];
