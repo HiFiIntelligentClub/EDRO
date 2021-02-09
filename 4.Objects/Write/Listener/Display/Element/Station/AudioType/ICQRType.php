@@ -22,13 +22,13 @@ class ICQRType
 			{
 			$arrO['strTitle']['Enabled']='Нажмите на этот индикатор чтобы выбрать станции вещающие в формате доступном вашему оборудованию.';
 			$arrO['strTitle']['Active']='Ваш текущий активный селектор качества, подходящий для вашего оборудования.';
-			$arrO['strTitle']['Disabled']='Высококачественные каналы, для HiFi аппаратуры высшего класса. Мы в процессе поиска станций для этой категории.';
+			$arrO['strTitle']['Disabled']='Высококачественные каналы, для HiFi аппаратуры высшего класса. Мы в процессе поиска станций для этой категории. В настоящее время раздел отключен, тк тестирование каналов ICQR продолжается. Это высокоточная и продолжительная работа. Спасибо за ваше ожидание. Hfic.Samin федеративный канцлер HiFiIntelligentCLub.';
 			}
 		else
 			{
 			$arrO['strTitle']['Enabled']='Press this indicator to select quality format that are more situable for your equipement.';
 			$arrO['strTitle']['Active']='Your current active selector of quality that could be supported by your equipement.';
-			$arrO['strTitle']['Disabled']='High quality HiFi selector, for higher cost equipement. Searching stations for this category is in progress.';
+			$arrO['strTitle']['Disabled']='High quality HiFi selector, for higher cost equipement. Searching stations for this category is in progress. Currently disabled, because of the ICQR testing procedure are continue. This is a high precision and hard work. Thank you for your waiting. Hfic.Samin the federal kanzler of HiFiIntelligentClub.';
 			}
 
 		$strHiFiType			=сПреобразовать($_strData, 'вСтроку');
