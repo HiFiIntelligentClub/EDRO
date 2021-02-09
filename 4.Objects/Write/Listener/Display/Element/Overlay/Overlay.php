@@ -94,11 +94,12 @@ class Overlay
 		);
 	private $arrObjects	=
 		array(
-		'close',
-		'informationWindow',
-		'scrollerPart'
+		'title'=>array(
+			'EN'=>'Close this window',
+			'RU'=>'Закрыть это окошко',
+			),
 		);
-	public function __construct($_objKIIM=array())
+	public function __construct($objEDRO=array())
 		{
 		$this->strHTML='
 		<informationWindow
@@ -111,7 +112,7 @@ class Overlay
 				"
 			>
 			<close
-				class		="block TC1 BC1 sensor"
+				class		="block TC1 BC2 sensor"
 				onClick		="'.$this->arrEvent['close']['strOnClick'].'"
 				>
 				<close
@@ -122,9 +123,11 @@ class Overlay
 						background-color: #000;
 						text-align	: center;
 						"
+					title	="'.$this->arrObjects['title'][$objEDRO->arrReality['strLangSignal']].'"
 						>
 						X
 	    				</close>
+				HiFiIntelligentClub
 			</close>
 			<scrollerPart 
 				class	="block scrollerY"
@@ -134,9 +137,10 @@ class Overlay
 					max-height	:40vh;
 					"
 				>
+				<ifEN>HiFi Intelligent Club - is the friend for the real people who are exist right here and now. Only for today.</ifEN>
+				<ifRU>HiFi Intelligent Club - для людей, существующих сдесь и сейчас. Только сегодня.</ifRU>
 				<ifRU>
-					<textarea>
-						<h1>HiFiIntelligentClub.</h1>
+					<p>
 						<a name="УвеличитьЭкран"><h2>Слишком мелко?</h2></a>
 						<p>
 							<color style="font-size:x-large;color:green">Зажмите клавишу ctrl(Контрл) 
@@ -148,13 +152,9 @@ class Overlay
 							Искренне ваш Hfic.Samin Президент HiFiIntelligentClub.
 						</p>
 					</p>
-					</textarea>
 				</ifRU>
 				<ifEN>
-					<textarea>
-					</textarea>
 					<p>
-						<h1>HiFiIntelligentClub.</h1>
 						<a name="Enlarge_ctrlmouseWheel"><h2>"Too small text?"</h2></a>
 						<p>
 							<color style="font-size:x-large;color:green">Hold down the ctrl key and turn the 
@@ -165,10 +165,8 @@ class Overlay
 						<p>
 							Sincerely yours Hfic. Samin President of HiFiIntelligentClub.
 						</p>
-					
-
+					</p>
 				</ifEN>
-			<ifEN>NO COOKIES! COOKIES KILLS!</ifEN><ifRU>НЕТ КУКИЗ. КУКИ УБИВАЮТ!</ifRU>
 			</scrollerPart>
 
 		</informationWindow>';
@@ -203,9 +201,9 @@ class Overlay
 		{
 		return $strO;
 /*-[.]*/	}
-	public static function strHTML($_objKIIM=array())
+	public static function strHTML($objEDRO=array())
 		{
-		$objOverlay=new Overlay($_objKIIM);
+		$objOverlay=new Overlay($objEDRO);
 		return $objOverlay->strHTML;
 		}
 	}
