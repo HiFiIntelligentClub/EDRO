@@ -58,19 +58,11 @@ class FormInput
 					id=		"SearchBy'.$arrReality['strInputName'].'"
 					size		="'.$arrReality['intInputSize'].'"
 					maxlength	="'.$arrReality['intInputMaxLength'].'"
-					name		="'.strtolower($arrReality['strInputName']).'"
+					name		="'.strtolower($arrReality['strInputName'], 			"вКоманду").'"
 					type		="'.$arrReality['strInputType'].'"
 					onchange	="
 							objEvent.arrReality[\''.$arrReality['strInputName'].'\']	=encodeURIComponent(this.value);
 							objEvent._UpdateURLDyn();
-							"
-					onFocusin	="
-							//objSearch.strActiveInputWidth	=this.parentNode.style.width;
-							//this.parentNode.style.width	=\'80%\';
-							
-							"
-					onFocusout	="
-							//this.parentNode.style.width	=objSearch.strActiveInputWidth;
 							"
 					value		="'.сПреобразовать($arrReality['strInputValue'], 'вСтроку').'"
 					placeholder	="'.$arrReality['strDisplayName'].'"
@@ -78,15 +70,20 @@ class FormInput
 							width		:87%;
 							border		:0;
 							outline		:0;
+							height		:30px;
+							font-size	:large;
 							text-align	:center;
 							"
-					class		="brick left HR0 LTR_RTL doubleLineLarge"
+					class		="brick left HR0 LTR_RTL"
 					/>
 				<resetButton
-					class="left  sensor TC1 BC1 doubleLine"
+					class="block left  sensor TC1 BC1"
 					style="
-						width			:5%;
+						width			:10%;
+						height			:40px;
 						text-align		:center;
+						line-height		:99%;
+						background-color	:white;
 						"
 					onclick="
 						objSearch.objValueInput'.$arrReality['strInputName'].'.value	=\'\';
@@ -95,12 +92,12 @@ class FormInput
 						objEvent._UpdateURLDyn();
 						";
 					>
-					<ifRU	title="Сбросить"
+					<ifRU	title="Очистить поле ввода"
 						>
 						x
 					</ifRU>
 					<ifEN
-						title="Reset"
+						title="Clear input field"
 						>
 						x
 					</ifEN>
@@ -108,7 +105,7 @@ class FormInput
 
 			</input'.$arrReality['strInputName'].'>
 			';
-		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strHTML($_arrReality)
 		{
