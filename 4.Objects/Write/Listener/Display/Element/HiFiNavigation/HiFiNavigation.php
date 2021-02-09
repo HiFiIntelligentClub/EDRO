@@ -24,7 +24,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class HiFiNavigation
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrPagination, $arrReality)
+	public function __construct($_objKIIM, $_arrPagination, $arrReality, $objEDRO=array())
 		{
 		$objKIIM=$_objKIIM;
 		   unset($_objKIIM);
@@ -37,6 +37,20 @@ class HiFiNavigation
 		$intTotal		=$_arrPagination['int0Total'];
 		$intNextPage		=($intPage+1);
 		$intPrevPage		=($intPage-1);
+		if($objEDRO->arrReality['strLangSignal']=='RU')
+			{
+			$arrO['Forward']	='Нажмите, чтобы перейти на следующую страницу.';
+			$arrO['Backward']	='Нажмите, чтобы перейти на предидущую страницу.';
+			$arrO['Counters']	='[Отображены станции от-до][Не отображено станций до конца списка][Всего станций]';
+			$arrO['Selector']	='Введите номер страницы на которую вы хотите перепрыгнуть.';
+			}
+		else
+			{
+			$arrO['Forward']	='Press this button, to go to the next page.';
+			$arrO['Backward']	='Press this button, to go to the previous page.';
+			$arrO['Counters']	='[Showing stations from-to][Stations remain][Total stations]';
+			$arrO['Selector']	='Enter the page number to jump to.';
+			}
 		//echo $intPageParamName;
 		//echo $intNextPage;
 		//	$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intNextPage, true);
@@ -81,8 +95,10 @@ class HiFiNavigation
 					style="
 						width		:34%;
 						text-align	:center;
+						line-height	:39px;
 						text-decoration	:none;
 						"
+					title="<?=$arrO['Forward']?>"
 					>
 					>>
 				</a>
@@ -117,7 +133,7 @@ class HiFiNavigation
 
 				<strPage
 					class="TC3 BC3 halfLine" 
-				
+					title="<?=$arrO['Counters']?>"
 					>[<?=$intStart?>-<?=$intEnd ?>][<?=$intTotal-$intEnd?>][<?=$intTotal?>]
 				</strPage>
 				<strPage
@@ -145,6 +161,7 @@ class HiFiNavigation
 							bizHiFiNavigationInputSelect	=false;
 							//alert('off');
 							"
+					title	="<?=$arrO['Selector']?>"
 					type	="number" 
 					value	="<?=$intPage?>"
 					step	="1" 
@@ -180,6 +197,7 @@ class HiFiNavigation
 					class	="block left BBV BTA BC1 TC1 cursor no-select"
 					style	="
 						width		:34%;
+    						line-height	:39px;
 						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
@@ -201,9 +219,11 @@ class HiFiNavigation
 					class="block left BBV BTA BC3 TC3 cursor no-select doubleLine"
 					style="
 						width		:34%;
+    						line-height	:39px;
 						text-align	:center;
 						text-decoration	:none;
 						"
+					title="<?=$arrO['Backward']?>"
 					>
 					<<
 				</a>
@@ -212,6 +232,7 @@ class HiFiNavigation
 			?>
 		</pageNav>
 		<?php
+		echo HiFiNavigation::strObjectDeclare();
 		echo HiFiNavigation::strObjectInit();
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
@@ -283,9 +304,9 @@ class HiFiNavigation
 		{
 		return EDRO::strObjInit('HiFiNavigation');
 		}
-	public static function strHTML($_objKIIM, $_arrPagination, $_arrReality)
+	public static function strHTML($_objKIIM, $_arrPagination, $_arrReality, $objEDRO=array())
 		{
-		$objHiFiNavigation=new HiFiNavigation($_objKIIM, $_arrPagination, $_arrReality);
+		$objHiFiNavigation=new HiFiNavigation($_objKIIM, $_arrPagination, $_arrReality, $objEDRO);
 		return $objHiFiNavigation->strHTML;
 		}
 	}
