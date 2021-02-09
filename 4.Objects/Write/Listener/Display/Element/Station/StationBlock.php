@@ -8,7 +8,7 @@
 class StationBlock
 	{
 	public  $strHTML;
-	public function __construct($_objKIIM, $arrStation, $arrPagination, $arrEventReality)
+	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array())
 		{
 		$objKIIM=$_objKIIM;unset($_objKIIM);
 		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
@@ -17,26 +17,27 @@ class StationBlock
 		echo '</pre>';
 		exit;*/
 		//echo '/home/ЕДРО:ПОЛИМЕР/HiFiIntelligentClub/Stations/belongs/Genred/'.$arrStatrion['strId'].'.plmr';
-		//$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStation['strId'].'.plmr');
+		$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStatrion['strId'].'.plmr');
 		//print_r($arrStationGenres);
 		$strGenre	='';
-		/*if(is_array($arrStationGenres))
+		if(is_array($arrStationGenres))
 			{
 			foreach($arrStationGenres as $strGenre)
 				{
-				$strGenres	.=Tag::strHTML(array(), $strGenre, $arrEventReality, 'strGenre', 11);
+				$strGenres	.=Tag::strHTML(array(), $strGenre, $arrEventReality, 'strGenre', 11, $objEDRO);
 				}
-			}*/
-		$strId			=$arrStation['strId'];
-		$strName		=$arrStation['strName'];
-		$strAudio		=$arrStation['strAudio'];
-		//$strAudioType		=$arrStation['strAudioType'];
-		//$strAudioBitrate	=$arrStation['strAudioBitrate'];
-		//$strStyle		=$arrStation['strStyle'];
-		$int0ListNum		=$arrStation['int0ListNum'];
-		$arrICQR		=$arrStation['arrICQR'];
-		$strICQR_Q		=$arrStation['strICQR_Q'];
-					unset($arStatrion);
+			}
+
+		$strId			=$arrStatrion['strId'];
+		$strName		=$arrStatrion['strName'];
+		$strAudio		=$arrStatrion['strAudio'];
+		//$strAudioType		=$arrStatrion['strAudioType'];
+		//$strAudioBitrate	=$arrStatrion['strAudioBitrate'];
+		$strStyle		=$arrStatrion['strStyle'];
+		$int0ListNum		=$arrStatrion['int0ListNum'];
+		$arrICQR		=$arrStatrion['arrICQR'];
+		$strICQR_Q		=$arrStatrion['strICQR_Q'];
+					unset($arrStatrion);
 
 		/*if($_SESSION['strListener']=='e1NgS3lCcnYо26')
 			{
@@ -66,7 +67,7 @@ class StationBlock
 			<header
 				class="block BC1"
 				style="
-					width		:100%;
+					width		:398px;
 					height		:60px;
 					"
 				>
@@ -86,7 +87,7 @@ class StationBlock
 						height		:100%;
 						"
 					>'.
-					Header::strHTML($objKIIM,  $strName, $arrEventReality, $strAudioBitrate, $strAudioType, $arrICQR, $strICQR_Q).
+					Header::strHTML($objKIIM,  $strName, $arrEventReality, $strAudioBitrate, $strAudioType, $arrICQR, $strICQR_Q, $objEDRO).
 				'</stationName>
 			</header>
 			<genre
@@ -212,9 +213,9 @@ class StationBlock
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		//print_r($this);
 		}
-	public static function strHTML($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality)
+	public static function strHTML($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array())
 		{
-		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality);
+		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array());
 		return $objStationBlock->strHTML;
 		}
 	}
