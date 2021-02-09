@@ -8,7 +8,7 @@
 class Header
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q)
+	public function __construct($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q, $objEDRO=array())
 		{
 		$objKIIM=$_objKIIM;unset($_objKIIM);
 		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
@@ -54,54 +54,41 @@ class Header
 					>
 				</whiteBlock>
 				<blockTitle
-					class="block left TC2 BC2"
+					class="block left TC1 BC1 BBV"
 					style="
 						font-size	:x-small;
 						width		:99%;
-						height		:10px;
+						height		:9px;
 						line-height	:9px;
 						"
 					>
-					<blockText
-						class="block left "
+					<ICQRType
+						style="
+							width:80%;
+							"
+						class="block left"
 						>
-						<ifEN>
-							Radio station:
-						</ifEN>
-						<ifRU>
-							Радио станция:
-						</ifRU>
-					</blockText>
-					<bitrate
-						class="block right TC1 BC1"
-						>
-						<ifRU class="block left">
-							ICQR_Q:
-						</ifRU>
-						<ifEN class="block left">
-							ICQR_Q:
-						</ifEN>
-						<bitrateValue
+						<ICQR
 							class="block left"
+							style="padding: 0 5px 0 5px;"
+							>
+							ICQR:
+						</ICQR>
+						<ICQR
+							class="block left"
+							style="margin-left:5px;"
 							>
 							
-							'.
-							$_strICQR_Q.
+							'.ICQRType::strHTML($objKIIM, $_strICQR_Q, $arrSearch, $objEDRO).
 							'
-						</bitrateValue>
-						<type
-							class="block left"
-							style="height		:100%;"
-							>'.
-							//AudioType::strHTML($objKIIM, $strCodec, $arrSearch).
-						'</type>
+						</ICQR>
 						<rightBufferBlock 
 							class="block left TC2 BC2"
 							style="width:76px;height:100%"
 							>
 						</rightBufferBlock>
 
-					</bitrate>
+					</ICQRType>
 
 				</blockTitle>
 				<h2
@@ -131,17 +118,18 @@ class Header
 				</h2>'.
 				'
 				<nextBlockTitle
-					class="abs block left TC1 BC1 layer_1_2"
+					class="abs block left TC1 BC1 layer_1_2 BTA"
 					style="
 						bottom		:0px;
 						font-size	:x-small;
 						width		:99%;
-						height		:30px;
+						height		:29px;
 						line-height	:9px;
 						"
 					>
 					<icqr
 						class="block left TC1 BC1"
+						style="width	:88%"
 						>
 						<ifRU class="block left">
 							'.$arrICQR['RU'].'
@@ -150,31 +138,26 @@ class Header
 							'.$arrICQR['EN'].'
 						</ifEN>
 					</icqr>
-					<!--rightBufferBlock 
-						class="block left TC2 BC2"
-						style="width:76px;height:100%"
-						>
-					</rightBufferBlock-->
-				</nextBlockTitle>
-				<stationLink
-					class="abs block sensor no-select TC1"
-					style="
-						top		:0px;
-						right		:0;
-						height		:16px;
-						color		:#FFF;
+					<stationLink
+						class="block right sensor no-select TC1 line"
+						style="
+							width		:10%
+							right		:0;
+							color		:#FFF;
+						
 						"
-					>'
-					.StationQualityUPLink::strHTML($objKIIM, $str, $arrSearch).
-				'</stationLink>'.
-			'</header>
+						>'
+						.StationQualityUPLink::strHTML($objKIIM, $str, $arrSearch, $objEDRO).
+					'</stationLink>
+				</nextBlockTitle>
+			</header>
 			';
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strHTML($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q)
+	public static function strHTML($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q, $objEDRO=array())
 		{
-		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_strBitrate, $_strCodec, $_arrICQR, $_strICQR_Q);
+		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_strBitrate, $_strCodec, $_arrICQR, $_strICQR_Q, $objEDRO=array());
 		return $objHeader->strHTML;
 		}
 	}
