@@ -13,9 +13,8 @@ class Player
 	private $strAudio;
 	public function __construct($_objKIIM, $_strAudio, $_strAudioType)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-
+		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
 		//exit;
 		//$this->strAudio		=strEncode($_strAudio, 'HiFiIntelligentClub', 'e');
 		$this->strAudio			=$_strAudio;
@@ -72,8 +71,9 @@ class Player
 							>Play
 						</ifEN>
 						<ifRU
-							title="Нажмите чтобы начать слушать радио."
-							>Восп.
+							style	="font-size	:small;"
+							title	="Нажмите чтобы начать слушать радио."
+							>Воспр.
 						</ifRU>
 					</recordLabel>
 				</recordLabelAudioMeta>
@@ -202,7 +202,7 @@ class Player
 			class	="left no-select ЕС3 BC3"
 			style	="
 				text-align	:left;
-				width		:20px;
+				width		:67%;
 				height		:100%;
 				margin-right	:1px;
 				"
@@ -216,7 +216,7 @@ class Player
 					"
 				>
 				<Hfic_Samin
-					class="block left"
+					class="block right"
 					style="
 						width		:40px;
 						height		:100%;
@@ -254,11 +254,11 @@ class Player
 						<br/><br/><br/><br/>
 						Эйчфик Самин.<br/><br/>
 						Президент <br/><br/>
-						<b style="font-size:x-large;">
+						<pr style="font-size:xx-large;color:#000;font-family: serif;">
 						HiFi<br/><br/><br/><br/>
 						Intelligent<br/><br/><br/>
 						Club
-						</b>
+						</pr>
 						</marquee>
 					</ifRU>
 					<ifEN>
@@ -270,13 +270,13 @@ class Player
 						We are focusing on this problem now. <br/><br/>
 						<br/><br/><br/><br/>
 									
-						<b style="font-size:x-large;">
+						<pr style="font-size:хx-large;color:#000;font-family: serif;">
 						HiFi<br/><br/><br/>
 						Intelligent<br/><br/><br/>
 						Club
-						</b><br/><br/><br/>
+						</pr><br/><br/><br/>
 						President <br/><br/><br/>
-						<b>Hfic Samin</b>.<br/><br/>
+						<b>Hfic Samin</pr>.<br/><br/>
 						</marquee>
 					</ifEN>
 				</readyText>
@@ -339,6 +339,7 @@ class Player
 				onclick	="objPlayer.stop();"
 				style	="
 					display		:none;
+					width		:20px;
 					text-align	:center;
 					background-color:yellow;
 					"
@@ -426,7 +427,7 @@ class Player
 				
 				<playerLoadingText
 					id	="playerControlAlwaysVisibleLoadingText"
-					class="block scrollerY TC1"
+					class="block scrollerY TC1 BC1"
 					style	="
 						height		:100%;
 						"
@@ -448,28 +449,49 @@ class Player
 			</ifLoadingAudio>
 			<ifPlaying
 				id	="objPlayingAudioTopSmall"
-				class="block cursor layer_2_2 no-select BLL BRJ TC3 line"
-				onclick	="objPlayer.stop();"
+				class	="block TC3 line"
+				
 				style	="
 					display		:none;
-					font-size	:xx-small;
-					line-height	:20px;
-					text-align	:center;
-					color		:#FFF;
-					background-color:#062b88;
+					width		:100%;
 					"
-				>'.
-				//PlayerEventIndicator::strHTML(). Osciloscope - disabled temporary
-				'<ifRU 
-					title="Для остановки воспроизведения нажмите."
+				>
+				<playIndicator
+					class="block left cursor no-select BLL BRJ TC3"
+					onclick	="objPlayer.stop();"
+					style	="
+						font-size	:xx-small;
+						width		:20px;
+						line-height	:20px;
+						text-align	:center;
+						color		:#FFF;
+						background-color:#062b88;
+						"
 					>
-					■
-				</ifRU>
-				<ifEN
-					title="To stop plaing this audio stream just press."
+					<ifRU 
+						title="Для остановки воспроизведения нажмите."
+						>
+						■
+					</ifRU>
+					<ifEN
+						title="To stop plaing this audio stream just press."
+						>
+						■
+					</ifEN>
+				</playIndicator>
+				<playIndicatorSongName
+					id	="playerControlAlwaysVisiblePlaying"
+					class	="block left scrollerY"
+					style="
+						height		:100%;
+						/*width		:270px;*/
+						max-width	:70%;
+						font-size	:large;
+						/*margin-left	:30px;*/
+						"
 					>
-					■
-				</ifEN>
+					HiFiIntelligentClub
+				</playIndicatorSongName>
 			</ifPlaying>
 			<ifPlaying
 				class	="abs V99 cursor layer_2_2 select TC3 doubleLine"
@@ -482,7 +504,7 @@ class Player
 					"
 				>
 				<playerPlayingButton
-					class	="brick left BRJ doubleLine"
+					class	="brick left BLL BRJ doubleLine"
 					style	="
 						    width	:40px;
 						    "
@@ -510,24 +532,14 @@ class Player
 						</ifEN>
 					</playerPlayingButton>
 				</playerPlayingButton>
-				<playerPlayingText
-					id	="playerControlAlwaysVisiblePlaying"
-					class	="block scrollerY left"
-					onclick	=""
-					style="
-						height		:100%;
-						width		:50%;
-						"
-					>
-				</playerPlayingText>
 				<playerPlayingLike
 					id	="playerControlAlwaysVisiblePlayingLike"
-					class	="block left BLL TC3 BC3"
+					class	="block left BLL BRJ TC3 BC3 line"
 					style	="
 						font-size	:x-large;
-						text-align	:left;
-						height		:100%;
-						width		:100px;
+						text-align	:center;
+						width		:25px;
+						margin-left	:5px;
 						line-height	:13px;
 						"
 					onclick	="
@@ -535,11 +547,30 @@ class Player
 
 						"
 					>
-					[+]
+					+
 				</playerPlayingLike>
+				<playerPlayingNews
+					id	="playerControlAlwaysVisiblePlayingNews"
+					class	="block right BLL BRJ TC3 BC3 line"
+					style	="
+						font-size	:large;
+						text-align	:center;
+						width		:95px;
+						margin-left	:5px;
+						margin-right	:85px;
+					
+						"
+					onclick	="
+						alert(\'coming soon!\');
+
+						"
+					>
+					<ifRU>Новости</ifRU>
+					<ifEN>News</ifEN>
+				</playerPlayingNews>
 				<!--a 
 					class="block left"
-					href		="/getStationToTheTop"
+					href		="/getNews"
 					onClick		="
 						return false;
 						"
