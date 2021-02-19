@@ -111,16 +111,16 @@ class IndicatorDimensions
 		$this->strHTML='
 			<dimensionsDesign
 				id="designDimensions"
-				class="block left no-select TC1 BC1"
+				class="fixed block TC1 BC1 layer_5"
 				style="	
-					height		: 100%;
+					top		: 0px;
+					left		: 0px;
+					width		: 2px;
+					height		: 2px;
 					text-align	: center;
 					margin-right	: 1px;
-					font-size	: x-small;
-					line-height	: 9px;
 					"
 				>
-				xxx*xxxpx<br/>x:x:x
 			</dimensionsDesign>
 		';
 		$this->strHTML.=$this->strObjectDeclare();

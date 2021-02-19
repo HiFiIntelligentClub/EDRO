@@ -28,7 +28,7 @@ class IndicatorNetwork
 		{
 		$this->strHTML='
 			<network
-				class	="block  left BRJ"
+				class	="fix block BRJ layer_2_1"
 				style	="
 					line-height	:9px;
 					margin-right	:1px;
@@ -38,6 +38,7 @@ class IndicatorNetwork
 					id="NetSrvReady"
 					class="block left  BLL"
 					style="	
+						left		: 10px;
 						height		: 10px;
 						width		: 10px;
 						background-color: #e3e3e3;
@@ -46,13 +47,13 @@ class IndicatorNetwork
 						"
 					>
 					<ifRU
-						title		="Network server avaliability status"
+						title		="Stream network avaliability status"
 						class		="no-select"
 						>
 						N
 					</ifRU>
 					<ifEN
-						title		="Статус доступности сервера сети"
+						title		="Статус доступности аудиопотока сети"
 						class		="no-select"
 						>
 						H
@@ -71,16 +72,16 @@ class IndicatorNetwork
 						"
 					>
 					<ifRU
-						title		="Порты сервера"
+						title		="Готовность к воспроизведению аудиопотока"
 						class		="no-select"
 						>
-						Пр
+						Р
 					</ifRU>
 					<ifEN
-						title		="Server ports avalitily"
+						title		="Ready to play audiostream"
 						class		="no-select"
 						>
-						Pr
+						R
 					</ifEN>
 				</NetSrvPortsReady>
 			</network>';

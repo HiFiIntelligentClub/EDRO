@@ -28,13 +28,12 @@ class IndicatorMasterClock
 		{
 		$this->strHTML='
 			<masterClock
-				class="block left no-select TC3 BC3 BLL BRJ"
+				class="fix layer_3  block no-select TC3 BC3 V98"
 				style="	
-					width		: 28px;
-					height		: 100%;
+					width		: 40px;
+					height		: 20px;
+					left		: 0px;
 					text-align	: left;
-					margin-right	: 1px;
-					margin-left	: 1px;
 					font-size	: x-small;
 					"
 				>

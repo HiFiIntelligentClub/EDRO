@@ -54,19 +54,19 @@ class SystemEventIndicatorStream
 		{
 		$this->strHTML='
 		<EDROContextSignals
-			class="abs layer_4 matrixTop BBV V100 BC3 BT3"
+			class="abs layer_4 matrixTop V100 BC3 BT3"
 			style="	
 				left		:0;
 				height		:20px;
 				width		:100%;
 				"
 			>'.
-			Login::strHTML().
 			DynaScreenEventIndicator::strHtml().
 			Player::strIndicatorTop().
-			IndicatorHiFi::strHtml().
-			IndicatorMasterClock::strHTML().
 			IndicatorNetwork::strHTML().
+			IndicatorHiFi::strHtml().
+			Login::strHTML().
+			IndicatorMasterClock::strHTML().
 			IndicatorDimensions::strHTML().
 			IndicatorLang::strHtml().
 			IndicatorRole::strHTML().
