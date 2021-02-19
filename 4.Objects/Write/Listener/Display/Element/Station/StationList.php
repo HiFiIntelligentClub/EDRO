@@ -63,11 +63,25 @@ class StationList
 			///$objGenres				=FileRead::objJSON($objKIIM, $сРасположение);
 			$arrStationS['strId']			=strSafeUsers($objStation->id);
 			$arrStationS['strStationName']		=strSafeUsers($objStation->server_name);
-			$arrStationS['strICQR_Q']		=strSafeUsers($objStation->strICQR_Q);
+			if(isset($objStation->strICQR_Q))
+				{
+				$arrStationS['strICQR_Q']		=strSafeUsers($objStation->strICQR_Q);
+				}
+			else
+				{
+				$arrStationS['strICQR_Q']		='';
+				}
 			//$objStation->server_type		=strSafeUsers($objStation->server_type);
 			//$objStation->bitrate			=strSafeUsers($objStation->bitrate);
 			//$objStation->genre			=strSafeUsers($objStation->genre);
-			$arrStationS['strICQR_LIVE']		=strSafeUsers($objStation->strICQR_live);
+			if(isset($objStation->strICQR_live))
+				{
+				$arrStationS['strICQR_LIVE']		=strSafeUsers($objStation->strICQR_live);
+				}
+			else
+				{
+				$arrStationS['strICQR_LIVE']		='';
+				}
 			$arrStationS['arrStationDeclaredGenres']=array();
 			$arrStationS['arrICQRGenres']		=array();
 			$arrStationS['arrCurrentGenres']	=array();
@@ -123,7 +137,8 @@ class StationList
 			//echo'<pre>';
 			//print_r($objStation);
 			//echo'</pre>';
-			$arrICQR				=array();
+			$arrICQR['RU']				='';
+			$arrICQR['EN']				='';
 			//echo'<pre>';
 			//	print_r($arrStationS);
 			//echo'</pre>';
@@ -152,27 +167,27 @@ class StationList
 				// 'strAudioType'	=>$objStation->server_type,
 				// 'strAudioBitrate'	=>$objStation->bitrate,
 				// 'strStyle'		=>$objStation->genre,
-				// 'arrICQR'		=>$arrICQR
+				'arrICQR'		=>$arrICQR
 				);
 		
-			$arrPagination['int0CurrentStation']	=$int0I;
+			$arrPagination['int0CurrentStation']	=$int0ListNum;
 			$this->strHTML.= StationBlock::strHTML($objKIIM, $arrStation, $arrPagination, $objEDRO->arrEvent['arrReality'], $objEDRO);
 			$int0ListNum++;
 			}
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public function _HTML($_objKIIM, $_objEDRO)
+	public function _HTML($_objKIIM, $objEDRO)
 		{
-		$objStationList=new StationList($_objKIIM, $_objEDRO);
+		$objStationList=new StationList($_objKIIM, $objEDRO);
 		}
-	public function strHTML($_objKIIM, $_objEDRO)
+	public function strHTML($_objKIIM, $objEDRO)
 		{
-		$objStationList=new StationList($_objKIIM, $_objEDRO);
+		$objStationList=new StationList($_objKIIM, $objEDRO);
 		return $objStationList->strHTML;
 		}
-	public function _EDRO($_objKIIM, $_objEDRO)
+	public function _EDRO($_objKIIM, $objEDRO)
 		{
-		$objStationList=new StationList($_objKIIM, $_objEDRO);
+		$objStationList=new StationList($_objKIIM, $objEDRO);
 		return $objStationList->strEDRO;
 		}
 	}

@@ -8,19 +8,21 @@
 class StationBlock
 	{
 	public  $strHTML;
-	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array())
+	public function __construct($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
 		/*echo '<pre>';
 		print_r($arrStatrion);
 		echo '</pre>';
 		exit;*/
+		$strAudioType	='';
 		//echo '/home/ЕДРО:ПОЛИМЕР/HiFiIntelligentClub/Stations/belongs/Genred/'.$arrStatrion['strId'].'.plmr';
 		$arrStationGenres	=(array)FileRead::objJSON($objKIIM, '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Stations/belongs/Genres/'.$arrStatrion['strId'].'.plmr');
 		//print_r($arrStationGenres);
 		$strGenre	='';
-		if(is_array($arrStationGenres))
+		$strGenres	='';
+		if(is_array($arrStationGenres)&&!empty($arrStationGenres))
 			{
 			foreach($arrStationGenres as $strGenre)
 				{
@@ -33,10 +35,12 @@ class StationBlock
 		$strAudio		=$arrStatrion['strAudio'];
 		//$strAudioType		=$arrStatrion['strAudioType'];
 		//$strAudioBitrate	=$arrStatrion['strAudioBitrate'];
-		$strStyle		=$arrStatrion['strStyle'];
+		//$strStyle		=$arrStatrion['strStyle'];
 		$int0ListNum		=$arrStatrion['int0ListNum'];
 		$arrICQR		=$arrStatrion['arrICQR'];
 		$strICQR_Q		=$arrStatrion['strICQR_Q'];
+		$int0PageStart		=$arrPagination['int0Start'];
+		$int1ListNum		=($int0PageStart+$int0ListNum)+1;
 					unset($arrStatrion);
 
 		/*if($_SESSION['strListener']=='e1NgS3lCcnYо26')
@@ -47,12 +51,12 @@ class StationBlock
 			}
     			//print_r($arrPagination['int0CurrentStation']);
 		*/
-		$intListPosition	=$arrPagination['int0CurrentStation'];
+		$intListPosition	=$int1ListNum;
 
 		$this->strHTML	='
 		<station
 			id	="'.$strAudio.'"
-			num	="'.$intListPosition.'"
+			num	="'.$int1ListNum.'"
 			class	="block left rel layer_1_1 BLL BRJ TC1 BC1"
 			style	="
 				width		:398px;
@@ -87,7 +91,7 @@ class StationBlock
 						height		:100%;
 						"
 					>'.
-					Header::strHTML($objKIIM,  $strName, $arrEventReality, $strAudioBitrate, $strAudioType, $arrICQR, $strICQR_Q, $objEDRO).
+					Header::strHTML($objKIIM,  $strName, $arrEventReality, $arrICQR, $strICQR_Q, $objEDRO).
 				'</stationName>
 			</header>
 			<genre
@@ -215,7 +219,7 @@ class StationBlock
 		}
 	public static function strHTML($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array())
 		{
-		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO=array());
+		$objStationBlock=new StationBlock($_objKIIM, $arrStatrion, $arrPagination, $arrEventReality, $objEDRO);
 		return $objStationBlock->strHTML;
 		}
 	}
