@@ -10,8 +10,8 @@ class DynaScreen
 	public $strHTML;
 	public function __construct($_objKIIM, $_arrData)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
 
 		unset($_arrData);
 
@@ -19,7 +19,6 @@ class DynaScreen
 		}
 	public static function strStart($objEDRO, $strSearchForm)
 		{
-
 		if($objEDRO->arrEvent['bIzDynamic'])
 			{
 			$intHeight	=82;
@@ -28,7 +27,8 @@ class DynaScreen
 				$intHeight	=62;
 				}
 			$str		=$objEDRO->strRealityInit();
-			$str		.='				<brickTop 
+			$str		.='
+				<brickTop 
 					class="block" 
 					style="width:100%;height:'.$intHeight.'px;margin:0;padding:0;"
 					>
@@ -38,17 +38,16 @@ class DynaScreen
 		else
 			{
 
-			require_once('/home/EDRO.SetOfTools/System/4.Styles/0.CSS.Styles.php');
-			require_once('/home/EDRO.SetOfTools/System/5.Templates/0.strKIIM.Template.php');
-			require_once('/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php');
-			$str		=$objEDRO->strRealityInit();
+			require'/home/EDRO.SetOfTools/System/4.Styles/0.CSS.Styles.php';
+			require'/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
+			$str		.=$objEDRO->strRealityInit();
 			$str		.=$strSearchForm;
-			$str		.=Listeners::strHTML($objKIIM, $objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
+			$str		.=Listeners::strHTML(array(), $objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
 			$str		.=FileRead::strGetDesignHTML(array(), '/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_UpdateMessage.php', $objEDRO);
 			$str		.='
 			<dynaScreen
 				id	="DynaScreen"
-				class	="fixed block layer_2_1"
+				class	="fixed block layer_1"
 				style	="
 					top			:0;
 					left			:0;
