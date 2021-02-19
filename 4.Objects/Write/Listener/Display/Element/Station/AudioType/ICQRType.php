@@ -7,7 +7,7 @@
 class ICQRType
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_strData, $_arrSearch='', $objEDRO=array())
+	public function __construct($_objKIIM, $_strData, $_arrSearch='', $objEDRO)
 		{
 		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));unset($_objKIIM);
 
@@ -122,7 +122,7 @@ class ICQRType
 		}
 	public static function strHTML($_objKIIM, $_strData, $_arrSearch='', $objEDRO=array())
 		{
-		$obj=new ICQRType($_objKIIM, $_strData, $_arrSearch, $objEDRO=array());
+		$obj=new ICQRType($_objKIIM, $_strData, $_arrSearch, $objEDRO);
 		return $obj->strHTML;
 		}
 	}
