@@ -24,11 +24,11 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class HiFiNavigation
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrPagination, $arrReality, $objEDRO=array())
+	public function __construct($_objKIIM, $_arrPagination, $arrReality, $objEDRO)
 		{
-		$objKIIM=$_objKIIM;
-		   unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
+
 		$intPage		=$_arrPagination['int0Page'];
 		$intStart		=$_arrPagination['int0Start'];
 		$intEnd			=$_arrPagination['int0Untill'];
@@ -56,7 +56,7 @@ class HiFiNavigation
 		//	$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intNextPage, true);
 		//	echo $arrEventLink['strHref'];
 		
-		?>
+		$str='
 		<pageNavShader
 			class="
 				fixed V1 block layer_4 BC1 TC1 BBV doubleLine
@@ -77,37 +77,32 @@ class HiFiNavigation
 				text-align	:center;
 				margin		:auto;
 				"
-			>
-			
-			<?php
+			>';
 
 			if($intPage<$intPages)
 				{
-				?>
-				<a
-				id	="objPageForward"
-				<?php
 				$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intNextPage, true);
-				echo $arrEventLink['strHref'];
-				echo $arrEventLink['strOnClick'];
-				?>
-					class="block right BBV BTA BC3 TC3 cursor no-select doubleLine"
+				$str.=
+				'<a
+				id	="objPageForward"'
+				.$arrEventLink['strHref'].' '
+				.$arrEventLink['strOnClick'].
+				'class="block right BBV BTA BC3 TC3 cursor no-select doubleLine"
 					style="
 						width		:34%;
 						text-align	:center;
 						line-height	:39px;
 						text-decoration	:none;
 						"
-					title="<?=$arrO['Forward']?>"
+					title="'.$arrO['Forward'].'"
 					>
 					>>
-				</a>
-				<?php
+				</a>';
 				}
 			else
 				{
-				?>
-				<a
+				$str.=
+				'<a
 					id	="objPageForward"
 					href	="#"
 					onclick	=""
@@ -119,25 +114,21 @@ class HiFiNavigation
 						text-decoration	:none;
 						"
 					>
-				</a>
-				<?php
+				</a>';
 				}
-				?>
-			<pagerNum
+			$str.=
+			'<pagerNum
 				class="fix V1 block tcenter BC1 TC1 BLL BRJ BBV BTA no-select doubleLine"
 				style="
 					left		:36%;
 					width		:28%;
 					"
+				title="'.$arrO['Counters'].'"
 				>
 
+
 				<strPage
-					class="TC3 BC3 halfLine" 
-					title="<?=$arrO['Counters']?>"
-					>[<?=$intStart?>-<?=$intEnd ?>][<?=$intTotal-$intEnd?>][<?=$intTotal?>]
-				</strPage>
-				<strPage
-					class="block tcenter"
+					class="brick tcenter"
 					>
 					<input 
 						id	="objPageNumberSelect"
@@ -147,28 +138,25 @@ class HiFiNavigation
 							"
 						onChange="
 							//bizHiFiNavigationInputSelect	=false; //Need to send result
-							objEvent.arrReality.<?=$intPageParamName?>=this.value;
+							objEvent.arrReality.'.$intPageParamName.'=this.value;
 							objEvent._UpdateURLDyn();
 							return false;
 							"
 						onFocusin="
 							//objHiFiNavigation.bizPageSelectFoucus=true;
 							bizHiFiNavigationInputSelect	=true;
-							//alert('on');
 							"
 						onfocusout="
 							//objHiFiNavigation.bizPageSelectFoucus=false;
 							bizHiFiNavigationInputSelect	=false;
-							//alert('off');
 							"
-					title	="<?=$arrO['Selector']?>"
 					type	="number" 
-					value	="<?=$intPage?>"
+					value	="'.$intPage.'"
 					step	="1" 
 					min	="0" 
-					max	="<?=$intPages?>"
+					max	="'.$intPages.'"
+					title	="'.$arrO['Selector'].'"
 					/>
-					
 					<strPages
 						id	="objPageMaximum"
 						class	="line"
@@ -182,63 +170,56 @@ class HiFiNavigation
 						<int0Max
 							id	="objPageMaximum"
 							>
-							<?=$intPages?>
+							'.$intPages.'
 						</int0Max>
 					</strPages>
 				</strPage>
-			</pagerNum>
-			<?php
+			</pagerNum>';
 			if($intPage<1)
 				{
-				?>
+				$str.='
 				<a
 					id	="objPageBackward"
 					onclick	=""
 					class	="block left BBV BTA BC1 TC1 cursor no-select"
 					style	="
 						width		:34%;
-    						line-height	:39px;
 						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
 						"
 					>
-				</a>
-				<?php
+				</a>';
 				}
 			else
 				{
 				$arrEventLink=arrEventLink($arrReality, $intPageParamName, $intPrevPage, true);
-				?>
-				<a
-					id	="objPageBackward"
-					<?php
-					echo $arrEventLink['strHref'];
-					echo $arrEventLink['strOnClick'];
-					?>
+				$str.=
+				'<a
+					id	="objPageBackward"'.
+					$arrEventLink['strHref'].' '.
+					$arrEventLink['strOnClick'].'
 					class="block left BBV BTA BC3 TC3 cursor no-select doubleLine"
 					style="
 						width		:34%;
-    						line-height	:39px;
 						text-align	:center;
+						line-height	:39px;
 						text-decoration	:none;
 						"
-					title="<?=$arrO['Backward']?>"
+					title="'.$arrO['Backward'].'"
 					>
 					<<
-				</a>
-				<?php
+				</a>';
 				}
-			?>
-		</pageNav>
-		<?php
-		echo HiFiNavigation::strObjectDeclare();
-		echo HiFiNavigation::strObjectInit();
+		$str.=
+		'</pageNav>';
+		$str.=HiFiNavigation::strObjectInit();
+		$this->strHTML	=$str;
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strObjectDeclare()
 		{
-		?>
+		$str	=<<<oo2oo
 		<script>
 			console.log('[Vv]HiFiNavigation declare.');
 			class HiFiNavigation
@@ -298,7 +279,8 @@ class HiFiNavigation
 				}
 			console.log('[..]HiFiNavigation declare.');
 		</script>
-		<?php
+oo2oo;
+		return $str;
 		}
 	public static function strObjectInit()
 		{
