@@ -93,20 +93,19 @@ class Player
 					class="block no-select"
 					style="
 						width		:34px;
-						height		:34px;
+						height		:22px;
 						text-align	:center;
-						margin-top	:3px;
+						margin-top	:9px;
 						margin-left	:3px;
 						"
 					>
 					<recordLabel
-						class="block border"
+						class="block L1"
 						style="
-							color		:#2d90f5;
+							border		: 1px solid #2d90f5;
+							color		: #2d90f5;
 							width		: 32px;
-							height		: 32px;
 							text-align	: center;
-							line-height	: 31px;
 							margin		: 0;
 							padding		: 0;
 							"
@@ -140,9 +139,9 @@ class Player
 					class="block no-select border"
 					style="
 						width		:34px;
-						height		:34px;
+						height		:22px;
 						text-align	:center;
-						margin-top	:3px;
+						margin-top	:8px;
 						margin-left	:3px;
 						"
 					>
@@ -153,9 +152,9 @@ class Player
 							/*background-color: #FFF;*/
 							/*border-radius	: 100%;*/
 							width		: 32px;
-							height		: 32px;
+							height		: 20px;
 							text-align	: center;
-							line-height	: 31px;
+							line-height	: 19px;
 							margin		: 0;
 							padding		: 0;
 							"
@@ -224,7 +223,7 @@ class Player
 					>
 					<image
 						title="Hfic: Is there any hifi sound can i hear?" 
-						src="/Hfic_Samin.jpg" 
+						src="cloudrepublic.ru/Hfic_Samin.jpg" 
 						class="block" 
 						style="
 							height:100%;
@@ -253,7 +252,7 @@ class Player
 						Дорогие Бродкастеры. В настоящий момент, мы не поддерживаем станции с длиной названия более 256 символов. По техническим причинам.<br/><br/>
 						<br/><br/><br/><br/>
 						Эйчфик Самин.<br/><br/>
-						Президент <br/><br/>
+						Федеративный Канцлер <br/><br/>
 						<pr style="font-size:xx-large;color:#000;font-family: serif;">
 						HiFi<br/><br/><br/><br/>
 						Intelligent<br/><br/><br/>
@@ -275,7 +274,7 @@ class Player
 						Intelligent<br/><br/><br/>
 						Club
 						</pr><br/><br/><br/>
-						President <br/><br/><br/>
+						Federative Kanzler <br/><br/><br/>
 						<b>Hfic Samin</pr>.<br/><br/>
 						</marquee>
 					</ifEN>
@@ -335,29 +334,54 @@ class Player
 			</ifOverload>
 			<ifLoadingAudio
 				id	="objLoadingAudioTopSmall"
-				class	="block cursor TC1 layer_2_2 no-select line"
+				class	="brick left cursor TC1 no-select line"
 				onclick	="objPlayer.stop();"
 				style	="
 					display		:none;
 					width		:20px;
 					text-align	:center;
-					background-color:yellow;
 					"
 				>
-				<ifRU 
-					title	="Для отмены загрузки радио станции нажмите."
+				<playShader
+					class	="fix block layer_2"
+					style	="
+						left		:0px;
+						height		:20px;
+    						width		:20px;
+						line-height	:20px;
+						background-color:#f0ff00;
+						"
 					>
-					☒
-				</ifRU>
-				<ifEN
-					title	="To stop loading this audio stream just press."
+					
+				</playShader>
+				<loadIndicator
+					class="fix brick layer_2_3  cursor no-select BLL BRJ TC3"
+					onclick	="objPlayer.stop();"
+					style	="
+						left		:0px;
+						font-size	:xx-small;
+						width		:20px;
+						line-height	:20px;
+						text-align	:center;
+						color		:#FFF;
+						background-color:#ffeb00b8;
+						"
 					>
-					☒
-				</ifEN>
+					<ifRU 
+						title	="Для отмены загрузки радио станции нажмите."
+						>
+						☒
+	    				</ifRU>
+					<ifEN
+						title	="To stop loading this audio stream just press."
+						>
+						☒
+					</ifEN>
+				</loadIndicator>
 			</ifLoadingAudio>
 			<ifLoadingAudio
 
-				class	="abs V99 cursor TC3 layer_2_2 no-select doubleLine"
+				class	="fix V99 cursor TC3 layer_2_2 no-select doubleLine"
 				style	="
 					display		:none;
 					left		:0px;
@@ -456,16 +480,29 @@ class Player
 					width		:100%;
 					"
 				>
+				<playShader
+					class	="fix block layer_2"
+					style	="
+						left		:0px;
+						height		:20px;
+    						width		:20px;
+						line-height	:20px;
+						background-color:#062b88;
+						"
+					>
+					
+				</playShader>
 				<playIndicator
-					class="block left cursor no-select BLL BRJ TC3"
+					class="fix block left cursor no-select BLL BRJ TC3 layer_2_2"
 					onclick	="objPlayer.stop();"
 					style	="
+						left		:0px;
 						font-size	:xx-small;
 						width		:20px;
 						line-height	:20px;
 						text-align	:center;
 						color		:#FFF;
-						background-color:#062b88;
+						background-color:#062b8824;
 						"
 					>
 					<ifRU 
@@ -483,6 +520,8 @@ class Player
 					id	="playerControlAlwaysVisiblePlaying"
 					class	="block left scrollerY"
 					style="
+						margin-right	:20px;
+						margin-left	:20px;
 						height		:100%;
 						/*width		:270px;*/
 						max-width	:70%;
@@ -517,7 +556,7 @@ class Player
 							width		: 40px;
 							color		: #FFF;
 							font-size	: small;
-							background-color: #6fb6ff9c;
+							background-color: #2d90f52b;
 							"
 						>
 						<ifRU 
@@ -649,14 +688,16 @@ class Player
 				</playerNoConnectionext>
 			</ifNoConnection>
 			<ifStopped
-				class	="block cursor layer_2_2 TC3 no-select line"
+				class	="fix block cursor layer_2_2 TC3 no-select line"
 				onclick	="
 					/*objPlayer.objAudio.src				=objPlayerIndicatorMembrane.getAttribute(\'playerId\');*/
 					objPlayer.play();
 					"
 				style	="
-					display		:none;
-					text-align	:center;
+					display		: none;
+					text-align	: center;
+					background-color: #0000006e;
+					width		: 20px;
 					"
 				>'.
 				//PlayerEventIndicator::strHTML(). Osciloscope - disabled temporary
@@ -1291,8 +1332,8 @@ class Player
 						objPlayer.strStationName			=objPlayer.objCurrentBlock.getElementsByTagName('strScrolling')[0].innerHTML;
 						objPlayer.intNum				=objPlayer.objCurrentBlock.attributes.num.value;
 						}
-
-				objEvent.arrReality.int0PlayingStationNum		=objPlayer.intNum;
+				//alert(objPlayer.intNum);
+				objEvent.arrReality.int1PlayingStationNum		=objPlayer.intNum;
 				objEvent.arrReality.strPlayingStationId			=objPlayer.strCurrentID;
 				objPlayer.objVisibleControlsPlaying.innerHTML			='<a style="color:white;text-decoration:none" href="#" onClick="objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);">'+objPlayer.strStationName+'</a>';
 				objPlayer.objVisibleControlsLoadingStationName.innerHTML	=objPlayer.strStationName;
