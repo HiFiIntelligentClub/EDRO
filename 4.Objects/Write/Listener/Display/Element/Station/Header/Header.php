@@ -8,10 +8,10 @@
 class Header
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q, $objEDRO=array())
+	public function __construct($_objKIIM, $_str, $_arrSearch, $_arrICQR, $_strICQR_Q, $objEDRO)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		unset($_objKIIM);
 		$str		=сПреобразовать($_str, 'вСтроку');
 			   unset($_str);
 		$intStrLen	=mb_strlen($str);
@@ -155,9 +155,9 @@ class Header
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strHTML($_objKIIM, $_str, $_arrSearch, $_strBitrate=0, $_strCodec='n/a', $_arrICQR, $_strICQR_Q, $objEDRO=array())
+	public static function strHTML($_objKIIM, $_str, $_arrSearch,$_arrICQR, $_strICQR_Q, $objEDRO=array())
 		{
-		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_strBitrate, $_strCodec, $_arrICQR, $_strICQR_Q, $objEDRO=array());
+		$objHeader=new Header($_objKIIM, $_str, $_arrSearch, $_arrICQR, $_strICQR_Q, $objEDRO);
 		return $objHeader->strHTML;
 		}
 	}
