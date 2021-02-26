@@ -1,13 +1,14 @@
 <?php
 class IndicatorPlayer
 	{
-	pubilic function __construct()
+	public $str;
+	public function __construct()
 		{
 		//Новый год  🎄🎅
 		//✰✰
 		//★
 		//🌠
-		$str='
+		$this->str='
 		<playerControlAlwaysVisible
 			id	="playerControlAlwaysVisible"
 			class	="left no-select ЕС3 BC3"
@@ -35,7 +36,7 @@ class IndicatorPlayer
 					>
 					<image
 						title="Hfic: Is there any hifi sound can i hear?" 
-						src="/Hfic_Samin.jpg" 
+						src="cloudrepublic.ru/Hfic_Samin.jpg" 
 						class="block" 
 						style="
 							height:100%;
@@ -51,45 +52,14 @@ class IndicatorPlayer
 						line-height	:13px;
 						"
 					>
-
 				</ReadyButtonStat-->
 				<readyText
-					class	="block scrollerY"
+					class	="block scrollerY Lx2 BRJ"
 					style	="
-						height:40px;
+						height	:40px;
+						width	:40px;
 						"
 					>
-					<ifRU>
-						<marquee direction="up" scrollamount="1" style="font-size:small"><paragraph></paragraph>Приветствуем вас в HiFI Intelligent Club.<br/><br/><br/>
-						Дорогие Бродкастеры. В настоящий момент, мы не поддерживаем станции с длиной названия более 256 символов. По техническим причинам.<br/><br/>
-						<br/><br/><br/><br/>
-						Эйчфик Самин.<br/><br/>
-						Президент <br/><br/>
-						<pr style="font-size:xx-large;color:#000;font-family: serif;">
-						HiFi<br/><br/><br/><br/>
-						Intelligent<br/><br/><br/>
-						Club
-						</pr>
-						</marquee>
-					</ifRU>
-					<ifEN>
-						<marquee direction="up" scrollamount="1" style="font-size:small">
-						<paragraph></paragraph>Hello<br/><br/>
-						<paragraph></paragraph>at <br/><br/>
-						<paragraph></paragraph>HiFiIntelligentClub.<br/><br/><br/>
-						Dear broadcasters, by the technical reasons station names with more than 256 symbols length, are not supported now.<br/><br/>
-						We are focusing on this problem now. <br/><br/>
-						<br/><br/><br/><br/>
-									
-						<pr style="font-size:хx-large;color:#000;font-family: serif;">
-						HiFi<br/><br/><br/>
-						Intelligent<br/><br/><br/>
-						Club
-						</pr><br/><br/><br/>
-						President <br/><br/><br/>
-						<b>Hfic Samin</pr>.<br/><br/>
-						</marquee>
-					</ifEN>
 				</readyText>
 			</ifReady>
 			<ifOverload
@@ -122,7 +92,6 @@ class IndicatorPlayer
 						0
 					</loadingErrors>
 				</playerOverloadStat-->
-
 				<playerOverloadText
 					class	="block scrollerY"
 					style	="
@@ -141,34 +110,56 @@ class IndicatorPlayer
 					<ifRU>
 						<marquee>Не получается подключиться к выбранной радиостанции. Возможно станция перегружена или интернет канал слишком мал, чтобы воспроизводить выбранную станцию. Вы можете попробовать выбрать другую радиостанцию.</marquee>
 					</ifRU>
-
 				</playerOverloadText>
 			</ifOverload>
 			<ifLoadingAudio
 				id	="objLoadingAudioTopSmall"
-				class	="block cursor TC1 layer_2_2 no-select line"
+				class	="brick left cursor TC1 no-select line"
 				onclick	="objPlayer.stop();"
 				style	="
 					display		:none;
 					width		:20px;
 					text-align	:center;
-					background-color:yellow;
 					"
 				>
-				<ifRU 
-					title	="Для отмены загрузки радио станции нажмите."
+				<playShader
+					class	="fix block layer_2"
+					style	="
+						left		:0px;
+						height		:20px;
+						width		:20px;
+						line-height	:20px;
+						background-color:#f0ff00;
+						"
 					>
-					☒
-				</ifRU>
-				<ifEN
-					title	="To stop loading this audio stream just press."
+				</playShader>
+				<loadIndicator
+					class="fix brick layer_2_3  cursor no-select BLL BRJ TC3"
+					onclick	="objPlayer.stop();"
+					style	="
+						left		:0px;
+						font-size	:xx-small;
+						width		:20px;
+						line-height	:20px;
+						text-align	:center;
+						color		:#FFF;
+						background-color:#ffeb00b8;
+						"
 					>
-					☒
-				</ifEN>
+					<ifRU 
+						title	="Для отмены загрузки радио станции нажмите."
+						>
+						☒
+					</ifRU>
+					<ifEN
+						title	="To stop loading this audio stream just press."
+						>
+						☒
+					</ifEN>
+				</loadIndicator>
 			</ifLoadingAudio>
 			<ifLoadingAudio
-
-				class	="abs V99 cursor TC3 layer_2_2 no-select doubleLine"
+				class	="fix V99 cursor TC3 layer_2_2 no-select doubleLine"
 				style	="
 					display		:none;
 					left		:0px;
@@ -235,7 +226,6 @@ class IndicatorPlayer
 						</digit>
 					</loadingErrors>
 				</playerLoadingStat-->
-				
 				<playerLoadingText
 					id	="playerControlAlwaysVisibleLoadingText"
 					class="block scrollerY TC1 BC1"
@@ -256,7 +246,6 @@ class IndicatorPlayer
 						>
 					</playerLoadingStationName>
 				</playerLoadingText>
-				
 			</ifLoadingAudio>
 			<ifPlaying
 				id	="objPlayingAudioTopSmall"
@@ -267,16 +256,28 @@ class IndicatorPlayer
 					width		:100%;
 					"
 				>
+				<playShader
+					class	="fix block layer_2"
+					style	="
+						left		:0px;
+						height		:20px;
+						width		:20px;
+						line-height	:20px;
+						background-color:#062b88;
+						"
+					>
+				</playShader>
 				<playIndicator
-					class="block left cursor no-select BLL BRJ TC3"
+					class="fix block left cursor no-select BLL BRJ TC3 layer_2_2"
 					onclick	="objPlayer.stop();"
 					style	="
+						left		:0px;
 						font-size	:xx-small;
 						width		:20px;
 						line-height	:20px;
 						text-align	:center;
 						color		:#FFF;
-						background-color:#062b88;
+						background-color:#062b8824;
 						"
 					>
 					<ifRU 
@@ -294,11 +295,11 @@ class IndicatorPlayer
 					id	="playerControlAlwaysVisiblePlaying"
 					class	="block left scrollerY"
 					style="
+						margin-right	:20px;
+						margin-left	:20px;
 						height		:100%;
-						/*width		:270px;*/
 						max-width	:70%;
 						font-size	:large;
-						/*margin-left	:30px;*/
 						"
 					>
 					HiFiIntelligentClub
@@ -328,7 +329,7 @@ class IndicatorPlayer
 							width		: 40px;
 							color		: #FFF;
 							font-size	: small;
-							background-color: #6fb6ff9c;
+							background-color: #2d90f52b;
 							"
 						>
 						<ifRU 
@@ -355,7 +356,6 @@ class IndicatorPlayer
 						"
 					onclick	="
 						alert(\'coming soon!\');
-
 						"
 					>
 					+
@@ -373,7 +373,6 @@ class IndicatorPlayer
 						"
 					onclick	="
 						alert(\'coming soon!\');
-
 						"
 					>
 					<ifRU>Новости</ifRU>
@@ -393,9 +392,6 @@ class IndicatorPlayer
 						To selected stations
 					</ifEN>
 				</a-->
-				
-
-
 			</ifPlaying>
 			<ifNoConnection
 				class	="cursor layer_2_2 no-select TC3 BC3 doubleLine"
@@ -454,24 +450,23 @@ class IndicatorPlayer
 						
 					</ifRU>
 					<ifEN>
-						<marquee>This station is currently offline. Please chose another station from station\'s list.</marquee>
+					[p	<marquee>This station is currently offline. Please chose another station from station\'s list.</marquee>
 					</ifEN>
-
 				</playerNoConnectionext>
 			</ifNoConnection>
 			<ifStopped
-				class	="block cursor layer_2_2 TC3 no-select line"
+				class	="fix block cursor layer_2_2 TC3 no-select line BRJ"
 				onclick	="
-					/*objPlayer.objAudio.src				=objPlayerIndicatorMembrane.getAttribute(\'playerId\');*/
+					//objPlayer.objAudio.src				=objPlayerIndicatorMembrane.getAttribute(\'playerId\');
 					objPlayer.play();
 					"
 				style	="
-					display		:none;
-					text-align	:center;
+					display		: none;
+					text-align	: center;
+					background-color: #0000006e;
+					width		: 40px;
 					"
-				>'.
-				//PlayerEventIndicator::strHTML(). Osciloscope - disabled temporary
-				'
+				>
 				▷
 			</ifStopped>
 			<ifStopped
@@ -487,8 +482,7 @@ class IndicatorPlayer
 				<playerPlayButton
 					class	="block left TC3 BC3 line"
 					onclick	="
-						/*objPlayer.objAudio.src			=this.parentNode.getAttribute(\'playerId\');
-						objPlayer.objAudio.play();*/
+						//objPlayer.objAudio.src			=this.parentNode.getAttribute(\'playerId\');
 						objPlayer.play();
 						"
 					style	="
@@ -540,13 +534,15 @@ class IndicatorPlayer
 						objEvent._UpdateURLDyn(true);"
 						"
 					>
-					
 				</playerPlayText>
 			</ifStopped>
 		</playerControlAlwaysVisible>
-		';
-		$str.=Player::strObjectInit();
-		return $str;
+		'.Player::strObjectInit();
+		}
+	public static function strHTML()
+		{
+		$objIndicatorPlayer	=new IndicatorPlayer();
+		return $objIndicatorPlayer->str;
 		}
 	}
 ?>

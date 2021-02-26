@@ -18,7 +18,7 @@ class DynaScreenEventIndicator
 				display			:none;
 				top			:0;
 				left			:0;
-				width			:5px;
+				width			:2px;
 				background-color	:#fff;
 				"
 			>
@@ -29,7 +29,7 @@ class DynaScreenEventIndicator
 					display			:block;
 					top			:0;
 					left			:0;
-					width			:5px;
+					width			:2px;
 					background-color	:#333;
 					"
 				>

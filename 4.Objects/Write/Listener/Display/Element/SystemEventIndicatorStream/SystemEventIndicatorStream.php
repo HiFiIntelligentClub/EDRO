@@ -62,7 +62,7 @@ class SystemEventIndicatorStream
 				"
 			>'.
 			DynaScreenEventIndicator::strHtml().
-			Player::strIndicatorTop().
+			IndicatorPlayer::strHTML().
 			IndicatorNetwork::strHTML().
 			IndicatorHiFi::strHtml().
 			Login::strHTML().
