@@ -5,6 +5,7 @@
   //  <  **> 	//	//	//    // //    // //   // // //  ///   /////  //   // ////   //    // //
  //     Jl   	//	//	//    // //    // //   // //  // //    //     //   // //  // //    // //
 //////		 /////	//////	   //	   ////   /////   //  // ///// //       ///   /////  ///// //  /////
+//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
 class СоздатьСеанс
 	{
 	private	$сРасполож			= '/home/EDRO.o2o';
@@ -22,7 +23,9 @@ class СоздатьСеанс
 		$м['сЖанр']		=$_м['strStyle'];
 				   unset($_м);
 		$this->сМояПозицияО2О		= '_'.floor(microtime(true)).$this->сОконч;
-		if($_SERVER['strListener']!='')
+		$this->сМойНомерок		=$_SERVER['strListener'];
+
+		if($this->сМойНомерок!='')
 			{
 			$this->_ПолучитьАвторизацию();
 			}
@@ -35,15 +38,14 @@ class СоздатьСеанс
 		$this->_ДобавитьСлушателя();
 		
 		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч, strMyJson($м));
-		//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
+
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	private function _ПолучитьАвторизацию()
 		{
-		$this->сМойНомерок	=$_SERVER['strListener'];
 		if(is_file($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч))
 			{
-			_Report('$_SERVER[\'strListener\']!=_'.$_SERVER['strListener']);
+			_Report('$this->сМойНомерок!=_'.$this->сМойНомерок);
 			$this->сПредидущаяПозиция	=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч);
 			}
 		}
