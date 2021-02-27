@@ -8,10 +8,10 @@
 //setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
 class СоздатьСеанс
 	{
+	public	$сПредидущаяПозиция		= '';
 	private	$сРасполож			= '/home/EDRO.o2o';
 	private	$сРоль				= 'Listener';
 	private $сОконч				= '.O20';
-	public	$сПредидущаяПозиция		= '';
 	private	$ч0ВсегоСлушателей		= 0;
 	private $сМояПозицияО2О			= '';
 	private	$сТекущийСеанс			= '';
@@ -22,9 +22,9 @@ class СоздатьСеанс
 			           unset($_сРоль);
 		$м['сЖанр']		=$_м['strStyle'];
 				   unset($_м);
-		$this->сМояПозицияО2О		= '_'.floor(microtime(true)).$this->сОконч;
+		$this->сМояПозицияО2О		='_'.floor(microtime(true)).$this->сОконч;
 		$this->сМойНомерок		=$_SERVER['strListener'];
-
+		$this->сТекущийСеанс		=$this->сМойНомерок.$this->сМояПозицияО2О;
 		if($this->сМойНомерок!='')
 			{
 			$this->_ПолучитьАвторизацию();
@@ -33,11 +33,11 @@ class СоздатьСеанс
 			{
 			$this->_НоваяАвторизация();
 			}
-		$this->сТекущийСеанс	=$this->сМойНомерок.$this->сМояПозицияО2О;
+
 		$this->_ДобавитьРоль();
 		$this->_ДобавитьСлушателя();
-		
-		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч, strMyJson($м));
+
+		$this->_ЗаписатьИсторию();
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
@@ -87,6 +87,10 @@ class СоздатьСеанс
 				_Report('Cant create dir: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок);
 				}
 			}
+		}
+	private function _ЗаписатьИсторию()
+		{
+		file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч, strMyJson($м));
 		}
 	public static function с($_objKIIM, $_сРоль, $_м=array())
 		{
