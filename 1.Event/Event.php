@@ -23,12 +23,13 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 ./././././././*/
 class Event extends Design
 	{
-	public function __construct($_objKIIM)
-		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+	public function __construct($мКИМ, $rRadio)
+		{
 		// 0.strNDigit ->  arrAllIncomeActions
 		// 0.strNDigit ->  arrAllIncomeParametrs
-		$this->arrEvent				=arrGetEventSetter();
 
+		$this->arrEvent['rRadio']  		=stream_socket_accept($rRadio, -1);
+		$this->arrEvent				=arrGetEventSetter();
 		$this->arrEvent['bIzDynamic']		=$this->bIzDynamic();
 		$this->arrEvent['strObjectReality']	='objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
 		//echo '<pre>';
@@ -36,9 +37,9 @@ class Event extends Design
 		//echo '</pre>';
 		//exit;
 		//Event::strObjectDeclare();
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		
-		parent::__construct($objKIIM);
+		parent::__construct($мКИМ);
 
 		
 		/*$arrAllParams	=
@@ -79,7 +80,6 @@ class Event extends Design
 
 	public function strRealityInit()
 		{
-		
 		$str='<script>';
 			//$str.='alert(\'x\');';
 			$str.='console.log(\'[V]EDRO.Event: strParamsInit()\');';
@@ -240,6 +240,7 @@ class Event extends Design
 					{
 					console.log('[Vv]EDRO.Objects: _PlayStation(strPlayerId)');
 					objReality.bIzPlayer			=true;
+					objEvent.arrReality.strListenerDate	=new Date();
 					objEvent.strEvent			='/getStation';
 					objEvent.arrReality.strStationId		=strPlayerId;
 					objEvent._RequestURLDyn();
@@ -251,7 +252,10 @@ class Event extends Design
 					objReality.bIzDynaScreen		=true;
 					objEvent.strEvent			='/Search';
 					objEvent.arrReality.page			=0;
-					objDynaScreenEventIndicator.objHTML.style.display="block";
+					if(objDynaScreenEventIndicator.objHTML!=null)
+						{
+						objDynaScreenEventIndicator.objHTML.style.display="block";
+						}
 					//objEvent.PushEvent; ////// ++
 					this._RequestURLDyn() //objObjects->objEvent
 					console.log('[..]EDRO.Objects: _Search()');
@@ -304,7 +308,7 @@ class Event extends Design
 					objReality.bIzDynaScreen	=true;
 					objReality.intLoadingTime	=0;
 					objEvent.strParams		=strParams;
-					//console.log(objEvent.strParams);
+					console.log(objEvent.strParams);
 					objEvent.arrRealityPair		=objEvent.strParams.split("&");
 					
 					//console.log(objEvent.arrRealityPair);
@@ -316,11 +320,9 @@ class Event extends Design
 
 					objSearch.objValueInputstrName.value		=objEvent.arrReality.strName;
 					objSearch.objValueInputstrGenre.value		=objEvent.arrReality.strGenre;
-					//objSearch.objValueInputintBitrate.value		=objEvent.arrReality.intBitrate;
-					//objSearch.objValueInputstrCodec.value		=objEvent.arrReality.strCodec;
 
-					console.log(objSearch.objValueInputstrName.value);
-					//objEvent.strURL			=obj.pathname+'?'+objEvent.strParams;
+
+					//console.log(objSearch.objValueInputstrName.value);
 					objEvent.strURL			='/?'+objEvent.strParams;
 					objEvent.strURLDyn		=objEvent.strURL+'&d=1';//objObjects->objEvent
 					objDynaScreenEventIndicator.objHTML.style.display	="block"; 
@@ -408,8 +410,8 @@ class Event extends Design
 				_SetRoleSignal()//Visual placement of the role fact in objEDRO->strReality['strRoleSignal'];
 					{
 					console.log('[Vv]EDRO.Reality: Master Mood SET  _SetRoleSignal()');
-					this.objRoleSignal		=document.getElementById('SignalRole');
-					this.objRoleSignal.innerHTML	=strSignalRole;
+					//this.objRoleSignal		=document.getElementById('SignalRole');		//temp
+					//this.objRoleSignal.innerHTML	=strSignalRole;					//temp
 					console.log('[..]EDRO.Reality: Master Mood SET  _SetRoleSignal()');
 					}
 
@@ -437,9 +439,14 @@ class Event extends Design
 oо2оo;
 		return $str;
 		}
+	public static function _V($мКИМ, $rRadio)
+		{
+		$oEvent	=new Event($мКИМ, $rRadio);
+		}
 	public static function strObjectInit()
 		{
 		return EDRO::strObjInit('Event');
 		}
+	
 	}
 ?>
