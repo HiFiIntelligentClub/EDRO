@@ -10,10 +10,8 @@
 class ПрочитатьСлушателей
 	{
 	public	$м020;
-	public function __construct($_objKIIM, $_сРасполож)
+	public function __construct($_сРасполож)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__,'_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 
 		$сРасполож	=$_сРасполож;
 			   unset($_сРасполож);
@@ -50,7 +48,7 @@ class ПрочитатьСлушателей
 					}
 				if(($чТекущВремяСекунд-300)<$чНомерокВремя)
 					{
-					$мСлушатель 			=FileRead::arrJSON($objKIIM, $сРасполож.'/'.$сСлушательФайл);
+					$мСлушатель 			=FileRead::arrJSON($сРасполож.'/'.$сСлушательФайл);
 					if($мСлушатель['сЖанр']!='')
 						{
 						$мСлушателиЗаПятьМинут[]	=$мСлушатель;
@@ -64,14 +62,12 @@ class ПрочитатьСлушателей
 		$this->м020['чСлушателиЗаПятьМинут']	=$чСлушателиЗаПятьМинут;
 		$this->м020['чСлушателиВсегоЗаписей']	=$чСлушателиВсегоЗаписей;
 		$this->м020['чСлушателиЗа24Часа']	=$чСлушателиЗа24Часа;
-		
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function м($_objKIIM, $_сРасполож)
+	public static function м($_сРасполож)
 		{
 		//echo $_сРасполож;
 		//exit(0);
-		$оПрочитатьСлушателей	=new ПрочитатьСлушателей($_objKIIM, $_сРасполож);
+		$оПрочитатьСлушателей	=new ПрочитатьСлушателей($_сРасполож);
 		return $оПрочитатьСлушателей->м020;
 		}
 	}
