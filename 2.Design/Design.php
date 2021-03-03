@@ -24,20 +24,13 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class Design extends Reality
 	{
 	public	$arrDesign;
-	public function __construct($_objKIIM)
+	public function __construct($мКИМ)
 		{
-		//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-		//$objKIIM	=$_objKIIM;
-		//unset($_objKIIM);
-
-		//print_r($arrReality);
-		echo $this->arrDesign['strTemplate']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Events/'.сПреобразовать($this->arrEvent['strEvent'], "вКоманду").'/run.php';
-		
-		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$this->arrDesign['strTemplate']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase().'/Events/'.сПреобразовать($this->arrEvent['strEvent'], "вКоманду").'/run.php';
 		//echo '<pre>';
 		//print_r($this->arrDesign);
 		//echo '</pre>';
-		parent::__construct($_objKIIM);
+		parent::__construct($мКИМ);
 		}
 	public static function strObjectInit()
 		{
@@ -68,58 +61,62 @@ class Design extends Reality
 				_UpdateDimensions()
 					{
 					objDynaScreen._GetDimensions();
+					
 					this.objElement		=document.getElementsByTagName('station')[0];
 					if(typeof(this.objElement)=='object')
 						{
-						this.intElementHeight	=this.objElement.offsetHeight+10;
-						this.intElementWidth	=this.objElement.offsetWidth+10;
-						}
-					else
-						{
-						this.intElementHeight	=90;
-						this.intElementWidth	=410;
-						}
-					this.intScreenWidth	=objDynaScreen.intWidth;
-					this.intScreenHeight	=(objDynaScreen.intHeight-180);
-					this.intWidthElements	=Math.floor(this.intScreenWidth/this.intElementWidth);
-					if(this.intWidthElements<1)
-						{
-					//	console.log('[Vvv]EDRO.Design: intWidthElements<=1');
-						this.intWidthElements=1;
-					//	console.log('[...]EDRO.Design: intWidthElements<=1');
-						}
-					this.intHeightElements	=Math.floor(this.intScreenHeight/100);
-					if(this.intHeightElements<1)
-						{
-						this.intHeightElements=1;
-						}
-					this.intTotalElements	=this.intWidthElements*this.intHeightElements;
-					if(this.intTotalElements<1)
-						{
-					//	console.log('[Vvv]EDRO.Design: intTotalElements<=1');
-						this.intTotalElements		=1;
-					//	console.log('[...]EDRO.Design: intTotalElements<=1');
-						}
-					//objIndicatorDimensions.objStr.innerHTML	=this.intScreenWidth+'x'+this.intScreenHeight+'<br/>V'+this.intWidthElements+':H'+this.intHeightElements+':T'+this.intTotalElements;
-					if(objEvent.arrReality.int1OnPage!=this.intTotalElements)
-						{
-						//objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);
-						//EDRO::strObjInit('Search');
-						objSearch				=new Search();
-						objEvent.arrReality.strName		=objSearch.strValueInputstrName;
-						objEvent.arrReality.strGenre		=objSearch.strValueInputstrGenre;
-						//objEvent.arrReality.intBitrate	=objSearch.strValueInputintBitrate;
-						//objEvent.arrReality.strCodec		=objSearch.strValueInputstrCodec;
-						objEvent.arrReality.int1OnPage		=this.intTotalElements;
-						//console.log(objEvent.arrReality.int1OnPage);
-						objEvent._UpdateURLDyn(false);
-						objIndicatorDimensions.objStr.style.backgroundColor	='red';
-						objIndicatorDimensions.objStr.style.color		='#FFF';
-						}
-					else
-						{
-						objIndicatorDimensions.objStr.style.backgroundColor	='';
-						objIndicatorDimensions.objStr.style.color		='';
+						if(typeof(this.objElement)=='object')
+							{
+							this.intElementHeight	=this.objElement.offsetHeight+10;
+							this.intElementWidth	=this.objElement.offsetWidth+10;
+							}
+						else
+							{
+							this.intElementHeight	=90;
+							this.intElementWidth	=410;
+							}
+						this.intScreenWidth	=objDynaScreen.intWidth;
+						this.intScreenHeight	=(objDynaScreen.intHeight-180);
+						this.intWidthElements	=Math.floor(this.intScreenWidth/this.intElementWidth);
+						if(this.intWidthElements<1)
+							{
+						//	console.log('[Vvv]EDRO.Design: intWidthElements<=1');
+							this.intWidthElements=1;
+						//	console.log('[...]EDRO.Design: intWidthElements<=1');
+							}
+						this.intHeightElements	=Math.floor(this.intScreenHeight/100);
+						if(this.intHeightElements<1)
+							{
+							this.intHeightElements=1;
+							}
+						this.intTotalElements	=this.intWidthElements*this.intHeightElements;
+						if(this.intTotalElements<1)
+							{
+						//	console.log('[Vvv]EDRO.Design: intTotalElements<=1');
+							this.intTotalElements		=1;
+						//	console.log('[...]EDRO.Design: intTotalElements<=1');
+							}
+						//objIndicatorDimensions.objStr.innerHTML	=this.intScreenWidth+'x'+this.intScreenHeight+'<br/>V'+this.intWidthElements+':H'+this.intHeightElements+':T'+this.intTotalElements;
+						if(objEvent.arrReality.int1OnPage!=this.intTotalElements)
+							{
+							//objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);
+							//EDRO::strObjInit('Search');
+							objSearch				=new Search();
+							objEvent.arrReality.strName		=objSearch.strValueInputstrName;
+							objEvent.arrReality.strGenre		=objSearch.strValueInputstrGenre;
+							//objEvent.arrReality.intBitrate	=objSearch.strValueInputintBitrate;
+							//objEvent.arrReality.strCodec		=objSearch.strValueInputstrCodec;
+							objEvent.arrReality.int1OnPage		=this.intTotalElements;
+							//console.log(objEvent.arrReality.int1OnPage);
+							objEvent._UpdateURLDyn(false);
+							objIndicatorDimensions.objStr.style.backgroundColor	='red';
+							objIndicatorDimensions.objStr.style.color		='#FFF';
+							}
+						else
+							{
+							objIndicatorDimensions.objStr.style.backgroundColor	='';
+							objIndicatorDimensions.objStr.style.color		='';
+							}
 						}
 					}
 				_CheckElements()
