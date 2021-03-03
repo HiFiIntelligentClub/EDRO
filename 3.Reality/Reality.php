@@ -25,23 +25,27 @@ class Reality extends Objects
 	{
 	protected 	$strBasePath	='/home/EDRO';
 	public 		$arrReality	=array();
-	public function __construct($_objKIIM)
-		{$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+	public function __construct($мКИМ)
+		{
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*+1+*/	$this->_IsDNT();
-	/*+2+*/	$this->_isConsole($objKIIM);
+	/*+2+*/	$this->_isConsole();
+
+		$this->мЗаголовкиСлушателя	=$this->мЧтениеЗапросаИзБраузераСлушателя($this->рПередача);
+		$this->мЗаголовки		=$this->мЗаголовкиЗапроса($this->мЗаголовкиСлушателя);
+		$this->сРасширение		=mb_strtolower(сКонцДоСимвола($this->мЗаголовки[1], '.'));
 
 	///////////////////////////////////////////!!!!
 		
-		$this->arrReality['сРасположениеКорень']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub';
+		$this->arrReality['сРасположениеКорень']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase();
 		$this->arrReality['strRoleSignal']		='Listener';
 		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
-		$this->arrReality['strListenerId']		=СоздатьСеанс::с($objKIIM, $this->arrReality['strRoleSignal'] , $this->arrEvent['arrReality']);
-		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($objKIIM, $this->arrReality['strListnersPath']);
-		//exit;
+		$this->arrReality['strListenerId']		=СоздатьСеанс::с($this->arrReality['strRoleSignal'] , $this->arrEvent['arrReality']);
+		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($this->arrReality['strListnersPath']);
+
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		$this->arrReality['strRoleLangSignal']		=rmLb(FileRead::str($objKIIM, $this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
+		$this->arrReality['strRoleLangSignal']		=rmLb(FileRead::str($this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
 		$this->arrReality['strLangSignal']		=strGetDomainLang();
 		$this->arrReality['bIzAndroid']			=$this->bIzAndroid();
 		$this->arrReality['bIzApple']			=$this->bIzApple();
@@ -53,14 +57,13 @@ class Reality extends Objects
 		//exit(0);
 
 
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-		parent::__construct($objKIIM);
+		parent::__construct($мКИМ);
 		}
 	public static function strBasePath()
 		{
 		return'/home/EDRO';
 		}
-	private function _isConsole($_objKIIM)
+	private function _isConsole()
 		{
 		$this->arrReality['bIzConsole']=false;
 		if(php_sapi_name()=='cli')
@@ -120,7 +123,8 @@ class Reality extends Objects
 		{
 		if(isset($_SERVER['HTTP_DNT'])&&$_SERVER['HTTP_DNT']==1)
 			{
-			require_once('/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_isDnt.php');
+			require('/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_isDnt.php');
+			echo $str;
 			exit(0);
 			}
 		}
@@ -238,6 +242,7 @@ class Reality extends Objects
 							objIndicatorNetwork.objStrSrvReady.style.backgroundColor	='red';
 							objIndicatorNetwork.objStrSrvReady.style.color			='white';
 							}
+
 						if(objPlayer.objAudio.readyState==0)
 							{
 							objIndicatorNetwork.objStrSrvPortsReady.style.backgroundColor	='red';
