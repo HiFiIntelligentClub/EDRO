@@ -24,7 +24,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class Pagination
 	{
 	public $arr	=array();
-	public function __construct($_objKIIM, $objEDRO)
+	public function __construct($objEDRO)
 		{
 		/*echo '<pre>';
 		print_r($objEDRO->arrEvent);
@@ -32,16 +32,15 @@ class Pagination
 		//exit;
 		//$objEDRO->arrEvent['arrReality']['int0PlayingStationNum'];
 		//$objKIIM=$_objKIIM;
-		   unset($_objKIIM);
-			print_r($objEDRO);
-			exit;
-		/*echo*/$int0PlayingStationNum		=$objEDRO->arrEvent['arrReality']['int0PlayingStationNum'];
-		/*echo*/$int1PlayingStationNum		=($int0PlayingStationNum+1);
-		/*echo*/$int0Page	=($objEDRO->arrEvent['arrReality']['int0Page']); //0,1,xxx
-		/*echo*/$int1OnPage	=$objEDRO->arrEvent['arrReality']['int1OnPage']; //1-> 8 = 8
-		/*echo*/$int0Start	=0+($int0Page*$int1OnPage);//From 0 to 7 intStart=8 ->15 intStart=16;
-		/*echo*/$int1Untill	=($int0Start+$int1OnPage);//From 0 to 7 including 7 = 8
-		/*echo*/$int0Untill	=($int1Untill-1);
+		   //unset($_objKIIM);
+			//print_r($objEDRO);
+			//exit;
+		/*echo*/$int1PlayingStationNum		=$objEDRO->arrEvent['arrReality']['int1PlayingStationNum'];
+		/*echo*/$int0Page			=($objEDRO->arrEvent['arrReality']['int0Page']); //0,1,xxx
+		/*echo*/$int1OnPage			=$objEDRO->arrEvent['arrReality']['int1OnPage']; //1-> 8 = 8
+		/*echo*/$int0Start			=0+($int0Page*$int1OnPage);//From 0 to 7 intStart=8 ->15 intStart=16;
+		/*echo*/$int1Untill			=($int0Start+$int1OnPage);//From 0 to 7 including 7 = 8
+		/*echo*/$int0Untill			=($int1Untill-1);
 			if($objEDRO->arrObjects['ч0РасположениеTotal'])
 				{
 		/*echo*/	if($objEDRO->arrObjects['ч0РасположениеTotal']===0)
@@ -57,7 +56,7 @@ class Pagination
 				}
 			else
 				{
-				$objTotal	=FileRead::objJSON($objKIIM, $objEDRO->arrObjects['сРасположениеTotal']); //0-lastone
+				$objTotal	=FileRead::objJSON($objEDRO->arrObjects['сРасположениеTotal']); //0-lastone
 				if($objTotal===0)
 					{
 					$int1Total	=1; //Channge in par
@@ -122,9 +121,9 @@ class Pagination
 		$this->arr			=$arrReturn;
 		}
 
-	public static function arr($_objKIIM, $objEDRO)
+	public static function arr($objEDRO)
 		{
-		$objPagination		=new Pagination($_objKIIM, $objEDRO);
+		$objPagination		=new Pagination($objEDRO);
 		return $objPagination->arr;
 		}
 	}
