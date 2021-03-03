@@ -70,13 +70,13 @@ class СоздатьСеанс
 		}
 	private function _НоваяАвторизация()
 		{
-		$оВсего		=FileRead::objО2О($objKIIM, $this->сРасполож.'/'.$this->сРоль.'Total'.$this->сОконч);
+		$оВсего		=FileRead::objО2О($this->сРасполож.'/'.$this->сРоль.'Total'.$this->сОконч);
 		if(isset($оВсего->int0Total))
 			{
 			$this->ч0ВсегоСлушателей	=($оВсего->int0Total);
 			}
 		$this->ч0ВсегоСлушателей++;
-		$оO2oЗаписьИтого	=new O2oЗаписьИтого($objKIIM, $this->сРоль, array(
+		$оO2oЗаписьИтого	=new O2oЗаписьИтого($this->сРоль, array(
 							'int0Total'		=>$this->ч0ВсегоСлушателей,
 							'int0'.$this->сРоль	=>$this->ч0ВсегоСлушателей
 							)
