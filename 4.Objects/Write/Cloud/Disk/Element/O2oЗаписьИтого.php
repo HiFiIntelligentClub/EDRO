@@ -7,10 +7,8 @@
 //////
 class O2oЗаписьИтого
 	{
-	public function __construct($_objKIIM, $_сРоль, $_мИтого)
+	public function __construct($_сРоль, $_мИтого)
 		{
-		$objKIIM=$_objKIIM;unset($_objKIIM);
-		$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		$сРоль		=$_сРоль;
 			   unset($_сРоль);
 		$мИтого		=$_мИтого;
@@ -22,14 +20,13 @@ class O2oЗаписьИтого
 
 		if($Записали===FALSE)
 			{
-			ReportError::_Admin($objKIIM, '020ЗаписьИтого:Неозможно записать итог');
+			ReportError::_Admin('020ЗаписьИтого:Неозможно записать итог');
 			}
 
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function _Admin($_objKIIM, $_сРоль='Listemer', $_мИтого)
+	public static function _Admin($_сРоль='Listemer', $_мИтого)
 		{
-		$оО2оЗаписьИтого	=new O2oЗаписьИтого($_objKIIM, $_сРоль, $_мИтого);
+		$оО2оЗаписьИтого	=new O2oЗаписьИтого($_сРоль, $_мИтого);
 		}
 	}
 ?>
