@@ -23,19 +23,22 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 ./././././././*/
 class Event extends Design
 	{
+	public $arrEvent;
 	public function __construct($мКИМ, $rRadio)
 		{
 		// 0.strNDigit ->  arrAllIncomeActions
 		// 0.strNDigit ->  arrAllIncomeParametrs
 
-		$this->arrEvent['rRadio']  		=stream_socket_accept($rRadio, -1);
-		$this->arrEvent				=arrGetEventSetter();
-		$this->arrEvent['bIzDynamic']		=$this->bIzDynamic();
-		$this->arrEvent['strObjectReality']	='objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
+		//echo($this->arrEvent['rRadio']);
+		//$this->arrEvent				=arrGetEventSetter();
+		//$this->arrEvent 		= stream_socket_accept($rRadio, -1);
+		$this->arrEvent				= arrGetEventSetter($rRadio);
+		$this->arrEvent['bIzDynamic']		= $this->bIzDynamic();
+		$this->arrEvent['strObjectReality']	= 'objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
 		//echo '<pre>';
-		//print_r($this->arrEvent);
+		print_r($this->arrEvent);
 		//echo '</pre>';
-		//exit;
+		///exit;
 		//Event::strObjectDeclare();
 		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		
@@ -441,7 +444,7 @@ oо2оo;
 		}
 	public static function _V($мКИМ, $rRadio)
 		{
-		$oEvent	=new Event($мКИМ, $rRadio);
+		return new Event($мКИМ, $rRadio);
 		}
 	public static function strObjectInit()
 		{
