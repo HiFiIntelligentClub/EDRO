@@ -27,29 +27,31 @@ class Reality extends Objects
 	public 		$arrReality	=array();
 	public function __construct($мКИМ)
 		{
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*+1+*/	$this->_IsDNT();
 	/*+2+*/	$this->_isConsole();
-
-		$this->arrReality['мЗаголовкиСлушателя']	=$this->мЧтениеЗапросаИзБраузераСлушателя($this->arrEvent['rRadio']);
-		$this->arrReality['мЗаголовки']			=$this->мЗаголовкиЗапроса($this->arrReality['мЗаголовкиСлушателя']);
-		$this->arrReality['сРасширение']		=mb_strtolower(сКонцДоСимвола($this->мЗаголовки[1], '.'));
-
-	///////////////////////////////////////////!!!!
 		
-		$this->arrReality['сРасположениеКорень']	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase();
-		$this->arrReality['strRoleSignal']		='Listener';
-		$this->arrReality['strListnersPath']		='/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
-		$this->arrReality['strListenerId']		=СоздатьСеанс::с($this->arrReality['strRoleSignal'] , $this->arrEvent['arrReality']);
-		$this->arrReality['arrCurrentListeners']	=ПрочитатьСлушателей::м($this->arrReality['strListnersPath']);
+		//$this->arrReality['мЗаголовкиСлушателя']	= $this->мЗаголовкиВПеременные($мЗапросИзБраузераСлушателя);
+		//$this->arrReality['мЗаголовки']			= $this->мЗаголовкиЗапроса($this->arrReality['мЗаголовкиСлушателя']);
+		$this->arrReality['сРасширение']		= mb_strtolower(сКонцДоСимвола($this->arrReality['мЗаголовки'][1], '.'));
+
+		///////////////////////////////////////////!!!!
+		
+		$this->arrReality['сРасположениеКорень']	= '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase();
+		$this->arrReality['strRoleSignal']		= 'Listener';
+		$this->arrReality['strListnersPath']		= '/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
+		$this->arrReality['strListenerId']		= СоздатьСеанс::с($this->arrReality['strRoleSignal'], $this->arrEvent['arrReality']);
+		print_r($this);
+		exit;
+		$this->arrReality['arrCurrentListeners']	= ПрочитатьСлушателей::м($this->arrReality['strListnersPath']);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		$this->arrReality['strRoleLangSignal']		=rmLb(FileRead::str($this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
-		$this->arrReality['strLangSignal']		=strGetDomainLang();
-		$this->arrReality['bIzAndroid']			=$this->bIzAndroid();
-		$this->arrReality['bIzApple']			=$this->bIzApple();
-		$this->arrReality['bIzDesktop']			=$this->bIzDesktop();
+		$this->arrReality['strRoleLangSignal']		= rmLb(FileRead::str($this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
+		$this->arrReality['strLangSignal']		= strGetDomainLang();
+		$this->arrReality['bIzAndroid']			= $this->bIzAndroid();
+		$this->arrReality['bIzApple']			= $this->bIzApple();
+		$this->arrReality['bIzDesktop']			= $this->bIzDesktop();
 		
 		//print_r($this->arrReality);
 		//print_r($_SESSION);
@@ -63,38 +65,35 @@ class Reality extends Objects
 		{
 		return'/home/EDRO';
 		}
-	private function мЧтениеЗапросаИзБраузераСлушателя($_rRadio)
-		{
-		$сПередача		=fread($_rRadio, 512);
-		if(!empty($сПередача))
-			{
-			$мПередача		=explode("\n", $сПередача);
-			}
-		else
-			{
-			_Report('fread($_рПередача, 512) empty.');
-			}
-		return $мПередача;
-		}
 	function мЗаголовкиЗапроса($_мЗаголовки)
 		{
 		$мЗаголовки	=array();
 		if(isset($_мЗаголовки[0]))
 			{
 			$мЗаголовки	=explode(" ", $_мЗаголовки[0]);
+					        unset($_мЗаголовки);
 			}
 
 		if(isset($мЗаголовки[0]))
 			{
 			$мЗапрос[$мЗаголовки[0]]	=$мЗаголовки[0];
 			}
+		else
+			{
+			$мЗапрос[$мЗаголовки[0]]	=0;
+			}
 		if(isset($мЗаголовки[1]))
 			{
-			$мЗаголовки[1])		=$мЗаголовки[1];
+			$мЗаголовки[1]		=$мЗаголовки[1];
+			}
+		else
+			{
+			$мЗапрос[$мЗаголовки[1]]	=0;
 			}
 
 	    	return $мЗаголовки;
 		}
+
 	private function _isConsole()
 		{
 		$this->arrReality['bIzConsole']=false;
