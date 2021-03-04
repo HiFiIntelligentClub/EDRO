@@ -1,11 +1,11 @@
 <?php
-/*© A.A.CheckMaRev assminog@gmail.com*/
+/* © A.A.CheckMaRev assminog@gmail.com*/
 //////		 ////	//	   //	 //    // /////   /////  ///// /////  //   // /////  //    //  ////
    //   /\ RCe	//	//	//    // //    // //   // //  // //    //  // //   // //  // //    // //
   //  <  **> 	//	//	//    // //    // //   // // //  ///   /////  //   // ////   //    // //
  //     Jl   	//	//	//    // //    // //   // //  // //    //     //   // //  // //    // //
 //////		 /////	//////	   //	   ////   /////   //  // ///// //       ///   /////  ///// //  /////
-//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);!!! NO COOCKIES IS SUXX!!
+//setcookie('strListener', $this->сМойНомерок, time()+(60*60*24*365), '/', 'HiFiInteligentClub.'.strGetDomainZone(), false, false);
 //1.Разбираем сеанс
 //1.1.Проверяем есть ли он
 //1.1.1.ЕСТЬ
@@ -32,48 +32,62 @@ class СоздатьСеанс
 	public	$сПредидущаяПозиция		= '';
 	private	$сРасполож			= '/home/EDRO.o2o';
 	private	$сРоль				= 'Listener';
-	private $сОконч				= '.O20';
+	private $сОконч				= '.О20';
 	private	$ч0ВсегоСлушателей		= 0;
 	private $сМояПозицияО2О			= '';
 	private	$сТекущийСеанс			= '';
 	private	$сМойНомерок			= '';
-	public function __construct($_сРоль, $_м=array())
+	private $сЖанр				= '';
+	public function __construct($_сРоль, $_м)
 		{
 		$this->сРоль		=$_сРоль;
 			           unset($_сРоль);
-		$м['сЖанр']		=$_м['strStyle'];
-				   unset($_м);
-		$this->сМояПозицияО2О		='_'.floor(microtime(true));
-		$this->сМойНомерок		=$_SERVER['strListener'];
-		$this->сТекущийСеанс		=$this->сМойНомерок.'_'.$this->сМояПозицияО2О.$this->сОконч;
+		//$this->сЖанр		=$strGenre;
+		
+		echo $this->сМояПозицияО2О		='_'.floor(microtime(true));
+		echo "\n";
+		//$this->сМойНомерок		=$_SERVER['strListener'];
+
 		if($this->сМойНомерок!='')
 			{
-			$this->_ПолучитьАвторизацию();
+			$this->сМойНомерок	=$this->сПолучитьАвторизацию();
 			}
 		else
 			{
-			$this->_НоваяАвторизация();
+			$this->сМойНомерок	=$this->сНоваяАвторизация();
 			}
-
+		echo $this->сТекущийСеанс		=$this->сМойНомерок.'_'.$this->сМояПозицияО2О.$this->сОконч;
+		echo "\n";
 		$this->_ЗаписатьРоль();
 		$this->_ЗаписатьСлушателя();
-		$this->_ЗаписатьИсторию($м);
+		$this->_ЗаписатьИсторию($_м);
 
 		}
-	private function _ПолучитьАвторизацию()
+	private function сПолучитьАвторизацию()
 		{
+		echo 'сПолучитьАвторизацию()'."\n";
+		$сЗаписаннаяПозиция='';
 		if(is_file($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч))
 			{
 			//_Report('$this->сМойНомерок!=_'.$this->сМойНомерок);
-			$this->сПредидущаяПозиция	=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч);
+			$сЗаписаннаяПозиция=file_get_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.'/0'.$this->сОконч);
 			}
+		if($сЗаписаннаяПозиция=='')
+			{
+			_Report(__CLASS__.' '.__FUNCTION__.' $сЗаписаннаяПозиция: '.$сЗаписаннаяПозиция);
+			}
+		return $сЗаписаннаяПозиция;
 		}
-	private function _НоваяАвторизация()
+	private function сНоваяАвторизация()
 		{
+		echo 'сНоваяАвторизация()'."\n";
+		echo $this->сРасполож.'/'.$this->сРоль.'Total'.$this->сОконч."\n";
 		$оВсего		=FileRead::objО2О($this->сРасполож.'/'.$this->сРоль.'Total'.$this->сОконч);
+
 		if(isset($оВсего->int0Total))
 			{
-			$this->ч0ВсегоСлушателей	=($оВсего->int0Total);
+			echo $this->ч0ВсегоСлушателей	=($оВсего->int0Total);
+			
 			}
 		$this->ч0ВсегоСлушателей++;
 		$оO2oЗаписьИтого	=new O2oЗаписьИтого($this->сРоль, array(
@@ -81,7 +95,9 @@ class СоздатьСеанс
 							'int0'.$this->сРоль	=>$this->ч0ВсегоСлушателей
 							)
 						);
-		$this->сМойНомерок		=сКодировать($this->ч0ВсегоСлушателей, 'к');
+		exit;
+		return $this->ч0ВсегоСлушателей;
+		//return		сКодировать($this->ч0ВсегоСлушателей, 'к');
 		//	$_SESSION['strListener']	= $this->сМойНомерок;
 		}
 	private function _ЗаписатьРоль()
@@ -105,14 +121,18 @@ class СоздатьСеанс
 				{
 				_Report('Cant create dir: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок);
 				}
+			else
+				{
+				if(file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м)))
+					{
+					_Report('Не записать историю: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.$this->сОконч);
+					}
+				}
 			}
 		}
 	private function _ЗаписатьИсторию($м)
 		{
-		if(file_put_contents($this->сРасполож.'/History/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м)))
-			{
-			_Report('Не записать историю: '.$this->сРасполож.'/History/'.$this->сРоль.'/'.$this->сМойНомерок.$this->сОконч);
-			}
+
 		}
 	public static function с($_сРоль, $_м=array())
 		{
