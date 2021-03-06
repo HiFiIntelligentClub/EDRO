@@ -132,37 +132,40 @@ class СоздатьСеанс
 
 	private function _ЗаписатьРоль()
 		{
-		if(!is_dir($this->сРасполож.'/'.$this->сРоль))
+		$сРасположРоль	=$this->сРасполож.'/'.$this->сРоль;
+		if(!is_dir($сРасположРоль))
 			{
-			if(mkdir($this->сРасполож.'/'.$this->сРоль)===FALSE)
+			if(mkdir($сРасположРоль)===FALSE)
 				{
-				_Report('Не создать расположение: '.$this->сРасполож.'/'.$this->сРоль);
+				_Report('Не создать расположение: '.$сРасположРоль);
 				}
 			}
 		}
 	private function _ЗаписатьСлушателя()
 		{
-		if(is_dir($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок))
+		$сРасположМойНомерок	=$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок;
+		if(is_dir($сРасположМойНомерок))
 			{
 			}
 		else
 			{
-			if(mkdir($this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок)===FALSE)
+			if(mkdir($сРасположМойНомерок)===FALSE)
 				{
-				_Report('Cant create dir: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок);
+				_Report('Cant create dir: '.$сРасположМойНомерок);
 				}
 			else
 				{
-				if(file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м)))
-					{
-					_Report('Не записать историю: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.$this->сОконч);
-					}
+
 				}
 			}
 		}
+
 	private function _ЗаписатьИсторию($м)
 		{
-
+		if(file_put_contents($this->сРасполож.'/'.$this->сРоль.'/'.$this->сТекущийСеанс, strMyJson($м)))
+			{
+			_Report('Не записать историю: '.$this->сРасполож.'/'.$this->сРоль.'/'.$this->сМойНомерок.$this->сОконч);
+			}
 		}
 	public static function с($_сРоль, $objEDRO)
 		{
