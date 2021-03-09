@@ -26,22 +26,21 @@ class Event extends Design
 	public $arrEvent;
 	public function __construct($мКИМ, $rRadio)
 		{
-		// 0.strNDigit ->  arrAllIncomeActions
-		// 0.strNDigit ->  arrAllIncomeParametrs
-
-		//echo($this->arrEvent['rRadio']);
-		//$this->arrEvent				=arrGetEventSetter();
-		//$this->arrEvent 		= stream_socket_accept($rRadio, -1);
 		$this->arrEvent				= arrGetEventSetter($rRadio);
 		$this->arrEvent['bIzDynamic']		= $this->bIzDynamic();
-		$this->arrEvent['strObjectReality']	= 'objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
-		//echo '<pre>';
-		print_r($this->arrEvent);
-		//echo '</pre>';
-		///exit;
-		//Event::strObjectDeclare();
-		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
+		$this->arrEvent['strArrReality']	= '';
 		
+		if($this->arrEvent['bIzDynamic'])
+			{
+			
+			}
+		else
+			{
+			$this->arrEvent['strObjectReality']	= 'objEvent.arrReality={'.strArrayRec2JS($this->arrEvent, 'arrReality').'};';
+			}
+		//echo '<pre>';
+		//print_r($this->arrEvent);
+		//echo '</pre>';
 		parent::__construct($мКИМ);
 
 		
@@ -69,8 +68,6 @@ class Event extends Design
 			'strEventEDRO_URL'		=>'',
 			);*/
 		}
-
-
 	private function bIzDynamic()
 		{
 		$bIzDynamic	=false;
@@ -80,7 +77,6 @@ class Event extends Design
 			}
 		return $bIzDynamic;
 		}
-
 	public function strRealityInit()
 		{
 		$str='<script>';
