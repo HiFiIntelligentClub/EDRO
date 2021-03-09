@@ -23,7 +23,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 ./././././././*/
 class Reality extends Objects
 	{
-	protected 	$strBasePath	='/home/EDRO';
+	//protected 	$strBasePath	='/home/EDRO';
 	public 		$arrReality	=array();
 	public function __construct($мКИМ)
 		{
@@ -32,7 +32,7 @@ class Reality extends Objects
 	/*+2+*/	$this->_isConsole();
 		
 		//$this->arrReality['мЗаголовкиСлушателя']	= $this->мЗаголовкиВПеременные($мЗапросИзБраузераСлушателя);
-		//$this->arrReality['мЗаголовки']			= $this->мЗаголовкиЗапроса($this->arrReality['мЗаголовкиСлушателя']);
+		//$this->arrReality['мЗаголовки']		= $this->мЗаголовкиЗапроса($this->arrReality['мЗаголовкиСлушателя']);
 		$this->arrReality['сРасширение']		= mb_strtolower(сКонцДоСимвола($this->arrReality['мЗаголовки'][1], '.'));
 
 		///////////////////////////////////////////!!!!
@@ -40,18 +40,16 @@ class Reality extends Objects
 		$this->arrReality['сРасположениеКорень']	= '/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/'.strDataBase();
 		$this->arrReality['strRoleSignal']		= 'Listener';
 		$this->arrReality['strListnersPath']		= '/home/EDRO.o2o/'.$this->arrReality['strRoleSignal'];
-		$this->arrReality['strListenerId']		= СоздатьСеанс::с($this->arrReality['strRoleSignal'], $this->arrEvent['arrReality']);
+		$this->arrReality['strListenerId']		= СоздатьСеанс::с($this->arrReality['strRoleSignal'], $this);
 		print_r($this);
 		exit;
-		$this->arrReality['arrCurrentListeners']	= ПрочитатьСлушателей::м($this->arrReality['strListnersPath']);
+		//`$this->arrReality['arrCurrentListeners']	= ПрочитатьСлушателей::м($this->arrReality['strListnersPath']);
 
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		$this->arrReality['strRoleLangSignal']		= rmLb(FileRead::str($this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
-		$this->arrReality['strLangSignal']		= strGetDomainLang();
-		$this->arrReality['bIzAndroid']			= $this->bIzAndroid();
-		$this->arrReality['bIzApple']			= $this->bIzApple();
-		$this->arrReality['bIzDesktop']			= $this->bIzDesktop();
+		//+$this->arrReality['strRoleLangSignal']		= rmLb(FileRead::str($this->strBasePath.'/3.Reality/User/'.$this->arrReality['strRoleSignal'].'/.strLang.php'));
+		//$this->arrReality['strLangSignal']		= strGetDomainLang();
+
 		
 		//print_r($this->arrReality);
 		//print_r($_SESSION);
@@ -104,51 +102,6 @@ class Reality extends Objects
 		else
 			{
 			}
-		}
-	private function bIzCheckMaPhone()
-		{
-		$bIz=false;
-		$strUserAgent=strtolower($_SERVER['HTTP_USER_AGENT']);
-		if(strpos($strUserAgent, 'edro:polimer')!==false)
-			{
-			$bIz=true;
-			}
-		return $bIz;
-		//return true;
-		}
-	private function bIzAndroid()
-		{
-		$bIz=false;
-		$strUserAgent=strtolower($_SERVER['HTTP_USER_AGENT']);
-		if(strpos($strUserAgent, 'android')!==false)
-			{
-			$bIz=true;
-			}
-		return $bIz;
-		//return true;
-		}
-	private function bIzApple()
-		{
-		$bIz=false;
-		 $strUserAgent=strtolower($_SERVER['HTTP_USER_AGENT']);
-		if((strpos($strUserAgent, 'ipad')!==false)||(strpos($strUserAgent, 'iphone')!==false)||(strpos($strUserAgent, 'ipod')!==false))
-			{
-			$bIz=true;
-			}
-		return $bIz;
-		//return true;
-		}
-	private function bIzDesktop()
-		{
-		$bIz=false;
-		if($this->bIzAndroid()===false)
-			{
-			if($this->bIzApple()===false)
-				{
-				$bIz=true;
-				}
-			}
-		return $bIz;
 		}
 	private function _IsDNT()
 		{
