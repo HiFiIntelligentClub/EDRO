@@ -8,23 +8,17 @@
 class DynaScreen
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrData)
+	public function __construct($_arrData)
 		{
-		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-		unset($_objKIIM);
-
-		unset($_arrData);
-
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strStart($objEDRO, $strSearchForm)
+	public static function strStart($strSearchForm)
 		{
 		if($objEDRO->arrEvent['bIzDynamic'])
 			{
-			$intHeight	=82;
+			$intHeight	=122;
 			if($objEDRO->arrReality['bIzApple'])
 				{
-				$intHeight	=62;
+				$intHeight	=102;
 				}
 			$str		=$objEDRO->strRealityInit();
 			$str		.='
@@ -42,8 +36,8 @@ class DynaScreen
 			require'/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
 			$str		.=$objEDRO->strRealityInit();
 			$str		.=$strSearchForm;
-			$str		.=Listeners::strHTML(array(), $objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
-			$str		.=FileRead::strGetDesignHTML(array(), '/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_UpdateMessage.php', $objEDRO);
+			$str		.=Listeners::strHTML($objEDRO->arrReality['arrCurrentListeners'], $objEDRO->arrEvent['arrReality']);
+			//$str		.=FileRead::strGetDesignHTML(array(), '/home/EDRO/4.Objects/Read/Cloud/Disk/Pages/_UpdateMessage.php', $objEDRO);
 			$str		.='
 			<dynaScreen
 				id	="DynaScreen"
@@ -89,7 +83,7 @@ class DynaScreen
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('DynaScreen');
+		return Event::strOConstruct('DynaScreen');
 		}
 	public static function strObjectDeclare()
 		{
@@ -176,9 +170,9 @@ class DynaScreen
 oo2oo;
 		return $str;
 		}
-	public static function strHTML($_objKIIM, $_objData)
+	public static function strHTML($_objData)
 		{
-		$objDynaScreen=new DynaScreen($objKIIM, $_objData);
+		$objDynaScreen=new DynaScreen($_objData);
 		return $objDynaScreen->strHTML;
 		}
 	}
