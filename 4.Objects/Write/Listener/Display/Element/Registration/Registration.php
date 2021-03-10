@@ -152,7 +152,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('Registration');
+		return Event::strOConstruct('Registration');
 		}
 	public function strHTML()
 		{
