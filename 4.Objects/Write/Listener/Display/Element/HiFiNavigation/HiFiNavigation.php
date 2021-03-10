@@ -24,10 +24,8 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 class HiFiNavigation
 	{
 	public $strHTML;
-	public function __construct($_objKIIM, $_arrPagination, $arrReality, $objEDRO)
+	public function __construct($_arrPagination, $arrReality, $objEDRO)
 		{
-		$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
-		unset($_objKIIM);
 
 		$intPage		=$_arrPagination['int0Page'];
 		$intStart		=$_arrPagination['int0Start'];
@@ -59,7 +57,7 @@ class HiFiNavigation
 		$str='
 		<pageNavShader
 			class="
-				fixed V1 block layer_4 BC1 TC1 BBV doubleLine
+				fixed V1 block layer_4 BC1 TC1 BBV Lx2
 				"
 			style="
 				left		:0;
@@ -69,7 +67,7 @@ class HiFiNavigation
 		</pageNavShader>
 		<pageNav
 			class="
-				fixed V1 block layer_5 BC1 TC1 BBV  doubleLine
+				fixed V1 block layer_5 BC1 TC1 BBV Lx2
 				"
 			style="
 				left		:15%;
@@ -87,11 +85,11 @@ class HiFiNavigation
 				id	="objPageForward"'
 				.$arrEventLink['strHref'].' '
 				.$arrEventLink['strOnClick'].
-				'class="block right BBV BTA BC3 TC3 cursor no-select doubleLine"
+				'class="block right BBV BTA BC2 TC2 cursor no-select Lx2t2"
 					style="
+						font-size	:large;
 						width		:34%;
 						text-align	:center;
-						line-height	:39px;
 						text-decoration	:none;
 						"
 					title="'.$arrO['Forward'].'"
@@ -102,23 +100,22 @@ class HiFiNavigation
 			else
 				{
 				$str.=
-				'<a
+				'<abuf
 					id	="objPageForward"
 					href	="#"
 					onclick	=""
-					class	="block right BBV BTA BC1 TC1 cursor no-select"
+					class	="block right BBV BTA BC1 TC1 cursor no-select Lx2t2"
 					style	="
 						width		:34%;
-						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
 						"
 					>
-				</a>';
+				</abuf>';
 				}
 			$str.=
 			'<pagerNum
-				class="fix V1 block tcenter BC1 TC1 BLL BRJ BBV BTA no-select doubleLine"
+				class="fix V1 block tcenter BC1 TC1 BLL BRJ BBV BTA no-select Lx2"
 				style="
 					left		:36%;
 					width		:28%;
@@ -150,18 +147,17 @@ class HiFiNavigation
 							//objHiFiNavigation.bizPageSelectFoucus=false;
 							bizHiFiNavigationInputSelect	=false;
 							"
-					type	="number" 
-					value	="'.$intPage.'"
-					step	="1" 
-					min	="0" 
-					max	="'.$intPages.'"
-					title	="'.$arrO['Selector'].'"
+						type	="number" 
+						value	="'.$intPage.'"
+						step	="1" 
+						min	="0" 
+						max	="'.$intPages.'"
+						title	="'.$arrO['Selector'].'"
 					/>
 					<strPages
 						id	="objPageMaximum"
-						class	="line"
+						class	="L1"
 						style="
-							font-size	:x-small;
 							width:60%;
 							"
 						>
@@ -178,18 +174,16 @@ class HiFiNavigation
 			if($intPage<1)
 				{
 				$str.='
-				<a
+				<abuf
 					id	="objPageBackward"
 					onclick	=""
-					class	="block left BBV BTA BC1 TC1 cursor no-select"
+					class	="block left BBV BTA BC1 TC1 cursor no-select Lx2"
 					style	="
-						width		:34%;
-						height		:100%;
 						text-align	:center;
 						text-decoration	:none;
 						"
 					>
-				</a>';
+				</abuf>';
 				}
 			else
 				{
@@ -199,11 +193,11 @@ class HiFiNavigation
 					id	="objPageBackward"'.
 					$arrEventLink['strHref'].' '.
 					$arrEventLink['strOnClick'].'
-					class="block left BBV BTA BC3 TC3 cursor no-select doubleLine"
+					class="block left BBV BTA BC2 TC2 cursor no-select Lx2t2"
 					style="
+						font-size	:large;
 						width		:34%;
 						text-align	:center;
-						line-height	:39px;
 						text-decoration	:none;
 						"
 					title="'.$arrO['Backward'].'"
@@ -215,7 +209,6 @@ class HiFiNavigation
 		'</pageNav>';
 		$str.=HiFiNavigation::strObjectInit();
 		$this->strHTML	=$str;
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	public static function strObjectDeclare()
 		{
@@ -284,11 +277,11 @@ oo2oo;
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('HiFiNavigation');
+		return Event::strOConstruct('HiFiNavigation');
 		}
-	public static function strHTML($_objKIIM, $_arrPagination, $_arrReality, $objEDRO=array())
+	public static function strHTML($_arrPagination, $_arrReality, $objEDRO=array())
 		{
-		$objHiFiNavigation=new HiFiNavigation($_objKIIM, $_arrPagination, $_arrReality, $objEDRO);
+		$objHiFiNavigation=new HiFiNavigation($_arrPagination, $_arrReality, $objEDRO);
 		return $objHiFiNavigation->strHTML;
 		}
 	}
