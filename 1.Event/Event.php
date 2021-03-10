@@ -22,8 +22,8 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
  //////   jl                ///// /   
 ./././././././*/
 //My lasts impulse of power 
-// ---------------<--.
-// | $rRadio     |   |
+// ---------------
+// | $rRadio     |<--.
 // |             |   |
 // ---------------   |
 //       |  .--FALSE-'
@@ -33,6 +33,23 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //       | .--FALSE--'
 //       V/
 // ---rRadio.Step
+//--------------------------------------------------------------------------------------------------------
+//EDRO_Абхазия------------------------.
+// 1.CreateEnterPoint                 |
+// Listener_Package--------------. ^  |
+// |                             | ^  | 
+// |   1.CreateEnter             | ^  |  
+// |   2.Init EDRO               | ^  |
+// |   2.1. E getLisSetup        |FALSE
+// |   2.2. D SelectTemplateObj  |----|
+// |   2.3. R CreateReality->sendR2Listener
+// |   2.4. O Build Polimer Obj  |    |
+// |                             |    |
+// |                             |    |
+// |                             |    |
+// '-----------------------------'    |
+//------------------------------------'
+
 class Event extends Design
 	{
 	public $arrEvent;
