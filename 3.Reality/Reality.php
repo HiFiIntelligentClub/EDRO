@@ -114,7 +114,7 @@ class Reality extends Objects
 		}
 	public static function strObjectInit()
 		{	
-		$str	=EDRO::strObjInit('Reality');
+		$str	=Event::strOConstruct('Reality');
 		$str	.="
 			<script>
 				console.log('[.++.+.*.*.++.+.+]EDRO.objReality.O: Init event stream graph circle.');
