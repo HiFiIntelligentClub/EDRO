@@ -48,6 +48,15 @@ class Event extends Design
 		//$this->arrEvent['arrListener']['strConnection']['strObjectType']	= 'audio/wav';
 		//$this->arrEvent['arrListener']['arrObject'][int0Page]		= 1;
 		//$this->arrEvent['arrListener']['arrObject'][int0OnPage]		= 1;
+		//arrGetEvent($rRadio);
+		//$arrEvent			= arrRestrictAndReportEventsAndParametrs(
+		//			array(
+		//				'strEvent'	=>urldecode($strEvent), //Why it is encoded? Shall find
+		//				'arrReality'	=>arrEventParams2Array($strEvent),
+		//				)
+		//			);
+		//stream_socket_accept($rRadio, -1);
+		//$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
 		$this->arrEvent				= arrGetEventSetter($rRadio);
 		$this->arrEvent['bIzDynamic']		= $this->bIzDynamic();
 		$this->arrEvent['strArrReality']	= '';
