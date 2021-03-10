@@ -1,5 +1,4 @@
-<?php
-                     /*_____
+<?php                /*_____
 © Andrey Chekmaryov 2020
 
 Email:    assminog@gmail.com
@@ -16,12 +15,12 @@ Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
 Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
 |E    |D     |R      |O      |
 |Event|Design|Reality|Objects|
- ////// 2020                   /////  / 
-//        /\                  // /   
-//      <  **>               /// /  
- //////   jl                ///// /    
+////////////////////// /2021
+////////  /\ ///////// /
+/////// <  **> /////// /
+///////   jl ///////// /
 ./././././././*/
-class IndicatorNetwork
+class IndicatorSuspend
 	{
 	public $strHTML		='';
 	public function __construct()
@@ -30,15 +29,15 @@ class IndicatorNetwork
 			<network
 				class	="fix block BRJ layer_2_1"
 				style	="
-					line-height	:9px;
-					margin-right	:1px;
+					line-height	: 9px;
+					margin-right	: 1px;
 					"
 				>
-				<NetSrvReady
-					id="NetSrvReady"
-					class="block left  BLL"
-					style="	
-						left		: 10px;
+				<NetSrvSuspend
+					id	="NetSrvReady"
+					class	="block left  BLL"
+					style	="	
+						left		: 20px;
 						height		: 10px;
 						width		: 10px;
 						background-color: #e3e3e3;
@@ -58,31 +57,7 @@ class IndicatorNetwork
 						>
 						H
 					</ifEN>
-				</NetSrvReady>
-				<NetSrvPortsReady
-					id="NetSrvPortsReady"
-					class="block left  BLL"
-					style="	
-						height		: 10px;
-						width		: 10px;
-						background-color: #e3e3e3;
-						text-align	: center;
-						font-size	: x-small;
-						"
-					>
-					<ifRU
-						title		="Готовность к воспроизведению аудиопотока"
-						class		="no-select"
-						>
-						Р
-					</ifRU>
-					<ifEN
-						title		="Ready to play audiostream"
-						class		="no-select"
-						>
-						R
-					</ifEN>
-				</NetSrvPortsReady>
+				</NetSrvSuspend>
 			</network>';
 		$this->strHTML.=$this->strObjectDeclare();
 		$this->strHTML.=$this->strObjectInit();
@@ -91,30 +66,30 @@ class IndicatorNetwork
 		{
 		$str	=<<<oo2oo
 		<script>
-			console.log('[V]EDRO IndicatorNetwork: Declare.');
-			class IndicatorNetwork
+			console.log('[V]EDRO IndicatorSuspend: Declare.');
+			class IndicatorSuspend
 				{
 				constructor()
 					{
-					console.log('[Vv]EDRO IndicatorNetwork: construct.');
+					console.log('[Vv]EDRO IndicatorSuspend: construct.');
 					this.objStrSrvReady			=document.getElementById('NetSrvReady');
 					this.objStrSrvPortsReady		=document.getElementById('NetSrvPortsReady');
-					console.log('[..]EDRO IndicatorNetwork: construct.');
+					console.log('[..]EDRO IndicatorSuspend: construct.');
 					}
 				}
-			console.log('[.]EDRO IndicatorNetwork: Declare.');
+			console.log('[.]EDRO IndicatorSuspend: Declare.');
 		</script>
 oo2oo;
 		return $str;
 		}
 	private function strObjectInit()
 		{
-		return Event::strOConstruct('IndicatorNetwork');
+		return Event::strOConstruct('IndicatorSuspend');
 		}
 	public function strHTML()
 		{
-		$objIndicatorNetwork		=new IndicatorNetwork();
-		return $objIndicatorNetwork->strHTML;
+		$objIndicatorSuspend		=new IndicatorSuspend();
+		return $objIndicatorSuspend->strHTML;
 		}
 	}
 ?>

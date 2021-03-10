@@ -94,7 +94,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('IndicatorLang');
+		return Event::strOConstruct('IndicatorLang');
 		}
 	public function strHTML()
 		{

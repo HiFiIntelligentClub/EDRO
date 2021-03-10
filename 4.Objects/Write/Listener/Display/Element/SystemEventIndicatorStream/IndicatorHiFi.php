@@ -71,7 +71,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('IndicatorHiFi');
+		return Event::strOConstruct('IndicatorHiFi');
 		}
 	public function strHTML()
 		{

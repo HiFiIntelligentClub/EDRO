@@ -77,7 +77,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('IndicatorRole');
+		return Event::strOConstruct('IndicatorRole');
 		}
 
 	public function strHTML()

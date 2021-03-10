@@ -1,4 +1,26 @@
 <?php
+                     /*_____
+© Andrey Chekmaryov 2020
+
+Email:    assminog@gmail.com
+Email:    tubmulur@yandex.ru
+Phone:    +7(911)787-44-57
+Whatsapp: +7(911)787-44-57
+Telegram: https://t.me/HficSamin
+VK:       https://vk.com/Hfic.Samin
+VK:       https://vk.com/HiFiIntelligentClub
+Facebook: https://facebook.com/Hfic.Samin
+Facebook: https://facebook.com/HiFiIntelligentClub
+Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru
+Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
+Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
+|E    |D     |R      |O      |
+|Event|Design|Reality|Objects|
+ ////// 2020                   /////  / 
+//        /\                  // /   
+//      <  **>               /// /  
+ //////   jl                ///// /    
+./././././././*/
 class IndicatorPlayer
 	{
 	public $str;
@@ -21,7 +43,7 @@ class IndicatorPlayer
 			>'.
 			'
 			<ifReady
-				class	="abs V99 block cursor BC1 TC1 layer_2_2 select scrollerY doubleLine"
+				class	="abs V99 block cursor BC1 TC1 layer_2_2 select scrollerY Lx2"
 				style	="
 					text-align	:left;
 					Width		:80vw;
@@ -41,7 +63,7 @@ class IndicatorPlayer
 						style="
 							height:100%;
 							"
-					/>
+					/>'.ICQRType::strHTML(array(), '', '', array()).'
 				</Hfic_Samin>
 				<!--ReadyButtonStat
 					class	="block right BLL TC3 BC3"
@@ -329,7 +351,7 @@ class IndicatorPlayer
 							width		: 40px;
 							color		: #FFF;
 							font-size	: small;
-							background-color: #2d90f52b;
+							background-color: #2d90f52b;/*Цвет Министерства Культуры Российской Федерации*/
 							"
 						>
 						<ifRU 

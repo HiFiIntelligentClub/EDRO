@@ -195,7 +195,7 @@ class PlayerEventIndicator
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('PlayerEventIndicator');
+		return Event::strOConstruct('PlayerEventIndicator');
 		}
 	public static function strObjectDeclare()
 		{
@@ -214,7 +214,7 @@ class PlayerEventIndicator
 		}
 	public static function strHTML()
 		{
-		$objPlayerEventIndicator=new PlayerEventIndicator($objKIIM);
+		$objPlayerEventIndicator=new PlayerEventIndicator();
 		return $objPlayerEventIndicator->strHTML;
 		}
 	}

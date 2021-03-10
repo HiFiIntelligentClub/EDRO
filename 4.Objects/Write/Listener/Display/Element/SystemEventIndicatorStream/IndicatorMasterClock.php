@@ -88,7 +88,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('IndicatorMasterClock');
+		return Event::strOConstruct('IndicatorMasterClock');
 		}
 	public function strHTML()
 		{

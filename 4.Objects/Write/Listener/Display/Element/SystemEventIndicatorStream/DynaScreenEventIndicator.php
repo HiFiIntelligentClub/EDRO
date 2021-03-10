@@ -13,22 +13,22 @@ class DynaScreenEventIndicator
 		$this->strHTML='
 		<eventIndicator
 			id	="DynaScreenEventIndicator"
-			class	="block abs layer_3_2  line"
+			class	="brick abs layer_3_2  line"
 			style	="
 				display			:none;
-				top			:0;
-				left			:0;
+				top			:0px;
+				left			:0px;
 				width			:2px;
 				background-color	:#fff;
 				"
 			>
 			<light
 
-				class	="block abs layer_3_4 blink-fast line"
+				class	="brick abs layer_3_4 blink-fast line"
 				style	="
 					display			:block;
-					top			:0;
-					left			:0;
+					top			:0px;
+					left			:0px;
 					width			:2px;
 					background-color	:#333;
 					"
@@ -39,7 +39,7 @@ class DynaScreenEventIndicator
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('DynaScreenEventIndicator');
+		return Event::strOConstruct('DynaScreenEventIndicator');
 		}
 	public static function strObjectDeclare()
 		{

@@ -14,14 +14,24 @@ Facebook: https://facebook.com/HiFiIntelligentClub
 Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru
 Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
 Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
-|E    |D     |R      |O      |
-|Event|Design|Reality|Objects|
- ////// 2020                   /////  / 
-//        /\                  // /   
-//      <  **>               /// /  
- //////   jl                ///// /    
-./././././././*/
-/*
+
+
+                             |E    |D     |R      |O      |
+                             |Event|Design|Reality|Objects|
+
+                                       ЕДРО:ПОЛИМЕР
+                            ___________          ___________
+                           |   /////  /          \  \\\\\   |
+                           |  // /                    \ \\  |
+                           | /// /                    \ \\\ |
+                           |///// /                 \ \\\\\\|
+
+                                      ////// 2021
+                                    //        /\ 
+                                    //      <  **> 
+                                     //////   jl
+                                 /./././././././././.
+
 class IndicatorDimensionsDesign
 	{
 	public $strEDRO		='';
@@ -113,8 +123,8 @@ class IndicatorDimensions
 				id="designDimensions"
 				class="fixed block TC1 BC1 layer_5"
 				style="	
-					top		: 0px;
-					left		: 0px;
+					top		: 9px;
+					left		: 10px;
 					width		: 2px;
 					height		: 2px;
 					text-align	: center;
@@ -150,7 +160,7 @@ oo2oo;
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('IndicatorDimensions');
+		return Event::strOConstruct('IndicatorDimensions');
 		}
 	public static function strHTML()
 		{
