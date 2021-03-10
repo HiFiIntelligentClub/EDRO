@@ -15,12 +15,24 @@ Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru
 Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
 Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
 |E    |D     |R      |O      |
-|Event|Design|Reality|Objects|
- ////// 2020                   /////  /
-//        /\                  // /   
-//      <  **>               /// /    
+|Event|Design|Reality|Objects|         ЕДРО:ПОЛИМЕР
+ ////// 2020                   /////  /  
+//        /\                  // /      
+//      <  **>               /// /     
  //////   jl                ///// /   
 ./././././././*/
+//My lasts impulse of power 
+// ---------------<--.
+// | $rRadio     |   |
+// |             |   |
+// ---------------   |
+//       |  .--FALSE-'
+//       V /         | GET Listener
+// ----rRadio.Step-- ^--------------------
+//       |           |
+//       | .--FALSE--'
+//       V/
+// ---rRadio.Step
 class Event extends Design
 	{
 	public $arrEvent;
@@ -57,6 +69,12 @@ class Event extends Design
 		//			);
 		//stream_socket_accept($rRadio, -1);
 		//$arrReadRequestFromListenersBrowser	= arrRequest2IndexArray(arrReadRequestFromListenersBrowser($rRadio));
+		//1.Create door
+		//2.Meet Listener
+		//3.Read Listener setup
+		//4.Create setup for listener
+		//5.Write listener package to listener
+		//6.
 		$this->arrEvent				= arrGetEventSetter($rRadio);
 		$this->arrEvent['bIzDynamic']		= $this->bIzDynamic();
 		$this->arrEvent['strArrReality']	= '';
