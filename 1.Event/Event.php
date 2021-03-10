@@ -42,8 +42,8 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 // |   2.Init EDRO               | ^  |
 // |   2.1. E getLisSetup        |FALSE
 // |   2.2. D SelectTemplateObj  |----|
-// |   2.3. R CreateReality->sendR2Listener
-// |   2.4. O Build Polimer Obj  |    |
+// |   2.3. R CreateReality      |    |
+// |   2.4. O Build Polimer Obj->sendPListener
 // |                             |    |
 // |                             |    |
 // |                             |    |
