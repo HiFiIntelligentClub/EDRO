@@ -29,9 +29,8 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 	private $strFile;
 	private $strType;
 	private $strAudio;
-	public function __construct($_objKIIM, $_arrValues=array(), $_arrReality) //$_arrValues 'name' 'style' 'bitrate' 'codec'
-		{$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));unset($_objKIIM);
-
+	public function __construct($_arrValues=array(), $_arrReality) //$_arrValues 'name' 'style' 'bitrate' 'codec'
+		{
 		$strSearchName		=$_arrValues['strName'];
 		//if($_arrValues['strGenre']!==''&&isset($_arrValues['strStyle'])&&$strStyle!=''&&$strStyle!='undefined')
 		//	{
@@ -56,12 +55,12 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 			'arrSetup'	=>
 				array(
 
-				'strInputValue'		=> $strSearchName,
-				'strInputType'		=> 'text',
-				'strInputName'		=> 'strName',
+				'strInputValue'		=>  $strSearchName,
+				'strInputType'		=>  'text',
+				'strInputName'		=>  'strName',
 				'intInputSize'		=>  25,
 				'intInputMaxLength'	=>  250,
-				'strInputWidth'		=> '50%',
+				'intInputWidth'		=>  50,
 				)
 			);
 		$arrInputGenre 		=
@@ -80,7 +79,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				'strInputName'		=> 'strGenre',
 				'intInputSize'		=>  15,
 				'intInputMaxLength'	=>  20,
-				'strInputWidth'		=> '40%',
+				'intInputWidth'		=>  40,
 				)
 			);
 
@@ -110,7 +109,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 					</ifEN>
 				</ifCutDown>
 				<ifExpanded
-					class	="fix brick HL0 HV99 TC1 BC1 BBV L2" 
+					class	="fix brick HL0 HV99 TC1 BC0 BBV L2" 
 
 					style	="
 						width		:100vw;
@@ -119,7 +118,7 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 					>
 					<form 
 						id		="formStationSearch"
-						class		="block TC1 BC1"
+						class		="brick TC1 BC0"
 						action		="/search"
 						onsubmit	="return false;"
 						style		="
@@ -127,10 +126,9 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 								"
 						>
 						<searchByGenre
-						class	="abs brick left L0"
+						class	="fix brick left L0 V99 no-select layer_2_2"
 						style	="
 							color	:#4c4c4c;
-							top	:0px;
 							left	:0px;
 							"
 							>
@@ -138,10 +136,9 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 							<ifRU>[=]Поиск по жанру:</ifRU>
 						</searchByGenre>
 						<searchStationName
-						class	="abs brick left L0"
+						class	="fix brick left L0 V99 no-select layer_2_2"
 						style	="
 							color	:#4c4c4c;
-							top	:0px;
 							left	:40%;
 							"
 							>
@@ -159,14 +156,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 							FormInput::strHtml($arrInputGenre).
 							FormInput::strHtml($arrInputName).
 							'<closeButton
-								class=" abs sensor block right TC3 BC3"
+								class="fix sensor block TC2 BC2 Lx2 V99 HR0 layer_2_3"
 								style="
-									top		:0px;
-									right		:0px;
-									height		:39px;
 									width		:10%;
 									text-align	:center;
-									line-height	:26px;
 									"
 	    							onclick="
 									this.parentNode.parentNode.parentNode.parentNode.classList.remove(\'Expanded\');
@@ -177,30 +170,25 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 									class="brick"
 									style="width:100%;height:100%;"
 									title="Закрыть форму и отобразить результаты поиска. Результаты поиска можно вывсти и не закрывая форму, просто нажав на клавишу enter, на клавиатуре по окончанию ввода."
-								    >
-    								x
+									>x
 								</ifRU>
 								<ifEN
 									class="brick"
 									style="width:100%;height:100%;"
 									title="Close search form and display search results. You can display search results without closing this search form, by clicking enter button on your keyboard."
-									>
-									x
+									>x
 								</ifEN>
 							</closeButton>
 						</searchInputs>
-						<bottomTouchBuffer
-							class	="abs block TC2 BC2"
+						<!--bottomTouchBuffer
+							class	="fix block TC2 BC2 V97 L0"
 							style	="
-								bottom		:-3px;
-								height		:5px;
 								width		:100%;
-								font-size	:x-small;
 								"
 							>
 							<ifEN>Your IP:</ifEN><ifRU>Ваш IP:</ifRU>
 							'.$_SERVER['REMOTE_ADDR'].'
-						</bottomTouchBuffer>
+						</bottomTouchBuffer-->
 					</form>';
 				//<data
 				//	class="block scrollerY TC1 BC1"
@@ -227,11 +215,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 				$this->strHTML	.=
 			'</hficSearch>
 			';
-		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
 	private function strObjectInit()
 		{
-		return EDRO::strObjInit('Search');
+		return Event::strOConstruct('Search');
 		}
 	public static function strObjectDeclare()
 		{
@@ -261,10 +248,10 @@ class StationSearchBlock  // feat Мира Стрельцова. 07.08.2020 Ше
 oo2oo;
 		return $str;
 		}
-	public static function strHTML($_objKIIM, $_arrValues=array(), $_arrReality)
+	public static function strHTML($_arrValues=array(), $_arrReality)
 		{
 		//$arrData['_strName']=$_objData->strName;
-		$obj=new StationSearchBlock($_objKIIM, $_arrValues, $_arrReality);
+		$obj=new StationSearchBlock($_arrValues, $_arrReality);
 		return $obj->strHTML;
 		}
 	}
