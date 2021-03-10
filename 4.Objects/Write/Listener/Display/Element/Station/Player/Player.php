@@ -11,7 +11,7 @@ class Player
 	private $arr;
 	private $strHTML;
 	private $strAudio;
-	public function __construct($objKIIM, $_strAudio, $_strAudioType)
+	public function __construct($_strAudio, $_strAudioType)
 		{
 		//$objKIIM=KIIM::objStart($_objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		//unset($_objKIIM);
@@ -24,13 +24,10 @@ class Player
 		if(!empty($this->strAudio))
 			{ //
 			$this->strHTML=
-			    '<ifReady
+			'<ifReady
 				class	="block cursor no-select TC1 BC1"
 				onclick	="objPlayer.play(this,\''.$this->strAudio.'\', \''.$strAudioType.'\' );"
 				style	="
-					/*background-color:#dddbdb;*/
-					/*width		:46px;*/
-					/*height	:44px;*/
 					text-align	:center;
 					"
 				>
@@ -82,7 +79,6 @@ class Player
 				class="block cursor TC1 no-select"
 				onclick="objPlayer.stop();"
 				style="
-					background-color:#062b88;
 					display		:none;
 					width		:100%;
 					height		:100%;
@@ -102,9 +98,10 @@ class Player
 					<recordLabel
 						class="block L1 border-right"
 						style="
-							color			: #2d90f5;
+							color			: #2b70b6; /*Sven color*/
 							background-color	: white;
-							border			: 1px solid #2d90f5;
+							border-top		: 1px solid #2b70b6;
+							border-bottom		: 1px solid #2b70b6;
 							width			: 32px;
 							text-align		: center;
 							margin			: 0;
@@ -133,11 +130,11 @@ class Player
 					height		:100%;
 					text-align	:center;
 					color		:#000;
-					background-color:#95bff2; 
+					/*background-color:yellow;*/
 					"
 				>
 				<recordAudioData
-					class="block no-select border"
+					class="block no-select"
 					style="
 						width		:34px;
 						height		:22px;
@@ -147,13 +144,10 @@ class Player
 						"
 					>
 					<recordLabel
-						class="block border TC3"
+						class="block TC3"
 						style="
-							/*background-color: #282828;*/
-							/*background-color: #FFF;*/
-							/*border-radius	: 100%;*/
 							width		: 32px;
-							height		: 20px;
+							height		: 22px;
 							text-align	: center;
 							line-height	: 19px;
 							margin		: 0;
@@ -185,14 +179,14 @@ class Player
 			}
 		//KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		}
-	public static function strHTML($_objKIIM, $_strAudio, $_strAudioType)
+	public static function strHTML($_strAudio, $_strAudioType)
 		{
-		$objShader=new Player($_objKIIM, $_strAudio, $_strAudioType);
+		$objShader=new Player($_strAudio, $_strAudioType);
 		return $objShader->strHTML;
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('Player');
+		return Event::strOConstruct('Player');
 		}
 	public static function strObjectDeclare()
 		{
