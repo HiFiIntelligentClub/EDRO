@@ -34,22 +34,23 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //       V/
 // ---rRadio.Step
 //--------------------------------------------------------------------------------------------------------
-//EDRO_Абхазия------------------------.
+//
+//EDRO--------------------------------.
 // 1.CreateEnterPoint                 |
-// Listener_Package--------------. ^  |
-// |                             | ^  | 
-// |   1.CreateEnter             | ^  |  
-// |   2.Init EDRO               | ^  |
-// |   2.1. E getLisSetup        |FALSE
-// |   2.2. D SelectTemplateObj  |----|
-// |   2.3. R CreateReality      |    |
-// |   2.4. O Build Polimer Obj->sendPListener
-// |                             |    |
-// |                             |    |
-// |                             |    |
-// '-----------------------------'    |
+//                                 ^  |
+//                                 ^  |
+// 1.CreateEnter                   ^  |
+// 2.Init EDRO                     ^  |
+// 2.1. E getLisSetup            FALSE
+// 2.2. D SelectObjPacket         ----|
+// 2.3. R CreateReality               |
+// 2.4. O Build Polimer Obj->sendPListener
+//                                    |
+//                                    |
+//                                    |
+//                                    |
 //------------------------------------'
-
+//
 class Event extends Design
 	{
 	public $arrEvent;
