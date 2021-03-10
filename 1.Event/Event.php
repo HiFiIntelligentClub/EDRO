@@ -93,6 +93,7 @@ class Event extends Design
 		//4.Create setup for listener
 		//5.Write listener package to listener
 		//6.
+		
 		$this->arrEvent				= arrGetEventSetter($rRadio);
 		$this->arrEvent['bIzDynamic']		= $this->bIzDynamic();
 		$this->arrEvent['strArrReality']	= '';
@@ -153,6 +154,27 @@ class Event extends Design
 			$str.='objEvent._Search();';
 			$str.='console.log(\'[.]EDRO.Event: strParamsInit()\');';
 		$str.='</script>';
+		return $str;
+		}
+	public static function strOConstruct($_strClassName)
+		{
+		$strClassName	=$_strClassName;
+			   unset($_strClassName);
+		$strObjName	='obj'.$strClassName;
+		$str="
+		<script>
+			console.log('[V]EDRO.Objects.".$strObjName.": Init ".$strClassName."');
+
+			var ".$strObjName."=new ".$strClassName."();
+			console.log('[.]EDRO.Objects.".$strObjName.": Init ".$strClassName."');
+		</script>
+		<script>
+			if(typeof(".$strObjName.")!='object')
+				{
+				objKIIM.parentNode.classList.remove('hidden');
+				objKIIM.innerHTML+='".$strObjName.".construct() error.<br/>';
+				}
+		</script>";
 		return $str;
 		}
 	public static function strObjectDeclare()
@@ -511,7 +533,7 @@ oо2оo;
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('Event');
+		return Event::strOConstruct('Event');
 		}
 	
 	}
