@@ -34,7 +34,7 @@ class Design extends Reality
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('Design');
+		return Event::strOConstruct('Design');
 		}
 	public static function strObjectDeclare()
 		{
@@ -100,7 +100,7 @@ class Design extends Reality
 						if(objEvent.arrReality.int1OnPage!=this.intTotalElements)
 							{
 							//objEvent.arrReality.strName=objPlayer.strStationName; objEvent.arrReality.strStyle=\'\';objEvent.arrReality.intBitrate=\'\';objEvent.arrReality.strCodec=\'\';objEvent._UpdateURLDyn(true);
-							//EDRO::strObjInit('Search');
+							//Event::strOConstruct('Search');
 							objSearch				=new Search();
 							objEvent.arrReality.strName		=objSearch.strValueInputstrName;
 							objEvent.arrReality.strGenre		=objSearch.strValueInputstrGenre;
