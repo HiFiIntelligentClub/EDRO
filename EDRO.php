@@ -60,17 +60,18 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //
 
 set_time_limit(0);
-
-require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
-require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
-require('/home/EDRO.SetOfTools/System/0.Functions/1.FunctionsSetup.php');
+$КИМ('Start');
+//require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
+//require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
+/*require('/home/EDRO.SetOfTools/System/0.Functions/1.FunctionsSetup.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/2.StringFunctions.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/3.Platforms.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/4.Functions.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/5.Dyn.php');
-//require('/home/EDRO.SetOfTools/System/2.VectorKIIM/0.KIIM.php');
-require('/home/EDRO.SetOfTools/System/3.RAM/0.EDRO_Objects.php');
-
+require('/home/EDRO.SetOfTools/System/2.VectorKIIM/0.KIIM.php');
+//require('/home/EDRO.SetOfTools/System/3.RAM/0.EDRO_Objects.php');*/
+$мКИМ	= array();
+EDRO::strHTML($мКИМ, $_strStyle, $_arrParams, $_intLayer);
 class EDRO
 	{
 	public 	$strHTML;
@@ -107,27 +108,28 @@ class EDRO
 			'strClass'		=>'a',
 			'strOpen'		=>'>',
 			'strClose'		=>'<',
-		);
+			);
 	public function __construct($_objKIIM, $_strStyle, $arrParams,  $_intLayer)
 		{
-				$this->_КИМ('Start');
-				$this->_ПредпусковаяПроверка();
-				$this->_СтартЖурнала();
-		$this->arRAM	=$this->mReadStatic();
-				$this->_КИМ('End');
-		$int0Attempts	= 0;
+		//		$this->_КИМ('Start');
+		//		$this->_ПредпусковаяПроверка();
+		//		$this->_СтартЖурнала();
+		//$this->arRAM	=$this->mReadStatic();
+		//		$this->_КИМ('End');
+		//$int0Attempts	= 0;
 
-		while(true)
-			{
-			$this->rRadio	= $this->rOrganiseListenersRadioRequests();
-/*x1*/			$oEDRO		= Event::_V($this->мКИМ, $this->rRadio);
-/*x2*/			while($oEDRO->arrEvent['rRadio'])
-				{
-				}
-			_Report('Lost radio concrette!!!! AttemptsFromZero: '.$int0Attempts);
-			$int0Attempts++;
-			}
-/*x3*/		_Report('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Exiting forever circle');
+		//while(true)	//
+		//	{
+		//	$this->rRadio	= $this->rOrganiseListenersRadioRequests();
+/*x1*/		//	$oEDRO		= Event::_V($this->мКИМ, $this->rRadio);
+/*x2*/		//	while($oEDRO->arrEvent['rRadio'])
+		//		{
+				
+		//		}
+		//	_Report('Lost radio concrette!!!! AttemptsFromZero: '.$int0Attempts);
+		//	$int0Attempts++;
+		//	}
+/*x3*/		//_Report('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>Exiting forever circle');
 		//$objKIIM=$_objKIIM;unset($_objKIIM);$objKIIM=KIIM::objStart($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));
 		/*$this->arrEvent	=
 		array(
@@ -168,7 +170,8 @@ class EDRO
 
 		KIIM::objFinish($objKIIM, array('_strClass'=>__CLASS__, '_strMethod'=>__FUNCTION__, '_strMessage'=>''));*/
 		}
-/*	private function strEvent()
+/*
+	private function strEvent()
 		{
 		$strE='href="'.$this->arrEvent['strLink'].'" ';
 		$strE.='onClick="'.$this->arrEvent['strOnClick'].'" ';
@@ -198,11 +201,13 @@ class EDRO
 		$strO.=$strE.$strD.$strR;
 		$strO.=$this->arrObjects['strOpen'].'/'.$this->arrObjects['strClass'].$this->arrObjects['strClose']."\n";
 		return $strO;
+
 		}*/
-	public static function strHTML($_objKIIM, $_strStyle, $arrParams, $_intLayer)
+
+	public static function strHTML($мКИМ, $_strStyle, $_arrParams, $_intLayer)
 		{
-		//$objOverlay=new Overlay($_objKIIM, $_strStyle, $arrParams, $_intLayer);
-		//return $objOverlay->strHTML;
+		$objEDRO	=new EDRO($мКИМ, $_strStyle, $_arrParams, $_intLayer);
+		return		$objEDRO->strHTML;
 		}
 	public static function strObjectDeclare()
 		{
@@ -283,26 +288,24 @@ oo2oo;
 		$this->_КИМ('Start');
 		$сРасположениеСчётчикВход	=$this->сЖурналРасположение.'/CountUp/Вход.plmr';
 		$сРасположениеСчётчикВходИстор	=$this->сЖурналРасположение.'/CountUp/History/Вход.plmr';
-		
+		echo $сРасположениеСчётчикВход;
+		exit;
 		$ч0СчётчикВход			=file_get_contents($сРасположениеСчётчикВход); сТекущееВремяСтемп();
 						 file_put_contents($сРасположениеСчётчикВход, ($ч0СчётчикВход+1));
 						 /*DEBUG*/ file_put_contents($сРасположениеСчётчикВходИстор,"\n=====\n".'	Start:		'.date("Y-m-d H:i:s").сТекущееВремяСтемп()."\n", FILE_APPEND);
 		$this->_КИМ('End');
 		}
 	private function rOrganiseListenersRadioRequests()
-		{
-		$this->_КИМ('Start');
-		//$рПриёмникЗапросовСлушателя	=stream_socket_server("tcp://hifiintelligentclub.ru:80", $errno, $errstr);
-		//$рПриёмникЗапросовСлушателя	=stream_socket_server("tcp://127.0.0.1:8080", $errno, $errstr);
-		$rListenersRadioRequests	=stream_socket_server("tcp://".strDomain().":80", $errno, $errstr);
-		if($rListenersRadioRequests===FALSE)
-			{
-			usleep(100000);
-			$this->rOrganiseListenersRadioRequests();
-			_Report('rOrganiseListenersRadioRequests() failed. Restarting after 0,1 s. delay.');
-			}
-		$this->_КИМ('End');
-		return $rListenersRadioRequests;
+		{$this->_КИМ('Start');
+/*  [vК]	*/$rListenersRadioRequests	=stream_socket_server("tcp://".strDomain().":80", $errno, $errstr);
+/*[v][И][>][-]	*/if($rListenersRadioRequests===FALSE) //NEGATIVE
+/*[+]		      */{
+/*   [-]		*/usleep(100000);
+/*   [-]		*/$this->rOrganiseListenersRadioRequests();
+/*   [-]		*/_Report('rOrganiseListenersRadioRequests() failed. Restarting after 0,1 s. delay.');
+/*   [-]		*/}
+/*   [M]	*/$this->_КИМ('End');
+/*   [+]	*/return $rListenersRadioRequests; //POSITIVE
 		}
 	public static function strObjectInit()
 		{
