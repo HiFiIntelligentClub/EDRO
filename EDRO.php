@@ -60,18 +60,19 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //
 
 set_time_limit(0);
-$КИМ('Start');
-//require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
-//require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
-/*require('/home/EDRO.SetOfTools/System/0.Functions/1.FunctionsSetup.php');
+$мКИМ	= array();
+$оЕДРО	new EDRO($мКИМ, $_strStyle, $arrParams,  $_intLayer);
+require('/home/EDRO.SetOfTools/System/1.Reporter/0.ReportError.php');
+require('/home/EDRO.SetOfTools/System/1.Reporter/1.Report.php');
+require('/home/EDRO.SetOfTools/System/0.Functions/1.FunctionsSetup.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/2.StringFunctions.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/3.Platforms.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/4.Functions.php');
 require('/home/EDRO.SetOfTools/System/0.Functions/5.Dyn.php');
 require('/home/EDRO.SetOfTools/System/2.VectorKIIM/0.KIIM.php');
-//require('/home/EDRO.SetOfTools/System/3.RAM/0.EDRO_Objects.php');*/
-$мКИМ	= array();
-EDRO::strHTML($мКИМ, $_strStyle, $_arrParams, $_intLayer);
+//require('/home/EDRO.SetOfTools/System/3.RAM/0.EDRO_Objects.php');
+
+//EDRO::strHTML($мКИМ, $_strStyle, $_arrParams, $_intLayer);
 class EDRO
 	{
 	public 	$strHTML;
@@ -109,7 +110,7 @@ class EDRO
 			'strOpen'		=>'>',
 			'strClose'		=>'<',
 			);
-	public function __construct($_objKIIM, $_strStyle, $arrParams,  $_intLayer)
+	public function __construct($мКИМ, $_strStyle, $arrParams,  $_intLayer)
 		{
 		//		$this->_КИМ('Start');
 		//		$this->_ПредпусковаяПроверка();
