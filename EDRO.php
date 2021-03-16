@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
                      /*_____
-© Andrey Chekmaryov 2020
+© Andrey Chekmaryov 2021
 
 Email:    assminog@gmail.com
 Email:    tubmulur@yandex.ru
@@ -17,7 +17,7 @@ Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
 Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
 |E    |D     |R      |O      |
 |Event|Design|Reality|Objects|
- ////// 2020                   /////  / 
+ //////                     /////  / 
 //        /\                  // /   
 //      <  **>               /// /  
  //////   jl                ///// /    
