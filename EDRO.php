@@ -69,6 +69,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 function сВремя(){return round(microtime(true), 4);}
 class КИМ
 	{
+	public $сИмяФайла		='';
 	public $дВремяСтарт		= 0.0000;
 	public $дВремяНач		= 0.0000;
 	public $дВремяКон		= 0.0000;
@@ -90,21 +91,29 @@ class КИМ
 		}
 	public function _Нач()
 		{
+
 		$this->дВремяНач		= сВремя();
 		$this->дДельтаВремяСтартНач	= ($this->дВремяНач-$this->дВремяСтарт);
+						$this->ч0Шаг++;
+						$this->ч0Уровень++;
 		}
 	public function _Кон()
 		{
 		$this->дВремяКон		= сВремя();
 		$this->дДельтаВремяНачКон	= ($this->дВремяКон-$this->дВремяНач);
+		$this->ч0Уровень		= ($this->ч0Уровень-1);
 		}
-	public function _EOP()
+	public function _КонПроц()
 		{
 		$this->фРезультат		= true;
 		}
 	}
-
-
+//Usage:
+//$оКИМ			= new КИМ();
+//$оКИМ->сИмяФайла	= '';
+//			$оКИМ->_Нач();
+//			$оКИМ->_Кон();
+//			$оКИМ->_КонПроц();
 require('/home/EDRO.SetOfTools/System/0.Loader/0.loader.php');
 
 $оЕДРО	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
