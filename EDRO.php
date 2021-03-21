@@ -59,7 +59,6 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 //------------------------------------'
 //
 
-
 //The upper level singularity will be in https://github.com/HiFiIntelligentClub/public very soon
 //We are processing from here.
 //      //
@@ -67,12 +66,81 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
  //   //
   // //
    ///
-$мКИМ_0	= array();
-$оЕДРО	=new EDRO($мКИМ, $_strStyle, $arrParams,  $_intLayer);
+function сВремя(){return round(microtime(true), 4);}
+class КИМ
+	{
+	public $дВремяСтарт		= 0.0000;
+	public $дВремяНач		= 0.0000;
+	public $дВремяКон		= 0.0000;
+	public $дДельтаВремяСтартНач	= 0.0000;
+	public $дДельтаВремяНачКон	= 0.0000;
+	public $ч0ВыполненоЧастей	= 0;
+	private $фРезультат		= false;
+	public function __construct()
+		{
+		$this->дВремяСтарт		= сВремя();
+		$this->дВремяНач		= 0.0000;
+		$this->дВремяКон		= 0.0000;
+		$this->дДельтаВремяСтартНач	= 0.0000;
+		$this->дДельтаВремяНачКон	= 0.0000;
+		$this->ч0ВыполненоЧастей	= 0;
+		$this->фРезультат		= false;
+		}
+	public function _Нач()
+		{
+		$this->дВремяНач		= сВремя();
+		$this->дДельтаВремяСтартНач	= ($this->дВремяНач-$this->дВремяСтарт);
+		}
+	public function _Кон()
+		{
+		$this->дВремяКон		= сВремя();
+		$this->дДельтаВремяНачКон	= ($this->дВремяКон-$this->дВремяНач);
+		}
+	public function _EOP()
+		{
+		$this->фРезультат		= true;
+		}
+	}
 
-//require('/home/EDRO.SetOfTools/System/3.RAM/0.EDRO_Objects.php');
-unset($мКИМ_0);
-//EDRO::strHTML($_strStyle, $_arrParams, $_intLayer);
+$мКИМ[]	=
+	array(
+	'дВремяСтарт'		=> сВремя(),
+	'дВремяШаг'		=> сВремя(),
+	'дДельтаВремяСтарт'	=> 0.00,
+	'дДельтаЧётВремяШаг'	=> 0.00,
+	'дВыполненоЧастей'	=> 0, 
+	'фКон'			=> false,
+	);
+$ч0Уровень	= 0;
+$ч0Шаг		= 0;
+
+
+function мКИМ($ч0Шаг, $мКИМ)
+	{
+	$ч0Шаг++;
+	$мКИМ[$ч0Шаг]['дВремяШаг']		= сВремя();
+	$мКИМ[$ч0Шаг]['дДельтаВремяСтарт']	= ($мЗагрузка[$ч0Шаг]['дВремяШаг']-$мЗагрузка[0]['дВремяСтарт']);
+	$мКИМ[$ч0Шаг]['дДельтаЧётВремяШаг']= ($мЗагрузка[$ч0Шаг]['дВремяШаг']-$мЗагрузка[($ч0Шаг-1)]['дВремяШаг']);
+
+	$мКИМ[$ч0Шаг]['дВыполненоЧастей']	= 0;  //Десятичная Дробь, Целостность задачи, выполнено, когда равно 1.
+	
+	//$мЗагрузка['дВремяСтарт']		= //
+	//$мЗагрузка[$ч0Шаг]['ч0Шаг']		= $ч0Шаг++,
+	return $мКИМ;
+	}
+
+
+require('/home/EDRO.SetOfTools/System/0.Loader/0.loader.php');
+
+$оЕДРО	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
+	
+require('/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php');
+require('/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php');
+//require('/home/EDRO.SetOfTools/System/7.Templates/0.strKIIM.Template.php');
+
+
+
+
 class EDRO
 	{
 	public 	$strHTML;
@@ -310,6 +378,6 @@ oo2oo;
 		}
 	public static function strObjectInit()
 		{
-		return EDRO::strObjInit('EDRO');
+		return Event::strObjectInit('EDRO');
 		}
 	}
