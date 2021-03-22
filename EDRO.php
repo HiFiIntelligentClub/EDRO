@@ -114,6 +114,7 @@ class КИМ
 		}
 	public function _КонПроц()
 		{
+						$this->_Кон();
 		$this->фРезультат		= true; //Calculate
 		echo 'ч0ВыполненоЧастей:'.$this->ч0ВыполненоЧастей."\n";
 		}
