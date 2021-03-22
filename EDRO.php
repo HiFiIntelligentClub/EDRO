@@ -69,6 +69,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 function сВремя(){return round(microtime(true), 4);}
 class КИМ
 	{
+	public $oEDRO			= array();
 	public $сИмяФайла		='';
 	public $дВремяСтарт		= 0.0000;
 	public $дВремяНач		= 0.0000;
@@ -80,6 +81,7 @@ class КИМ
 	public $ч0Уровень		= 0;
 	private $фРезультат		= false;
 	private $сПроцессСтадия		= '';
+	
 	public function __construct()
 		{
 		$this->дВремяСтарт		= сВремя();
@@ -90,7 +92,7 @@ class КИМ
 		$this->ч0ВыполненоЧастей	= 0;
 		$this->фРезультат		= false;
 		}
-	public function _Нач()
+	public function сНач()
 		{
 
 		$this->дВремяНач		= сВремя();
@@ -99,6 +101,8 @@ class КИМ
 						$this->ч0Уровень++;
 						$this->_ПроцессСтадия();
 						$this->_ВыводВ();
+						require($this->сИмяФайла);
+		return $str;
 		}
 	public function _Кон()
 		{
@@ -110,7 +114,7 @@ class КИМ
 		}
 	public function _КонПроц()
 		{
-		$this->фРезультат		= true;
+		$this->фРезультат		= true; //Calculate
 		echo 'ч0ВыполненоЧастей:'.$this->ч0ВыполненоЧастей."\n";
 		}
 	private function _ПроцессСтадия()
@@ -137,18 +141,18 @@ class КИМ
 //			$оКИМ->_КонПроц();
 $оКИМ			= new КИМ();
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
-			$оКИМ->_Нач();
-			require($оКИМ->сИмяФайла);
+			$оКИМ->сНач();
+		
+$oEDRO	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
 
-$оЕДРО	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
+			$оКИМ->oEDRO		= $oEDRO;
 
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
-			$оКИМ->_Нач();
-			require($оКИМ->сИмяФайла);
+			$оКИМ->сНач();
+
 
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
-			$оКИМ->_Нач();
-			require($оКИМ->сИмяФайла);
+			$оКИМ->сНач();
 
 //require('/home/EDRO.SetOfTools/System/7.Templates/0.strKIIM.Template.php');
 
