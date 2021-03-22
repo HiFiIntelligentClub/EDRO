@@ -136,12 +136,20 @@ class КИМ
 //			$оКИМ->_Кон();
 //			$оКИМ->_КонПроц();
 $оКИМ			= new КИМ();
-require('/home/EDRO.SetOfTools/System/0.Loader/0.loader.php');
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
+			$оКИМ->_Нач();
+			require($оКИМ->сИмяФайла);
 
 $оЕДРО	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
-	
-require('/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php');
-require('/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php');
+
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
+			$оКИМ->_Нач();
+			require($оКИМ->сИмяФайла);
+
+$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
+			$оКИМ->_Нач();
+			require($оКИМ->сИмяФайла);
+
 //require('/home/EDRO.SetOfTools/System/7.Templates/0.strKIIM.Template.php');
 
 
