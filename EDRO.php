@@ -16,15 +16,15 @@ Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru
 Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
 Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
 |E    |D     |R      |O      |
-|Event|Design|Reality|Objects|
- //////                     /////  / 
-//        /\                  // /   
-//      <  **>               /// /  
- //////   jl                ///// /    
+|Event|Design|Reality|Objects|                    ..... .....  ....   .....
+ ......               ///// /////  ////   ////   ..... .....  ....  .....  .
+..  .     /\          ///// //  // // // //  //  ..... ..  .. .. .....  .. .
+..  .   <  **>        //    //  // ///// //  //  ..    ..  .. ....  ..  ..
+ ......   jl          ///// /////  // /// ////   ..... .....  ..     ....  
 ./././././././*/ //КИМ in latin is KIIM Иcкуственный Интеллект Кирилл и Мефодий (). 
-			/*_\\KIIM//__Start_____*/ 
-			/*__\\  //___Checkpiont*/ 
-			/*___\\//____Finish___ */ 
+			/*_\\KIIM//__Start_____		сНач	*/ 
+			/*__\\  //___Checkpiont		_Кон	*/ 
+			/*___\\//____Finish___ 		_КонПроц*/ 
 			/*____\/ECTOR <-->_____*/ 
 	//if finish than compete if the result EXIST! Filosophy
 	//Usage:
