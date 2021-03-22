@@ -27,6 +27,14 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 			/*___\\//____Finish___ */ 
 			/*____\/ECTOR <-->_____*/ 
 	//if finish than compete if the result EXIST! Filosophy
+	//Usage:
+	//$оКИМ			= new КИМ();
+	//$оКИМ->сИмяФайла	= '';
+	//			$оКИМ->_Нач();
+	//
+	//			$оКИМ->ч0ВыполненоЧастей++;
+	//			$оКИМ->_Кон();
+	//			$оКИМ->_КонПроц();
 
 //My lasts impulse of power 
 // ---------------
@@ -132,14 +140,7 @@ class КИМ
 		echo $this->сПроцессСтадия.$this->сИмяФайла."\n";
 		}
 	}
-//Usage:
-//$оКИМ			= new КИМ();
-//$оКИМ->сИмяФайла	= '';
-//			$оКИМ->_Нач();
-//
-//			$оКИМ->ч0ВыполненоЧастей++;
-//			$оКИМ->_Кон();
-//			$оКИМ->_КонПроц();
+
 $оКИМ			= new КИМ();
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
 			$оКИМ->сНач();
