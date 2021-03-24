@@ -1,48 +1,48 @@
 #!/usr/bin/php
-<?php
-                     /*_____
+<?php                  /*_____
 © Andrey Chekmaryov 2021
-
-Email:    assminog@gmail.com
-Email:    tubmulur@yandex.ru
-Phone:    +7(911)787-44-57
-Whatsapp: +7(911)787-44-57
-Telegram: https://t.me/HficSamin
-VK:       https://vk.com/Hfic.Samin
-VK:       https://vk.com/HiFiIntelligentClub
-Facebook: https://facebook.com/Hfic.Samin
-Facebook: https://facebook.com/HiFiIntelligentClub
-Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru
-Site[En] Public browsing international:  http://HiFiIntelligentClub.COM
-Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion
-|E    |D     |R      |O      |
-|Event|Design|Reality|Objects|                    ..... .....  ....   .....
- ......               ///// /////  ////   ////   ..... .....  ....  .....  .
-..  .     /\          ///// //  // // // //  //  ..... ..  .. .. .....  .. .
-..  .   <  **>        //    //  // ///// //  //  ..    ..  .. ....  ..  ..
- ......   jl          ///// /////  // /// ////   ..... .....  ..     ....  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Email:    assminog@gmail.com,|Telegram: https://t.me/HficSamin  |VK:     	https://vk.com/Hfic.Samin
+	  tubmulur@yandex.ru |				        | 		https://vk.com/HiFiIntelligentClub
+Phone:    +7(911)787-44-57,  |Whatsapp: +7(911)787-44-57	|Facebook: 	https://facebook.com/Hfic.Samin	
+			     |					|		https://facebook.com/HiFiIntelligentClub
+                             |					| 
+Site[Ru] Public browsing international:  http://HiFiIntelligentClub.Ru  <- Not workimg out of money. Registered untill
+Site[En] Public browsing international:  http://HiFiIntelligentClub.COM <- Not workimg out of money.
+Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dplvsz36zsqqu7ad2foo5m3tmad.onion <- Free of charge,not working.
+														  Will be started soon for
+        	        													  listening with pleasure.
+														  International streams 
+	        													  divided by categories 
+														  described as ICQR.
+			    |E    |D     |R      |O      |
+||||||||||||||||||||||||||||Event|Design|Reality|Objects||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ ......         ...  ..  ..   ..  . ...  ..  .  .  . .   . ... ..
+..  .     /\    ..  .... . . .  .   . . .  .. . . .. . . . ..  . .
+..  .   <  **>  ... .  . .    ..  . . .  .. . . .  . .   . ... .
+ ......   jl                                                                 
 ./././././././*/ //КИМ in latin is KIIM Иcкуственный Интеллект Кирилл и Мефодий (). 
-			/*_\\KIIM//__Start_____		сНач	*/ 
-			/*__\\  //___Checkpiont		_Кон	*/ 
-			/*___\\//____Finish___ 		_КонПроц*/ 
-			/*____\/ECTOR <-->_____*/ 
-	//if finish than compete if the result EXIST! Filosophy
-	//Usage:
-	//$оКИМ			= new КИМ();
-	//$оКИМ->сИмяФайла	= '';
-	//			$оКИМ->_Нач();
-	//
-	//			$оКИМ->ч0ВыполненоЧастей++;
-	//			$оКИМ->_Кон();
-	//			$оКИМ->_КонПроц();
-
-//My lasts impulse of power 
+/////////////////////////*_\\KIIM//__Start_____		сНач	*/ 
+  //\\	  //\\	 //\\	/*__\\  //___Checkpiont		_Кон	*/ 
+ //  \\	 //  \\	//  \\	/*___\\//____Finish___ 		_КонПроц*/ 
+//    \\//    \//    \\ /*____\/ECTOR <-->_____*/ 
+//////////if finish than compete if the result EXIST! Filosophy
+//    //\\  //	//Usage:
+ //  ////	//$оКИМ			= new КИМ();
+  ////		//$оКИМ->сИмяФайла	= '';
+  //		//			$оКИМ->_Нач();
+//		//
+		//			$оКИМ->ч0ВыполненоЧастей++;
+		//			$оКИМ->_Кон();
+		//			$оКИМ->_КонПроц();
+//My last impulse of power will last forever
 // ---------------
 // | $rRadio     |<--.
 // |/////////////|   ||                      Request processing2EDRO: 	Абхазия serve;
-// ---------------   ||                      Store images:		Saint-Petersbourg serve;
-//       |  .--FALSE-'                       Store personal messages:  	Moscow serve;
-//       V /         || GET Listener         Store music: 		Chechnia serve;
+// ---------------   ||                      Store personal messages:  	Москва serve;
+//       |  .--FALSE-'                       Store images:		Saint-Petersbourg serve;
+//       V /         || GET Listener         Store music: 		Чечня   serve;
 // ----rRadio.Step-- ^--------------------
 //       |           ||
 //       | .--FALSE--'
@@ -85,23 +85,26 @@ class КИМ
 	public $дДельтаВремяСтартНач	= 0.0000;
 	public $дДельтаВремяНачКон	= 0.0000;
 	public $ч0ВыполненоЧастей	= 0;
+	public $ч0ЖдёмЧастей		= 0;
 	public $ч0Шаг			= 0;
 	public $ч0Уровень		= 0;
-	private $фРезультат		= false;
+	private $сРезультат		= 'Ждём выполнения';
 	private $сПроцессСтадия		= '';
+	private $сИмяПроцесса		= '';
 	
-	public function __construct()
+	public function __construct($сИмяПроцесса='')
 		{
+		$this->сИмяПроцесса		= $сИмяПроцесса;
 		$this->дВремяСтарт		= сВремя();
 		$this->дВремяНач		= 0.0000;
 		$this->дВремяКон		= 0.0000;
 		$this->дДельтаВремяСтартНач	= 0.0000;
 		$this->дДельтаВремяНачКон	= 0.0000;
 		$this->ч0ВыполненоЧастей	= 0;
-		$this->фРезультат		= false;
 		}
 	public function сНач()
 		{
+		//echo "сНач\n";
 		$str				= '';
 		$this->дВремяНач		= сВремя();
 		$this->дДельтаВремяСтартНач	= ($this->дВремяНач-$this->дВремяСтарт);
@@ -114,24 +117,38 @@ class КИМ
 		}
 	public function _Кон()
 		{
+		//echo "_Кон\n";
 		$this->дВремяКон		= сВремя();
 		$this->дДельтаВремяНачКон	= ($this->дВремяКон-$this->дВремяНач);
-						$this->_ПроцессСтадия();
+		$this->сПроцессСтадия		= str_replace(array('V','v'), '.', $this->сПроцессСтадия);
 						$this->_ВыводВ();
 		$this->ч0Уровень		= ($this->ч0Уровень-1);
 		}
 	public function _КонПроц()
 		{
 						$this->_Кон();
-		$this->фРезультат		= true; //Calculate
 		echo 'ч0ВыполненоЧастей:'.$this->ч0ВыполненоЧастей."\n";
+		if($this->ч0ВыполненоЧастей-$this->ч0ЖдёмЧастей==0)
+			{
+			                                                               
+                        $this->сРезультат	 = '\\\  //'."\n";
+                        $this->сРезультат	.= ' \\\// '."\n";                                    
+                        $this->сРезультат	.= '  \\/  '; 
+			$this->сРезультат	.= 'Загрузили всё, требуется проверка полученного результата'; //Calculate
+			}
+		else
+			{
+			$this->сРезультат	= 'Что-то пошло не так, требуется перезагрузка и отправка срочного письма администратору системы'; //Calculate
+			print_r($this);
+			}
+		$this->_ВыводРезультата();
 		}
 	private function _ПроцессСтадия()
 		{
 		$this->сПроцессСтадия	='[';
 		for($ч0=0;$ч0<=$this->ч0Уровень;$ч0++)
 			{
-			$this->сПроцессСтадия		.=($ч0==0)?'V':'v';
+			$this->сПроцессСтадия	.=($ч0==0)?'V':'v';
 			}
 		$this->сПроцессСтадия	.=']';
 		}
@@ -139,23 +156,48 @@ class КИМ
 		{
 		echo $this->сПроцессСтадия.$this->сИмяФайла."\n";
 		}
+	private function _ВыводРезультата()
+		{
+		echo "\n";
+		echo '//vКИМ////////////////////////'."\n";
+		echo $this->сИмяПроцесса."\n";
+		echo $this->сРезультат."\n";
+		echo '//^КИМ////////////////////////'."\n";
+		echo "\n";
+		}
 	}
 
-$оКИМ			= new КИМ();
+
+
+
+
+
+
+
+$оКИМ			= new КИМ('Буфферизация 2RAM');
+$оКИМ->ч0ЖдёмЧастей	= 16;
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
 			$оКИМ->сНач();
+			$оКИМ->_КонПроц();
+exit;
+//print_r($оКИМ);
+
 		
-$oEDRO	=new Event($мКИМ, $_strStyle, $arrParams,  $_intLayer);
+
+//$оКИМ			= new КИМ('Буфферизация 2RAM');
+$oEDRO	=new Event();
 
 			$оКИМ->oEDRO		= $oEDRO;
 
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
 			$оКИМ->сНач();
-
+			$оКИМ->_КонПроц();
 
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
 			$оКИМ->сНач();
+			$оКИМ->_КонПроц();
 
+			$оКИМ->_КонПроц();
 //require('/home/EDRO.SetOfTools/System/7.Templates/0.strKIIM.Template.php');
 
 
