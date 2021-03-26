@@ -1,5 +1,5 @@
 #!/usr/bin/php
-<?php                  /*_____
+<?php                  /*_
 © Andrey Chekmaryov 2021
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Email:    assminog@gmail.com,|Telegram: https://t.me/HficSamin  |VK:     	https://vk.com/Hfic.Samin
@@ -173,36 +173,49 @@ class КИМ
 
 
 
-
-
-
-$оКИМ			= new КИМ('Буфферизация 2RAM');
+			//////
+			  //
+			  //
+			//////
+$оКИМ			= new КИМ('PreLoad2RAM');
 $оКИМ->ч0ЖдёмЧастей	= 16;
 $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
-			$оКИМ->сНач();
-			$оКИМ->_КонПроц();
+			$оКИМ->сНач();					/////////////////
+			$оКИМ->_КонПроц();				//	|    |
+									//	|HiFi|
+//print_r($оКИМ);							//	|____|
+			////////					//		
+			 // //						//
+			 // //						//		
+			////////					//
+									//		//	//
+$оКИМ			= new КИМ('Set text broadcast proxy');		//		//	//
+									//		//	//
+									//////////////////
+			$оКИМ->_КонПроц();						//
+											//
+											//
+											//
+			///////////							//
+			 // // //							//
+			 // // //							//
+			///////////							/////>////////////
 
-//print_r($оКИМ);
-
-		
-
+$оКИМ			= new КИМ('Listener catch up and provided to HIC sound amusement conveer line.');
 $оКИМ			= new КИМ('Собрать EDRO');
 $оКИМ->oE		= new Event();
-$оКИМ->oD		= new Design();
-$оКИМ->oR		= new Reality();
-$оКИМ->oO		= new Objects();
 
-/*$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
-			$оКИМ->сНач();
+//$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
+//$strStyles		= $оКИМ->сНач();
 			$оКИМ->_КонПроц();
 
-$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
-			$оКИМ->сНач();
-			$оКИМ->_КонПроц();
+//$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
+//			$оКИМ->сНач();
+//			$оКИМ->_КонПроц();
 
-			$оКИМ->_КонПроц();
-*/
-//require('/home/EDRO.SetOfTools/System/7.Templates/0.strKIIM.Template.php');
+//			$оКИМ->_КонПроц();
+
+
 
 
 
