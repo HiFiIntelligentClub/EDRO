@@ -91,6 +91,9 @@ class КИМ
 	private $сРезультат		= 'Ждём выполнения';
 	private $сПроцессСтадия		= '';
 	private $сИмяПроцесса		= '';
+	public static function _НачПроц()
+		{
+		}
 	
 	public function __construct($сИмяПроцесса='')
 		{
@@ -102,6 +105,7 @@ class КИМ
 		$this->дДельтаВремяНачКон	= 0.0000;
 		$this->ч0ВыполненоЧастей	= 0;
 		}
+
 	public function сНач()
 		{
 		//echo "сНач\n";
@@ -144,6 +148,7 @@ class КИМ
 			print_r($this);
 			}
 		$this->_ВыводРезультата();
+		self::$oEDRO = new EDRO();
 		}
 	private function _ПроцессСтадия()
 		{
@@ -184,9 +189,9 @@ $оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.
 			$оКИМ->_КонПроц();				//	|    |
 									//	|HiFi|
 //print_r($оКИМ);							//	|____|
-			////////					//		
+			////////					//
 			 // //						//
-			 // //						//		
+			 // //						//
 			////////					//
 									//		//	//
 $оКИМ			= new КИМ('Set text broadcast proxy');		//		//	//
@@ -201,7 +206,12 @@ $оКИМ			= new КИМ('Set text broadcast proxy');		//		//	//
 			 // // //							//
 			///////////							/////>////////////
 
-$оКИМ			= new КИМ('Listener catch up and provided to HIC sound amusement conveer line.');
+$оКИМ			= new КИМ('Listener provider to HIC sound amusement conveer line.');
+
+
+
+
+
 $оКИМ			= new КИМ('Собрать EDRO');
 $оКИМ->oE		= new Event();
 
