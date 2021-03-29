@@ -18,29 +18,29 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 			    |E    |D     |R      |O      |
 ||||||||||||||||||||||||||||Event|Design|Reality|Objects||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
- ......         ...  ..  ..   ..  . ...  ..  .  .  . .   . ... ..
-..  .     /\    ..  .... . . .  .   . . .  .. . . .. . . . ..  . .
-..  .   <  **>  ... .  . .    ..  . . .  .. . . .  . .   . ... .
- ......   jl                                                                 
-./././././././*/ //КИМ in latin is KIIM Иcкуственный Интеллект Кирилл и Мефодий (). 
-/////////////////////////*_\\KIIM//__Start_____		сНач	*/ 
-  //\\	  //\\	 //\\	/*__\\  //___Checkpiont		_Кон	*/ 
- //  \\	 //  \\	//  \\	/*___\\//____Finish___ 		_КонПроц*/ 
-//    \\//    \//    \\ /*____\/ECTOR <-->_____*/ 
-//////////if finish than compete if the result EXIST! Filosophy
-//    //\\  //	//Usage:
- //  ////	//$оКИМ			= new КИМ();
-  ////		//$оКИМ->сИмяФайла	= '';
-  //		//			$оКИМ->_Нач();
-//		//
-		//			$оКИМ->ч0ВыполненоЧастей++;
-		//			$оКИМ->_Кон();
-		//			$оКИМ->_КонПроц();
-//My last impulse of power will last forever
-// ---------------
-// | $rRadio     |<--.
-// |/////////////|   ||                      Request processing2EDRO: 	Абхазия serve;
-// ---------------   ||                      Store personal messages:  	Москва serve;
+ ......         ...  ..  ..   ..  . ...  ..  .  .  . .   . ... ..			//
+..  .     /\    ..  .... . . .  .   . . .  .. . . .. . . . ..  . .			// CLASS
+..  .   <  **>  ... .  . .    ..  . . .  .. . . .  . .   . ... .			// 	MEMORY MARKS INTERNAL
+ ......   jl                                                                 		//	MEMORY MARKS EXTERNAL
+./././././././*/ //КИМ in latin is KIIM Иcкуственный Интеллект Кирилл и Мефодий (). 	//	STATIC FUNCTIONS
+/////////////////////////*_\\KIIM//__Start_____		сНач	*/ 			//	CONSTRUCTOR
+  //\\	  //\\	 //\\	/*__\\  //___Checkpiont		_Кон	*/ 			//	PRIVATE FUNCTIONS
+ //  \\	 //  \\	//  \\	/*___\\//____Finish___ 		_КонПроц*/ 			//	PUBLIC FUNCTIONS
+//    \\//    \//    \\ /*____\/ECTOR <-->_____*/ 					//
+//////////if finish than compete if the result EXIST! Filosophy				//
+//    //\\  //	//Usage:								//
+ //  ////	//$оКИМ			= new КИМ();					//
+  ////		//$оКИМ->сИмяФайла	= '';						//
+  //		//			$оКИМ->_Нач();					//
+//		//									//
+		//			$оКИМ->ч0ВыполненоЧастей++;			//
+		//			$оКИМ->_Кон();					//
+		//			$оКИМ->_КонПроц();				//
+//My last impulse of power will last forever						//
+// ---------------									//
+// | $rRadio     |<--.									//
+// |/////////////|   ||                      Request processing2EDRO: 	Абхазия serve;	//
+// ---------------   ||                      Store personal messages:  	Москва serve;	//
 //       |  .--FALSE-'                       Store images:		Saint-Petersbourg serve;
 //       V /         || GET Listener         Store music: 		Чечня   serve;
 // ----rRadio.Step-- ^--------------------
