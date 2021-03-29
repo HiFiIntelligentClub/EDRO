@@ -20,8 +20,8 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  ......         ...  ..  ..   ..  . ...  ..  .  .  . .   . ... ..			//
 ..  .     /\    ..  .... . . .  .   . . .  .. . . .. . . . ..  . .			// OBJECT CLASS STRUCTURE
-..  .   <  **>  ... .  . .    ..  . . .  .. . . .  . .   . ... .			// 	MEMORY MARKS INTERNAL
- ......   jl                                                                 		//	MEMORY MARKS EXTERNAL
+..  .   <  **>  ... .  . .    ..  . . .  .. . . .  . .   . ... .			// 	MEMORY MARKS EXTERNAL
+ ......   jl                                                                 		//	MEMORY MARKS INTERNAL
 ./././././././*/ //КИМ in latin is KIIM Иcкуственный Интеллект Кирилл и Мефодий (). 	//	STATIC FUNCTIONS
 /////////////////////////*_\\KIIM//__Start_____		сНач	*/ 			//	CONSTRUCTOR
   //\\	  //\\	 //\\	/*__\\  //___Checkpiont		_Кон	*/ 			//	FUNCTIONS EXTERNAL
