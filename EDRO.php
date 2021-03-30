@@ -93,7 +93,7 @@ class КиМ
 	public $дВремяНач		= 0.0000;
 	public $дВремяКон		= 0.0000;
 	public $дДельтаВремяСтартНач	= 0.0000;
-	public $дДельтаВремяНачКон	= 0.0000;
+	public $тдДельтаВремяНачКон	= 0.0000;
 	public $ч0ВыполненоЧастей	= 0;
 	public $ч0ЖдёмЧастей		= 0;
 	public $ч0Шаг			= 0;
@@ -104,8 +104,13 @@ class КиМ
 
 	public static function оНачПроц()
 		{
-		$оКиМ		= new КиМ();
-		return		new EDRO();
+		$мСтек		=
+			array(
+			'оКиМ'		=>new КиМ(),
+			'objEDRO'	=>new EDRO(),
+			);
+		
+		return	$мСтек;
 		}
 	
 	public function __construct($сИмяПроцесса='')
