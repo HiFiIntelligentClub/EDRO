@@ -74,6 +74,16 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
  //   //
   // //
    ///
+//
+//
+//$arrMain	=
+//	array(
+//	'оКиМ'	=>$оКиМ,
+//	'oEDRO'	=>$oEDRO
+//	);
+//
+//
+//
 function сВремя(){return round(microtime(true), 4);}
 class КиМ
 	{
@@ -91,9 +101,10 @@ class КиМ
 	private $сРезультат		= 'Ждём выполнения';
 	private $сПроцессСтадия		= '';
 	private $сИмяПроцесса		= '';
-	public static function _НачПроц()
+
+	public static function оНачПроц()
 		{
-		$оКиМ
+		$оКиМ		= new КиМ();
 		return		new EDRO();
 		}
 	
@@ -183,7 +194,7 @@ class КиМ
 			  //
 			  //
 			//////
-$оКиМ			= new КиМ('PreLoad2RAM');
+$оКиМ			= КиМ::оНачПроц('PreLoad2RAM');
 $оКиМ->ч0ЖдёмЧастей	= 16;
 $оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
 			$оКиМ->сНач();					/////////////////
@@ -290,7 +301,6 @@ class EDRO
 					//this.K			=0;
 					//this.L			=0;
 					//this.strCurOperID;
-					
 
 					console.log('[..]EDRO: Construct');
 					}
