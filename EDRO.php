@@ -75,7 +75,7 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
   // //
    ///
 function сВремя(){return round(microtime(true), 4);}
-class КИМ
+class КиМ
 	{
 	public $oEDRO			= array();
 	public $сИмяФайла		='';
@@ -93,6 +93,8 @@ class КИМ
 	private $сИмяПроцесса		= '';
 	public static function _НачПроц()
 		{
+		$оКиМ
+		return		new EDRO();
 		}
 	
 	public function __construct($сИмяПроцесса='')
@@ -148,7 +150,6 @@ class КИМ
 			print_r($this);
 			}
 		$this->_ВыводРезультата();
-		self::$oEDRO = new EDRO();
 		}
 	private function _ПроцессСтадия()
 		{
@@ -166,10 +167,10 @@ class КИМ
 	private function _ВыводРезультата()
 		{
 		echo "\n";
-		echo '//vКИМ////////////////////////'."\n";
+		echo '//vКиМ////////////////////////'."\n";
 		echo $this->сИмяПроцесса."\n";
 		echo $this->сРезультат."\n";
-		echo '//^КИМ////////////////////////'."\n";
+		echo '//^КиМ////////////////////////'."\n";
 		echo "\n";
 		}
 	}
@@ -182,22 +183,22 @@ class КИМ
 			  //
 			  //
 			//////
-$оКИМ			= new КИМ('PreLoad2RAM');
-$оКИМ->ч0ЖдёмЧастей	= 16;
-$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
-			$оКИМ->сНач();					/////////////////
-			$оКИМ->_КонПроц();				//	|    |
+$оКиМ			= new КиМ('PreLoad2RAM');
+$оКиМ->ч0ЖдёмЧастей	= 16;
+$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
+			$оКиМ->сНач();					/////////////////
+			$оКиМ->_КонПроц();				//	|    |
 									//	|HiFi|
-//print_r($оКИМ);							//	|____|
+//print_r($оКиМ);							//	|____|
 			////////					//
 			 // //						//
 			 // //						//
 			////////					//
 									//		//	//
-$оКИМ			= new КИМ('Set text broadcast proxy');		//		//	//
+$оКиМ			= new КиМ('Set text broadcast proxy');		//		//	//
 									//		//	//
 									//////////////////
-			$оКИМ->_КонПроц();						//
+			$оКиМ->_КонПроц();						//
 											//
 											//
 											//
@@ -206,24 +207,24 @@ $оКИМ			= new КИМ('Set text broadcast proxy');		//		//	//
 			 // // //							//
 			///////////							/////>////////////
 
-$оКИМ			= new КИМ('Listener provider to HIC sound amusement conveer line.');
+$оКиМ			= new КиМ('Listener provider to HIC sound amusement conveer line.');
 
 
 
 
 
-$оКИМ			= new КИМ('Собрать EDRO');
-$оКИМ->oE		= new Event();
+$оКиМ			= new КиМ('Собрать EDRO');
+$оКиМ->oE		= new Event();
 
-//$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
-//$strStyles		= $оКИМ->сНач();
-			$оКИМ->_КонПроц();
+//$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/5.Styles/0.CSS.Styles.php';
+//$strStyles		= $оКиМ->сНач();
+			$оКиМ->_КонПроц();
 
-//$оКИМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
-//			$оКИМ->сНач();
-//			$оКИМ->_КонПроц();
+//$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/6.HTML_Interfaces/0.HTML_HeadInterface.php';
+//			$оКиМ->сНач();
+//			$оКиМ->_КонПроц();
 
-//			$оКИМ->_КонПроц();
+//			$оКиМ->_КонПроц();
 
 
 
@@ -233,11 +234,12 @@ $оКИМ->oE		= new Event();
 class EDRO
 	{
 	public 	$strHTML;
+
 	private $сЖурналРасположение	='/home/ЕДРО:ПОЛИМЕР/о2о.БазаДанных/HiFiIntelligentClub/Журнал';
-	private $ч0КИМШаг		=0;
+	private $ч0КиМШаг		=0;
 	private $rRadio;
 	private $arRAM		=array();
-	private $мКИМ		=array();
+	private $мКиМ		=array();
 	private $oEDRO;
 	private $arrE	=
 		array(
@@ -267,19 +269,57 @@ class EDRO
 			'strOpen'		=>'>',
 			'strClose'		=>'<',
 			);
+	public static function strHTML($мКиМ, $_strStyle, $_arrParams, $_intLayer)
+		{
+		$objEDRO	=new EDRO($мКиМ, $_strStyle, $_arrParams, $_intLayer);
+		return		$objEDRO->strHTML;
+		}
+	public static function strObjectDeclare()
+		{
+		$str	= <<<oo2oo
+		<script>
+			console.log('[V]EDRO: Declare');
+			class EDRO
+				{
+				//intStep			=0;//Player session operation time
+				//intVector		=0;
+				//intStep2News		=0;
+				constructor()
+					{
+					console.log('[Vv]EDRO: Construct');
+					//this.K			=0;
+					//this.L			=0;
+					//this.strCurOperID;
+					
+
+					console.log('[..]EDRO: Construct');
+					}
+				_Report ()
+					{
+					}
+				}
+			console.log('[.]EDRO: Declare');
+		</script>
+oo2oo;
+		return $str;
+		}
+	public static function strObjectInit()
+		{
+		return Event::strObjectInit('EDRO');
+		}
 	public function __construct($_strStyle, $arrParams,  $_intLayer)
 		{
-		//		$this->_КИМ('Start');
+		//		$this->_КиМ('Start');
 		//		$this->_ПредпусковаяПроверка();
 		//		$this->_СтартЖурнала();
 		//$this->arRAM	=$this->mReadStatic();
-		//		$this->_КИМ('End');
+		//		$this->_КиМ('End');
 		//$int0Attempts	= 0;
 
 		//while(true)	//
 		//	{
 		//	$this->rRadio	= $this->rOrganiseListenersRadioRequests();
-/*x1*/		//	$oEDRO		= Event::_V($this->мКИМ, $this->rRadio);
+/*x1*/		//	$oEDRO		= Event::_V($this->мКиМ, $this->rRadio);
 /*x2*/		//	while($oEDRO->arrEvent['rRadio'])
 		//		{
 
@@ -362,88 +402,46 @@ class EDRO
 
 		}*/
 
-	public static function strHTML($мКИМ, $_strStyle, $_arrParams, $_intLayer)
-		{
-		$objEDRO	=new EDRO($мКИМ, $_strStyle, $_arrParams, $_intLayer);
-		return		$objEDRO->strHTML;
-		}
-	public static function strObjectDeclare()
-		{
-		$str	= <<<oo2oo
-		<script>
-			console.log('[V]EDRO: Declare');
-			class EDRO
-				{
-				//intStep			=0;//Player session operation time
-				//intVector		=0;
-				//intStep2News		=0;
-				constructor()
-					{
-					console.log('[Vv]EDRO: Construct');
-					//this.K			=0;
-					//this.L			=0;
-					//this.strCurOperID;
-					
 
-					console.log('[..]EDRO: Construct');
-					}
-				_Report ()
-					{
-					}
-				}
-			console.log('[.]EDRO: Declare');
-		</script>
-oo2oo;
-		return $str;
-		}
-	public function _КИМ($strDirection='Start')
+	public function _КиМ($strDirection='Start')
 		{
-		$this->мКИМ[$this->ч0КИМШаг][$strDirection][__CLASS__]			=__FUNCTION__;
+		$this->мКиМ[$this->ч0КиМШаг][$strDirection][__CLASS__]			=__FUNCTION__;
 		switch($strDirection)
 			{
 			case 'Start':
 
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTime'] 		=сТекущееВремяСтемп();
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDelta']	=0;
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTime'] 		=сТекущееВремяСтемп();
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDelta']	=0;
 
-				$ч0ПредШаг	=(($this->ч0КИМШаг-1)>0)?$this->ч0КИМШаг-1:$this->ч0КИМШаг;
+				$ч0ПредШаг	=(($this->ч0КиМШаг-1)>0)?$this->ч0КиМШаг-1:$this->ч0КиМШаг;
 
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDeltaAll']= 
-					($this->мКИМ[$this->ч0КИМШаг]['Start']['strTime']-$this->мКИМ[$ч0ПредШаг]['End']['strTime']);
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDeltaAll']= 
+					($this->мКиМ[$this->ч0КиМШаг]['Start']['strTime']-$this->мКиМ[$ч0ПредШаг]['End']['strTime']);
 
-				$str	=$this->ч0КИМШаг.' '.$strDirection.' '.__CLASS__.' '.__FUNCTION__.' '.$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDeltaAll'];
+				$str	=$this->ч0КиМШаг.' '.$strDirection.' '.__CLASS__.' '.__FUNCTION__.' '.$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDeltaAll'];
 			break;
 			case 'End':
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTime'] 		=сТекущееВремяСтемп();
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDelta']= 
-					($this->мКИМ[$this->ч0КИМШаг]['End']['strTime']-
-						$this->мКИМ[$this->ч0КИМШаг]['Start']['strTime']);
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTime'] 		=сТекущееВремяСтемп();
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDelta']= 
+					($this->мКиМ[$this->ч0КиМШаг]['End']['strTime']-
+						$this->мКиМ[$this->ч0КиМШаг]['Start']['strTime']);
 
-				$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDeltaAll']= 
-					($this->мКИМ[$this->ч0КИМШаг]['End']['strTime']-
-						$this->мКИМ[0]['Start']['strTime']);
-				$str	=$this->ч0КИМШаг.' '.$strDirection.' '.__CLASS__.' '.__FUNCTION__.' '.$this->мКИМ[$this->ч0КИМШаг][$strDirection]['strTimeDelta'];
-				$this->ч0КИМШаг++;
+				$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDeltaAll']= 
+					($this->мКиМ[$this->ч0КиМШаг]['End']['strTime']-
+						$this->мКиМ[0]['Start']['strTime']);
+				$str	=$this->ч0КиМШаг.' '.$strDirection.' '.__CLASS__.' '.__FUNCTION__.' '.$this->мКиМ[$this->ч0КиМШаг][$strDirection]['strTimeDelta'];
+				$this->ч0КиМШаг++;
 			break;
 			}
-		if(file_put_contents($this->сЖурналРасположение.'/КИМ/КИМ.txt', $str."\n", FILE_APPEND)===FALSE)
+		if(file_put_contents($this->сЖурналРасположение.'/КиМ/КиМ.txt', $str."\n", FILE_APPEND)===FALSE)
 			{
-			_Report('Не могу записать: '.$this->сЖурналРасположение.'/КИМ/КИМ.txt');
+			_Report('Не могу записать: '.$this->сЖурналРасположение.'/КиМ/КиМ.txt');
 			}
 		}
-	private function mReadStatic()
-		{
-		$this->_КИМ('Start');
-		$м	=array();
-		$м['strFaviconBin']		=file_get_contents('/home/HiFiIntelligentClub.Ru/favicon.png');
-		$м['strJPGLogo']		=file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
-		$м['strRobotsTxt']		=file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
-		$this->_КИМ('End');
-		return $м;
-		}
+
 	public function _СтартЖурнала()
 		{
-		$this->_КИМ('Start');
+		$this->_КиМ('Start');
 		$сРасположениеСчётчикВход	=$this->сЖурналРасположение.'/CountUp/Вход.plmr';
 		$сРасположениеСчётчикВходИстор	=$this->сЖурналРасположение.'/CountUp/History/Вход.plmr';
 		echo $сРасположениеСчётчикВход;
@@ -451,10 +449,10 @@ oo2oo;
 		$ч0СчётчикВход			=file_get_contents($сРасположениеСчётчикВход); сТекущееВремяСтемп();
 						 file_put_contents($сРасположениеСчётчикВход, ($ч0СчётчикВход+1));
 						 /*DEBUG*/ file_put_contents($сРасположениеСчётчикВходИстор,"\n=====\n".'	Start:		'.date("Y-m-d H:i:s").сТекущееВремяСтемп()."\n", FILE_APPEND);
-		$this->_КИМ('End');
+		$this->_КиМ('End');
 		}
 	private function rOrganiseListenersRadioRequests()
-		{$this->_КИМ('Start');
+		{$this->_КиМ('Start');
 /*  [vК]	*/$rListenersRadioRequests	=stream_socket_server("tcp://".strDomain().":80", $errno, $errstr);
 /*[v][И][>][-]	*/if($rListenersRadioRequests===FALSE) //NEGATIVE
 /*[+]		      */{
@@ -462,11 +460,18 @@ oo2oo;
 /*   [-]		*/$this->rOrganiseListenersRadioRequests();
 /*   [-]		*/_Report('rOrganiseListenersRadioRequests() failed. Restarting after 0,1 s. delay.');
 /*   [-]		*/}
-/*   [M]	*/$this->_КИМ('End');
+/*   [M]	*/$this->_КиМ('End');
 /*   [+]	*/return $rListenersRadioRequests; //POSITIVE
 		}
-	public static function strObjectInit()
+	
+	private function mReadStatic()
 		{
-		return Event::strObjectInit('EDRO');
+		$this->_КиМ('Start');
+		$м	=array();
+		$м['strFaviconBin']		=file_get_contents('/home/HiFiIntelligentClub.Ru/favicon.png');
+		$м['strJPGLogo']		=file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
+		$м['strRobotsTxt']		=file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
+		$this->_КиМ('End');
+		return $м;
 		}
 	}
