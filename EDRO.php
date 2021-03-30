@@ -104,10 +104,11 @@ class КиМ
 
 	public static function оНачПроц()
 		{
-		$мСтек		=
+		$мСтекТехноЛогий	=
 			array(
-			'оКиМ'		=>new КиМ(),
-			'objEDRO'	=>new EDRO(),
+			'оКиМ'		=>new КиМ(),  //+
+			'objEDRO'	=>new EDRO(), //+
+						      //+
 			);
 		
 		return	$мСтек;
