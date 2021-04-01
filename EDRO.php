@@ -20,37 +20,34 @@ Site[En] Private browsing international: http://ryklzxobxv4s32omimbu7d7t3cdw6dpl
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 function сВремя(){return round(microtime(true), 4);}
-require"/home/EDRO.SetOfTools/System/-1.КиМ/0.КиМ.php";
+$сКиМ		="/home/EDRO.SetOfTools/System/-1.КиМ/0.КиМ.php";
+if(file_get_contents($сКиМ)===FALSE){exit;}
+require$сКиМ;
+			//////
+			  //
+			  //
+/////////////////////////////////////////////////////////////////////////////////////////
+$оКиМ			= КиМ::оНачПроц('PreLoad2RAM');				////////
+$оКиМ->ч0ЖдёмЧастей	= 16;							    // 
+$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';	   //  
+			$оКиМ->сНач();						  //   
+			$оКиМ->_КонПроц();					///////
 
-			//////
-			  //
-			  //
-			//////
-$оКиМ			= КиМ::оНачПроц('PreLoad2RAM');
-$оКиМ->ч0ЖдёмЧастей	= 16;
-$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/0.Loader/0.loader.php';
-			$оКиМ->сНач();					/////////////////
-			$оКиМ->_КонПроц();				//	|    |
-									//	|HiFi|
-//print_r($оКиМ);							//	|____|
-			////////					//
-			 // //						//
-			 // //						//
-			////////					//
-									//		//	//
-$оКиМ			= new КиМ('Set text broadcast proxy');		//		//	//
-									//		//	//
+$оКиМ			= КиМ::оНачПроц('Set text broadcast proxy');	///		//
+$оКиМ->ч0ЖдёмЧастей	= 1;							//   //
+$оКиМ->сИмяФайла	= '/home/EDRO.SetOfTools/System/8.Вещание/0.Prepare.php';	//   //
+			$оКиМ->_КонПроц();				//		//
 									//////////////////
-			$оКиМ->_КонПроц();						//
+				    				//	LL 
 											//
 											//
 											//
 			///////////							//
 			 // // //							//
 			 // // //							//
-			///////////							/////>////////////
+			///////////							
 
-$оКиМ			= new КиМ('Listener provider to HIC sound amusement conveer line.');
+$оКиМ			= КиМ::оНачПроц('Listener provider to HIC sound amusement conveer line.');
 
 
 
