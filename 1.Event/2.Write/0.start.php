@@ -47,7 +47,13 @@ class Read
 					}
 				else
 					{
-					$this->сБуффер		= file_put_contents($this->мЗаголовки[0]);
+					if(isset($this->мЗаголовки[1]))
+						{
+						$this->сБуффер		= file_put_contents($this->мЗаголовки[0],$this->мЗаголовки[1]);
+						}
+					else
+						{
+						}
 					}
 				}
 			fwrite($this->рПередача, $this->сБуффер, strlen($this->сБуффер));
