@@ -1,36 +1,33 @@
 <?php                /*_
 © Andrey Chekmaryov (https://vk.com/Hfic.Samin) 2021
 */
-function сПрочитать($сРеальность, $сОбъект)
-	{$ф		= фОтчёт('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект);
-	$intTime1	= сВремя();
-		$ф			= FALSE;
-	$_strAddressFull	= '127.0.0.1';
+class оПрочитать
+	{
+	protected $E	= array();
+	protected $D	= '';
+	protected $R	= array();
+	protected $O	= array();
+	public function __construct()
+		{$ф			= фОтчёт('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект);
+		}
+	private function _socketCreate()
+		{
+		$lnSOCK			= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
+		}
+	private function _socketConnect()
+		{
+		$bIzSocket 		= socket_connect($lnSOCK, '127.0.0.1', 81);
+		}
+	private function _socketWrite()
+		{
+		socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
+		}
+	private function _socketRead()
+		{
+		socket_read($lnSOCK, 512)
+		}
+	}
 
-	$lnSOCK			= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
-	$bIzSocket 		= socket_connect($lnSOCK, $_strAddressFull, 81);
-
-	socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
-	echo(socket_read($lnSOCK, 512));
-
-	if($lnSOCK)
-		{
-		echo 'socket_create: OK'."\n";
-		$ф	= TRUE;
-		}
-	else
-		{
-		$ф	= FALSE;
-		}
-	if($bIzSocket)
-		{
-		echo 'socket_connect: OK'."\n";
-		$ф	= TRUE;
-		}
-	else
-		{
-		$ф	= FALSE;
-		}
 	/*if(filesize($сРеальность.'/'.$сОбъект)>0)
 		{
 		if($str	= file_get_contents($сРеальность.'/'.$сОбъект))
@@ -57,7 +54,8 @@ function сПрочитать($сРеальность, $сОбъект)
 		{
 		$ф	= фОшибка('[.ЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект, array(1=>'Не читаем объект нулевой длины'));
 		$str	= '';
-	}*/
+	}
 	return $str;
 	}
+	*/
 ?>
