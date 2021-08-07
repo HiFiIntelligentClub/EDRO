@@ -7,20 +7,26 @@ class оПрочитать
 				
 			);
 	protected $D	= array(
-				'strAddr'		= '127.0.0.1',
-				'strPort'		= 81,
+				'strAddr'		=> '127.0.0.1',
+				'strPort'		=> 81,
+				'intReadBlockSize'	=> 512,
 			);
 	protected $R	= array(
-				'lnSOCK'		= '',
-				'bIzSocket'		= FALSE,
-				'intWritedBytes'	= 0,
-				'strReadedBlock'	= '',
+				'lnSOCK'		=> '',
+				'bIzSocket'		=> FALSE,
+				'intWritedBytes'	=> 0,
+				'strReadedBlock'	=> '',
 			);
-	protected $O	= array();
+	protected $O	= array(
+				'сРасположение'		=> '',
+			);
 	public function __construct()
-		{$ф			= фОтчёт('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект);
+		{
 		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
-
+					$this->_memoryPrepare();
+					$this->_connectRemote();
+					$this->_writeRemote();
+					$this->_readRemoteReport();
 		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _memoryPrepare()
@@ -32,19 +38,19 @@ class оПрочитать
 	private function _connectRemote()
 		{
 		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
-		$this->R['bIzSocket'] 		= socket_connect($lnSOCK, '127.0.0.1', 81);
+		$this->R['bIzSocket'] 		= socket_connect($this->R['lnSOCK'], $this->D['strAddr'], $this->D['intPort']);
 		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _writeRemote()
 		{
 		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
-		$this->R['intWritedBytes']	= socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
+		$this->R['intWritedBytes']	= socket_write($this->R['lnSOCK'], $this->O['сРасположение'], strlen($this->O['сРасположение']));
 		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _readRemoteReport()
 		{
 		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
-		$this->R['strReadedBlock']    	= socket_read($lnSOCK, 512);
+		$this->R['strReadedBlock']    	= socket_read($this->R['lnSOCK'], $this->D['intReadBlockSize']);
 		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	}
