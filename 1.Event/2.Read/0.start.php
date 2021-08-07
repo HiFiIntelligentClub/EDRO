@@ -44,12 +44,13 @@ class Read
 	public function __construct()
 		{
 		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
-
+		$this->_Буфферизация();
 		$this->_memoryPrepare();
 		while($this->ifGgetRead())
 			{
 			$this->_ЧтениеЗапросаИзБраузераСлушателя();
 			$this->_ЗаписьОтветаВБраузерСлушателя();
+			$this->_СбросEventЖурнала();
 			}
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
@@ -99,6 +100,10 @@ class Read
 		fclose($this->R['рПередача']);
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
+	private function _СбросEventЖурнала()
+		{
+		$this->E = array();
+		}
 	public function сСтартЖурнала()
 		{
 		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
@@ -112,15 +117,13 @@ class Read
 		//$this->_КИМ('End');
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
-	private function мБуфферизация()
+	private function _Буфферизация()
 		{
-		//$this->_КИМ('Start');
-		//$м	=array();
-		//$м['strFaviconBin']		=file_get_contents('/home/HiFiIntelligentClub.Ru/favicon.png');
-		//$м['strJPGLogo']		=file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
-		//$м['strRobotsTxt']		=file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
-		//$this->_КИМ('End');
-		//return $м;
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->O['strFaviconBin']		= file_get_contents('/home/HiFiIntelligentClub.Ru/favicon.png');
+		$this->O['strJPGLogo']			=file_get_contents('/home/HiFiIntelligentClub.Ru/Hfic_Samin.jpg');
+		$this->O['strJPGLogo']['strRobotsTxt']	=file_get_contents('/home/HiFiIntelligentClub.Ru/robots.txt');
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	public function _КИМ($strDirection='Start')
 		{
