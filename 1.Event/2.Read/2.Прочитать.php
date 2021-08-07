@@ -10,6 +10,7 @@ class оПрочитать
 				'strAddr'		=> '127.0.0.1',
 				'strPort'		=> 81,
 				'intReadBlockSize'	=> 512,
+				'сРасположение'		=> '',
 			);
 	protected $R	= array(
 				'lnSOCK'		=> '',
@@ -18,7 +19,7 @@ class оПрочитать
 				'strReadedBlock'	=> '',
 			);
 	protected $O	= array(
-				'сРасположение'		=> '',
+				'сОтвет'		=> '',
 			);
 	public function __construct()
 		{
