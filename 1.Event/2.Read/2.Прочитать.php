@@ -3,8 +3,13 @@
 */
 class оПрочитать
 	{
-	protected $E	= array();
-	protected $D	= '';
+	protected $E	= array(
+				
+			);
+	protected $D	= array(
+				'strAddr'		= '127.0.0.1',
+				'strPort'		= 81,
+			);
 	protected $R	= array(
 				'lnSOCK'		= '',
 				'bIzSocket'		= FALSE,
@@ -14,22 +19,33 @@ class оПрочитать
 	protected $O	= array();
 	public function __construct()
 		{$ф			= фОтчёт('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект);
+		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+
+		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _memoryPrepare()
 		{
+		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['lnSOCK']		= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
+		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _connectRemote()
 		{
+		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['bIzSocket'] 		= socket_connect($lnSOCK, '127.0.0.1', 81);
+		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _writeRemote()
 		{
+		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['intWritedBytes']	= socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
+		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _readRemoteReport()
 		{
+		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['strReadedBlock']    	= socket_read($lnSOCK, 512);
+		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	}
 
