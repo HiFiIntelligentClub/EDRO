@@ -27,57 +27,81 @@ function _Report($str)
 
 class Read
 	{
-	private $рПриёмник;
-	private $рПередача;
-	private $мЗаголовки	= array();
-	private $сБуффер	= '';
+	private $E	= array(
+			);
+	private $D	= array(
+				'strAddr'		=> '127.0.0.1',
+				'strPort'		=> 81,
+				'intReadBlockSize'	=> 512,
+				'сРасположение'		=> '',
+			);
+	private $R	= array(
+				'рПриёмник'		=> '',
+				'рПередача'		=> '',
+				'bIzSocket'		=> FALSE,
+				'intWritedBytes'	=> 0,
+				'мЗаголовки'		=>array(),
+				'strReadedBlock'	=> '',
+			);
+	public $O	= array(
+			);
 
 	public function __construct()
 		{
-		$this->рПриёмник	= $this->рОрганизацияПриёмникаЗапросовСлушателя();
-		while($this->рПередача 	= stream_socket_accept($this->рПриёмник, -1))
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+
+		$this->_memoryPrepare();
+		while(ifGgetRead())
 			{
-			$this->мЗаголовки 	= $this->мЧтениеЗапросаИзБраузераСлушателя();
-			//print_r($this->мЗаголовки);
-			if(isset($this->мЗаголовки[0]))
+			$this->R['мЗаголовки'] 	= $this->мЧтениеЗапросаИзБраузераСлушателя();
+			if(isset($this->R['мЗаголовки'][0]))
 				{
-				if(is_file($this->мЗаголовки[0]))
+				if(is_file($this->R['мЗаголовки'][0]))
 					{
-					$this->сБуффер		= file_get_contents($this->мЗаголовки[0]);
+					$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
 					}
 				else
 					{
 					
 					}
 				}
-			fwrite($this->рПередача, $this->сБуффер, strlen($this->сБуффер));
-			fclose($this->рПередача);
+			fwrite($this->R['рПередача'], $this->R['strReadedBlock'], strlen($this->R['strReadedBlock']));
+			fclose($this->R['рПередача']);
 			}
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
-	private function рОрганизацияПриёмникаЗапросовСлушателя()
+	private function _memoryPrepare()
 		{
-		//$this->_КИМ('Start');
-		$рПриёмникЗапросовСлушателя	= stream_socket_server("tcp://127.0.0.1:81", $errno, $errstr);
-		//$this->_КИМ('End');
-		return $рПриёмникЗапросовСлушателя;
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->R['рПриёмник']	= stream_socket_server('tcp://'.$this->D['strAddr'].':'.$this->D['strPort'], $errno, $errstr);
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
+		}
+	private function ifGgetRead()
+		{
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->R['рПередача'] 	= stream_socket_accept($this->R['рПриёмник'], -1);
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
+		return $this->R['рПередача'];
 		}
 	private function мЧтениеЗапросаИзБраузераСлушателя()
 		{
-		$сПередача		= fread($this->рПередача, 512);
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$сПередача		= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
 		if(!empty($сПередача))
 			{
 			$мПередача		= explode("\n", $сПередача);
 			}
 		else
 			{
-			_Report('fread($_рПередача, 512) empty.');
+			_Report('fread($_рПередача, '.$this->D['intReadBlockSize'].') empty.');
 			$мПередача		= array();
 			}
-
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		return $мПередача;
 		}
 	public function сСтартЖурнала()
 		{
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 		//$this->_КИМ('Start');
 		//$сРасположениеСчётчикВход	=$this->сЖурналРасположение.'/CountUp/Вход.plmr';
 		//$сРасположениеСчётчикВходИстор	=$this->сЖурналРасположение.'/CountUp/History/Вход.plmr';
@@ -86,6 +110,7 @@ class Read
 		//				 file_put_contents($сРасположениеСчётчикВход, ($ч0СчётчикВход+1));
 		//				 /*DEBUG*/ file_put_contents($сРасположениеСчётчикВходИстор,"\n=====\n".'	Start:		'.date("Y-m-d H:i:s").сТекущееВремяСтемп()."\n", FILE_APPEND);
 		//$this->_КИМ('End');
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function мБуфферизация()
 		{
