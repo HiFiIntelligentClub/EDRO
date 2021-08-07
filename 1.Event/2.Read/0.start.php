@@ -20,11 +20,6 @@ set_time_limit(0);
 
 Read::VoId();
 
-function _Report($str)
-	{
-	echo $str."\n";
-	}
-
 class Read
 	{
 	private $E	= array(
@@ -51,22 +46,10 @@ class Read
 		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 
 		$this->_memoryPrepare();
-		while(ifGgetRead())
+		while($this->ifGgetRead())
 			{
-			$this->R['мЗаголовки'] 	= $this->мЧтениеЗапросаИзБраузераСлушателя();
-			if(isset($this->R['мЗаголовки'][0]))
-				{
-				if(is_file($this->R['мЗаголовки'][0]))
-					{
-					$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
-					}
-				else
-					{
-					
-					}
-				}
-			fwrite($this->R['рПередача'], $this->R['strReadedBlock'], strlen($this->R['strReadedBlock']));
-			fclose($this->R['рПередача']);
+			$this->_ЧтениеЗапросаИзБраузераСлушателя();
+			$this->_ЗаписьОтветаВБраузерСлушателя();
 			}
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
@@ -83,21 +66,38 @@ class Read
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		return $this->R['рПередача'];
 		}
-	private function мЧтениеЗапросаИзБраузераСлушателя()
+	private function _ЧтениеЗапросаИзБраузераСлушателя()
 		{
-		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
-		$сПередача		= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
-		if(!empty($сПередача))
+		$this->E[]			= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->R['strReadedBlock']	= fread($this->R['рПередача'], $this->D['intReadBlockSize']);
+		if(!empty($this->R['strReadedBlock']))
 			{
-			$мПередача		= explode("\n", $сПередача);
+			$this->R['мЗаголовки']		= explode("\n", $this->R['strReadedBlock']);
 			}
 		else
 			{
-			_Report('fread($_рПередача, '.$this->D['intReadBlockSize'].') empty.');
-			$мПередача		= array();
+			$this->E[]			= array('!'.__CLASS__.'/'.__FUNCTION__ => 'fread($_рПередача'.$this->D['intReadBlockSize'].') empty.');
+			$this->R['мЗаголовки']		= array();
+			}
+		if(isset($this->R['мЗаголовки'][0]))
+			{
+			if(is_file($this->R['мЗаголовки'][0]))
+				{
+				$this->R['strReadedBlock']		= file_get_contents($this->R['мЗаголовки'][0]);
+				}
+			else
+				{
+			
+				}
 			}
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
-		return $мПередача;
+		}
+	private function _ЗаписьОтветаВБраузерСлушателя()
+		{
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		fwrite($this->R['рПередача'], $this->R['strReadedBlock'], strlen($this->R['strReadedBlock']));
+		fclose($this->R['рПередача']);
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	public function сСтартЖурнала()
 		{
