@@ -3,23 +3,22 @@
 */
 class оПрочитать
 	{
-	protected $E	= array(
+	private $E	= array(
 				
 			);
-	protected $D	= array(
+	private $D	= array(
 				'strAddr'		=> '127.0.0.1',
 				'strPort'		=> 81,
 				'intReadBlockSize'	=> 512,
 				'сРасположение'		=> '',
 			);
-	protected $R	= array(
+	private $R	= array(
 				'lnSOCK'		=> '',
 				'bIzSocket'		=> FALSE,
 				'intWritedBytes'	=> 0,
 				'strReadedBlock'	=> '',
 			);
-	protected $O	= array(
-				'сОтвет'		=> '',
+	public $O	= array(
 			);
 	public function __construct($_D=array())
 		{
@@ -29,7 +28,9 @@ class оПрочитать
 					$this->_connectRemote();
 					$this->_writeRemote();
 					$this->_readRemoteReport();
+					$this->_processObjects();
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
+		print_r($this);
 		}
 	private function _memoryPrepare()
 		{
@@ -55,36 +56,11 @@ class оПрочитать
 		$this->R['strReadedBlock']    	= socket_read($this->R['lnSOCK'], $this->D['intReadBlockSize']);
 		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
-	}
-
-	/*if(filesize($сРеальность.'/'.$сОбъект)>0)
+	private function _processObjects()
 		{
-		if($str	= file_get_contents($сРеальность.'/'.$сОбъект))
-			{
-			$intTime2	= сВремя();
-			$intTime	= $intTime2 - $intTime1;
-			if($intTime>0.001)
-				{
-				$strTime	= $intTime;
-				$ф		= фОшибка('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект.' |'.$strTime, array(4=>'Время чтения объекта превысило 0.001'));
-				}
-			else
-				{
-	    			$strTime	= '~0. Норм';
-				}
-			$ф		= фОтчёт('[.ЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект.'. Выполнено: '.strlen($str).' Байта.'.'. Время загрузки: '.$strTime);
-			}
-		else
-			{
-			return $ф	= фОшибка('[.ЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект, array(3=>'Не могу прочитать объект'));
-			}
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->O		= array();
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
-	else
-		{
-		$ф	= фОшибка('[.ЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект, array(1=>'Не читаем объект нулевой длины'));
-		$str	= '';
 	}
-	return $str;
-	}
-	*/
 ?>
