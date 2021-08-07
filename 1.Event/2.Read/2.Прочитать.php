@@ -5,26 +5,31 @@ class оПрочитать
 	{
 	protected $E	= array();
 	protected $D	= '';
-	protected $R	= array();
+	protected $R	= array(
+				'lnSOCK'		= '',
+				'bIzSocket'		= FALSE,
+				'intWritedBytes'	= 0,
+				'strReadedBlock'	= '',
+			);
 	protected $O	= array();
 	public function __construct()
 		{$ф			= фОтчёт('[vЧТЕНИЕ]: '.$сРеальность.'/'.$сОбъект);
 		}
-	private function _socketCreate()
+	private function _memoryPrepare()
 		{
-		$lnSOCK			= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
+		$this->R['lnSOCK']		= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
 		}
-	private function _socketConnect()
+	private function _connectRemote()
 		{
-		$bIzSocket 		= socket_connect($lnSOCK, '127.0.0.1', 81);
+		$this->R['bIzSocket'] 		= socket_connect($lnSOCK, '127.0.0.1', 81);
 		}
-	private function _socketWrite()
+	private function _writeRemote()
 		{
-		socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
+		$this->R['intWritedBytes']	= socket_write($lnSOCK, $сРасположение, strlen($сРасположение));
 		}
-	private function _socketRead()
+	private function _readRemoteReport()
 		{
-		socket_read($lnSOCK, 512)
+		$this->R['strReadedBlock']    	= socket_read($lnSOCK, 512);
 		}
 	}
 
