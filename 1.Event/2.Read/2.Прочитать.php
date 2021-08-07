@@ -21,38 +21,39 @@ class оПрочитать
 	protected $O	= array(
 				'сОтвет'		=> '',
 			);
-	public function __construct()
+	public function __construct($_D=array())
 		{
-		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->D['сРасположение'] 	= $_D['сРасположение'];
 					$this->_memoryPrepare();
 					$this->_connectRemote();
 					$this->_writeRemote();
 					$this->_readRemoteReport();
-		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _memoryPrepare()
 		{
-		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['lnSOCK']		= socket_create(AF_INET, SOCK_STREAM, getprotobyname('tcp'));
-		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _connectRemote()
 		{
-		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['bIzSocket'] 		= socket_connect($this->R['lnSOCK'], $this->D['strAddr'], $this->D['intPort']);
-		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _writeRemote()
 		{
-		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['intWritedBytes']	= socket_write($this->R['lnSOCK'], $this->O['сРасположение'], strlen($this->O['сРасположение']));
-		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	private function _readRemoteReport()
 		{
-		$this->E[]		= array('v'.__FUNCTION__ => ($intStartTime = сВремя()));
+		$this->E[]		= array('v'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime = сВремя()));
 		$this->R['strReadedBlock']    	= socket_read($this->R['lnSOCK'], $this->D['intReadBlockSize']);
-		$this->E[]		= array('.'.__FUNCTION__ => ($intStartTime - сВремя()));
+		$this->E[]		= array('.'.__CLASS__.'/'.__FUNCTION__ => ($intStartTime - сВремя()));
 		}
 	}
 
