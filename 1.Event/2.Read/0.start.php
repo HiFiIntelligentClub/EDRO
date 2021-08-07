@@ -35,7 +35,7 @@ class Read
 				'рПередача'		=> '',
 				'bIzSocket'		=> FALSE,
 				'intWritedBytes'	=> 0,
-				'мЗаголовки'		=>array(),
+				'мЗаголовки'		=> array(),
 				'strReadedBlock'	=> '',
 			);
 	public $O	= array(
@@ -124,7 +124,8 @@ class Read
 		}
 	public function _КИМ($strDirection='Start')
 		{
-		/*$this->мКИМ[$this->ч0КИМШаг][$strDirection][__CLASS__]			=__FUNCTION__;
+		/*
+		$this->мКИМ[$this->ч0КИМШаг][$strDirection][__CLASS__]			=__FUNCTION__;
 		switch($strDirection)
 			{
 			case 'Start':
@@ -147,11 +148,12 @@ class Read
 				$this->ч0КИМШаг++;
 			break;
 			}
-		file_put_contents();*/
+		*/
 		}
 	public static function VoId()
 		{
 		$оRead= new Read();
+			Read::VoId();
 		}
 	}
 ?>
